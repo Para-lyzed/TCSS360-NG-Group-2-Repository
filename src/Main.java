@@ -1,47 +1,27 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+import java.awt.Font;
+
+/**
+ * TCSS 360B
+ * Team Deliverable - Iteration 1
+ * Main.java
+ * 
+ * @author Nathan Grimsey
+ * @author Maple Gunn
+ *
+ */
 public class Main {
+    public static Font headingOneFont = new Font("Arial", Font.BOLD, 50);
+    public static Font headingTwoFont = new Font("Arial", Font.BOLD, 36);
+    public static Font menuFont = new Font("Arial", Font.BOLD, 32);
+    public static Font spacerFont = new Font("Arial", Font.BOLD, 75);
+    public static Font baseFont = new Font("Arial", Font.PLAIN, 24);
+    public static final int menuWidth = 350;
     public static void main(String[] args) {
 
-        JFrame f = new JFrame("MVP Project Planner");
-        f.setSize(480, 360);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel p = new JPanel();
-        AboutScreen as = new AboutScreen(f.getWidth(), f.getHeight());
-        SettingScreen ss = new SettingScreen(f.getWidth(), f.getHeight());
-
-        f.add(p);
-
-        JButton settings = new JButton("Settings");
-        JButton about = new JButton("About");
-        about.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                f.setVisible(false);
-                as.setVisible(true);
-            }
-        });
-
-        settings.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                f.setVisible(false);
-                ss.setVisible(true);
-            }
-        });
-
-        p.add(settings);
-        p.add(about);
-
-
-
-
-        f.setVisible(true);
-
+        JFrame baseFrame = new BaseFrame(1000, 600, new About(new Profile()));
+        baseFrame.setVisible(true);
 
         }
     }
