@@ -16,6 +16,7 @@ public class AboutScreen extends JPanel {
     private JLabel heading = new JLabel("     About");
     private JLabel currentUser;
     private JLabel contributors;
+    private JLabel version;
     private About about;
 
     public AboutScreen(int width, int height, About about) {
@@ -36,10 +37,14 @@ public class AboutScreen extends JPanel {
         currentUser.setFont(Main.baseFont);
         contributors = new JLabel("This app is provided by:   " + this.about.getContributors());
         contributors.setFont(Main.baseFont);
+        version = new JLabel("Version v" + about.getVersion());
+        version.setFont(Main.baseFont);
         c.gridy++;
         add(currentUser, c);
         c.gridy++;
         add(contributors, c);
+        c.gridy++;
+        add(version, c);
     }
 
     public void refreshProfile() {
