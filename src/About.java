@@ -8,9 +8,9 @@
  *
  */
 public class About {
-    Profile owner;
-    String contributors = "Nathan Grimsey, Maple Gunn, Cody Dukes";
-    String version = "0.1";
+    private Profile owner;
+    private String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
+    private String version = "0.1";
 
     public About(Profile owner) {
         this.owner = owner;
@@ -28,7 +28,7 @@ public class About {
         return this.version;
     }
 
-    public String getContributors() {
+    public String[] getContributors() {
         return this.contributors;
     }
 

@@ -8,8 +8,8 @@
  *
  */
 public class Profile {
-    String name;
-    String email;
+    private String name;
+    private String email;
 
 
     public Profile(String name, String email) {
