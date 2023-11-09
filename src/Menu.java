@@ -42,6 +42,7 @@ public class Menu extends JPanel {
         this.setLayout(new GridBagLayout());
         this.menuEntries = new ArrayList<>(this.entries.length);
         this.c = new GridBagConstraints();
+        this.c.insets = Main.menuInsets;
         this.c.weightx = 1;
         this.c.weighty = 1;
         this.c.gridx = 0;
@@ -59,7 +60,7 @@ public class Menu extends JPanel {
             this.backButton.setIcon(new ImageIcon(resizedBackImage));
         }
         catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         this.menuButton.setBorder(null);
         this.menuButton.setBorderPainted(false);

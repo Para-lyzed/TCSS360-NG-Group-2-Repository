@@ -31,6 +31,7 @@ public class SettingScreen extends JPanel {
         heading.setFont(Main.headingOneFont);
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        c.insets = Main.paddingInsets;
         c.weightx = 1;
         c.weighty = 1;
         c.gridx = 0;
@@ -65,13 +66,21 @@ public class SettingScreen extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 about.updateProfile(nameTextField.getText(), emailTextField.getText());
-                System.out.println(nameTextField.getText() + " " + emailTextField.getText());
                 nameTextField.setText("");
                 emailTextField.setText("");
                 aboutScreen.refreshProfile();
             }
         });
         add(submitButton, c);
+    }
+
+    public void menuHeading(boolean isMenuOpen) {
+        if (isMenuOpen) {
+            heading.setText("Settings");
+        }
+        else {
+            heading.setText("     Settings");
+        }
     }
 
 }

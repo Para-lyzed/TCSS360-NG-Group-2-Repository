@@ -41,7 +41,6 @@ public class BaseFrame extends JFrame {
     }
 
     public void switchScreen(String screenName) {
-        System.out.println(screenName);
         if (screenName.equals(currentScreen)) {
             return;
         }
@@ -99,14 +98,17 @@ public class BaseFrame extends JFrame {
         }
         switch (currentScreen) {
                 case "Projects":
+                    projectScreen.menuHeading(isOpen);
                     projectScreen.setBounds(yBound, 0, getWidth(), getHeight());
                     break;
                 
                 case "Settings":
+                    settingScreen.menuHeading(isOpen);
                     settingScreen.setBounds(yBound, 0, getWidth(), getHeight());
                     break;
                 
                 case "About":
+                    aboutScreen.menuHeading(isOpen);
                     aboutScreen.setBounds(yBound, 0, getWidth(), getHeight());
                     break;
             
