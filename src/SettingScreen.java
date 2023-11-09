@@ -66,7 +66,6 @@ public class SettingScreen extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 about.updateProfile(nameTextField.getText(), emailTextField.getText());
-                System.out.println(nameTextField.getText() + " " + emailTextField.getText());
                 nameTextField.setText("");
                 emailTextField.setText("");
                 aboutScreen.refreshProfile();

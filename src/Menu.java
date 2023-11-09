@@ -60,7 +60,7 @@ public class Menu extends JPanel {
             this.backButton.setIcon(new ImageIcon(resizedBackImage));
         }
         catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         this.menuButton.setBorder(null);
         this.menuButton.setBorderPainted(false);
