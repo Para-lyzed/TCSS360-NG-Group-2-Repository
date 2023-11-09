@@ -31,6 +31,7 @@ public class SettingScreen extends JPanel {
         heading.setFont(Main.headingOneFont);
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        c.insets = Main.paddingInsets;
         c.weightx = 1;
         c.weighty = 1;
         c.gridx = 0;
@@ -72,6 +73,15 @@ public class SettingScreen extends JPanel {
             }
         });
         add(submitButton, c);
+    }
+
+    public void menuHeading(boolean isMenuOpen) {
+        if (isMenuOpen) {
+            heading.setText("Settings");
+        }
+        else {
+            heading.setText("     Settings");
+        }
     }
 
 }
