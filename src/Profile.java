@@ -1,5 +1,12 @@
-
-
+/**
+ * TCSS 360B
+ * Team Deliverable - Iteration 1
+ * Profile.java
+ * 
+ * @author Nathan Grimsey
+ * @author Maple Gunn
+ *
+ */
 public class Profile {
     String name;
     String email;
@@ -9,6 +16,11 @@ public class Profile {
         this.name = name;
         this.email = email;
 
+    }
+
+    public Profile() {
+        this.name = "No name registered";
+        this.email = "No email registered";
     }
 
     public String getName() {
