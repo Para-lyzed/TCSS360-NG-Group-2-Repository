@@ -24,6 +24,13 @@ public class SettingScreen extends JPanel {
     private JTextField emailTextField = new JTextField(16);
     private JButton submitButton = new JButton("Submit");
 
+    /**
+     * SettingScreen displays the setting screen.
+     * @param width sets the width of the window.
+     * @param height sets the height of the window.
+     * @param about contains owner profile, and version, and contributors.
+     * @param aboutScreen is the JPanel with the about screen.
+     */
     public SettingScreen(int width, int height, About about, AboutScreen aboutScreen) {
         setBackground(Color.WHITE);
         setBounds(0, 0, width, height);
@@ -74,6 +81,10 @@ public class SettingScreen extends JPanel {
         add(submitButton, c);
     }
 
+    /**
+     * menuHeading gets red of the spacing on the header if the menu is open.
+     * @param isMenuOpen is if the menu is open.
+     */
     public void menuHeading(boolean isMenuOpen) {
         if (isMenuOpen) {
             heading.setText("Settings");

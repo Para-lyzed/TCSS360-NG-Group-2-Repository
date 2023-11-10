@@ -21,6 +21,13 @@ public class AboutScreen extends JPanel {
     private String[] contributors;
     private About about;
 
+    /**
+     * AboutScreen creates the window with information on the app.
+     *
+     * @param width selects the width of the screen.
+     * @param height selects the height of the screen.
+     * @param about contains owner profile, and version, and contributors.
+     */
     public AboutScreen(int width, int height, About about) {
         this.about = about;
         setBackground(Color.WHITE);
@@ -61,10 +68,17 @@ public class AboutScreen extends JPanel {
         add(version, c);
     }
 
+    /**
+     * RefreshProfiles sets the current user to the owner.
+     */
     public void refreshProfile() {
         currentUser.setText(this.about.getOwnerString());
     }
 
+    /**
+     * menuHeading gets red of the spacing on the header if the menu is open.
+     * @param isMenuOpen is if the menu is open.
+     */
     public void menuHeading(boolean isMenuOpen) {
         if (isMenuOpen) {
             heading.setText("About");
