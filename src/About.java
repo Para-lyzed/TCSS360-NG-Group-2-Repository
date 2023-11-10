@@ -13,7 +13,7 @@ public class About {
     private String version = "0.1";
 
     /**
-     * About constructs an about object that stores an owner.
+     * About constructs an about object that stores an owner, version number, and contributors.
      * @param owner is the apps user.
      */
     public About(Profile owner) {
@@ -21,7 +21,7 @@ public class About {
     }
 
     /**
-     * getOwner gets the owner of the app.
+     * getOwner gets the owner registered to the app.
      * @return owner of the app.
      */
     public Profile getOwner() {
@@ -29,7 +29,7 @@ public class About {
     }
 
     /**
-     * getOwnerString returns a string with the owner and email.
+     * getOwnerString returns a string with the owner name and email.
      * @return Owner name and email as a string.
      */
     public String getOwnerString() {

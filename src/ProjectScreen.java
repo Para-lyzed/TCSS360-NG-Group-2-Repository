@@ -16,6 +16,11 @@ import javax.swing.*;
 public class ProjectScreen extends JPanel {
     private JLabel heading = new JLabel("     Projects");
 
+    /**
+     * Constructs a project screen that the user can use to select or create a project.
+     * @param width the width of the window
+     * @param height the height of the window
+     */
     public ProjectScreen(int width, int height) {
         setBackground(Color.WHITE);
         setBounds(0, 0, width, height);
@@ -32,6 +37,10 @@ public class ProjectScreen extends JPanel {
         add(heading, c);
     }
 
+    /**
+     * menuHeading gets rid of the spacing on the header if the menu is open.
+     * @param isMenuOpen is if the menu is open.
+     */
     public void menuHeading(boolean isMenuOpen) {
         if (isMenuOpen) {
             heading.setText("Projects");

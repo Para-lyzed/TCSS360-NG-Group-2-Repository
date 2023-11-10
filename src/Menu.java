@@ -28,7 +28,13 @@ public class Menu extends JPanel {
     private JButton backButton;
     private ArrayList<JButton> menuEntries;
 
-    public Menu(boolean isMainMenu, int minHeight, BaseFrame hostFrame) {
+    /**
+     * Creates a menu by which the user is able to navigate to another page.
+     * @param isMainMenu true if the menu is on the main screen, else false if it is a project view menu
+     * @param height the initial height of the menu
+     * @param hostFrame the JFrame that is using this JPanel
+     */
+    public Menu(boolean isMainMenu, int height, BaseFrame hostFrame) {
         this.hostFrame = hostFrame;
         if (isMainMenu) {
             this.entries = mainEntries;
@@ -37,7 +43,7 @@ public class Menu extends JPanel {
             this.entries = projectEntries;
         }
         this.setBackground(Color.GRAY);
-        this.setBounds(0, 0, Main.menuWidth, minHeight);
+        this.setBounds(0, 0, Main.menuWidth, height);
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
         this.menuEntries = new ArrayList<>(this.entries.length);
@@ -72,7 +78,6 @@ public class Menu extends JPanel {
         this.backButton.setContentAreaFilled(false);
         this.backButton.setFocusPainted(false);
         this.backButton.setOpaque(false);
-        // Font menuFont = new Font("Arial", Font.BOLD, 32);
         for (int i = 0; i < this.entries.length; i++) {
             JButton entry = new JButton(this.entries[i]);
             entry.setForeground(Color.BLACK);
@@ -96,7 +101,6 @@ public class Menu extends JPanel {
         spacer.setContentAreaFilled(true);
         spacer.setFocusPainted(false);
         spacer.setOpaque(true);
-        // Font spacerFont = new Font("Arial", Font.BOLD, 75);
         spacer.setFont(Main.spacerFont);
         this.menuEntries.add(spacer);
         this.menuButton.addActionListener(new ActionListener() {
@@ -114,6 +118,9 @@ public class Menu extends JPanel {
         this.c.gridy = 0;
     }
 
+    /**
+     * Handles the UI elements to open menu when the menu button is pressed.
+     */
     private void menuPressed() {
         this.hostFrame.menuOpen(true);
         this.remove(this.menuButton);
@@ -128,6 +135,9 @@ public class Menu extends JPanel {
         this.hostFrame.repaint();
     }
 
+    /**
+     * Handles the UI elements to close menu when the back button is pressed.
+     */
     private void closeMenu() {
         this.hostFrame.menuOpen(false);
         this.remove(this.backButton);
@@ -142,6 +152,10 @@ public class Menu extends JPanel {
         this.hostFrame.repaint();
     }
 
+    /**
+     * Changes the current screen when a menu entry is pressed.
+     * @param entryName name of the menu entry pressed.
+     */
     private void entryPressed(String entryName) {
         this.hostFrame.switchScreen(entryName);
         closeMenu();
