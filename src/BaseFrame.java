@@ -48,7 +48,7 @@ public class BaseFrame extends JFrame {
 
     /**
      * switchScreen switches the screen of the app currently being viewed.
-     * @param screenName is the name of the screen switched to.
+     * @param screenName is the name of the screen to switch to.
      */
     public void switchScreen(String screenName) {
         if (screenName.equals(currentScreen)) {
