@@ -21,6 +21,12 @@ public class BaseFrame extends JFrame {
     private static SettingScreen settingScreen;
     private static String currentScreen;
 
+    /**
+     * BaseFrame contains the entire window for the app.
+     * @param width sets the width of the window.
+     * @param height sets the height of the window.
+     * @param about contains owner profile, and version, and contributors.
+     */
     public BaseFrame(int width, int height, About about) {
         setTitle("MVP Project Planner - Projects");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,6 +46,10 @@ public class BaseFrame extends JFrame {
         currentScreen = "Projects";
     }
 
+    /**
+     * switchScreen switches the screen of the app currently being viewed.
+     * @param screenName is the name of the screen switched to.
+     */
     public void switchScreen(String screenName) {
         if (screenName.equals(currentScreen)) {
             return;
@@ -88,6 +98,10 @@ public class BaseFrame extends JFrame {
         }
     }
 
+    /**
+     * menuOpen handles UI elements when the menu is open or closed.
+     * @param isOpen is whether the menu is open.
+     */
     public void menuOpen(boolean isOpen) {
         int yBound;
         if (isOpen) {
