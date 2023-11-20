@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class BaseFrame extends JFrame {
     private static JLayeredPane lPane;
-    private static JPanel mainMenu;
+    private static Menu mainMenu;
     private static ProjectScreen projectScreen;
     private static AboutScreen aboutScreen;
     private static SettingScreen settingScreen;
