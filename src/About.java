@@ -9,8 +9,8 @@
  */
 public class About {
     private static Profile owner = new Profile();
-    private static String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
-    private static String version = "0.1";
+    private static final String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
+    private static final String version = "0.1";
 
     /**
      * getOwner gets the owner registered to the app.

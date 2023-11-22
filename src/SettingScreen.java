@@ -14,12 +14,12 @@ import javax.swing.*;
  */
 public class SettingScreen extends BaseMainMenuScreen {
     private static final String title = "Settings";
-    private static JLabel setProfile = new JLabel("Set new name and email");
-    private static JLabel name = new JLabel("Name:");
-    private static JTextField nameTextField = new JTextField(16);
-    private static JLabel email = new JLabel("Email:");
-    private static JTextField emailTextField = new JTextField(16);
-    private static JButton submitButton = new JButton("Submit");
+    private static final JLabel setProfile = new JLabel("Set new name and email");
+    private static final JLabel name = new JLabel("Name:");
+    private static final JTextField nameTextField = new JTextField(16);
+    private static final JLabel email = new JLabel("Email:");
+    private static final JTextField emailTextField = new JTextField(16);
+    private static final JButton submitButton = new JButton("Submit");
 
     /**
      * SettingScreen displays the setting screen.
