@@ -1,6 +1,3 @@
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,90 +5,61 @@ import javax.swing.*;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * SettingScreen.java
  * 
  * @author Nathan Grimsey
- * @author Maple Gunn
  *
  */
-public class SettingScreen extends JPanel {
-    private JLabel heading = new JLabel("     Settings");
-    private JLabel setProfile = new JLabel("Set new name and email");
-    private JLabel name = new JLabel("Name:");
-    private JTextField nameTextField = new JTextField(16);
-    private JLabel email = new JLabel("Email:");
-    private JTextField emailTextField = new JTextField(16);
-    private JButton submitButton = new JButton("Submit");
+public class SettingScreen extends BaseMainMenuScreen {
+    public static final String title = "Settings";
+    private static final JLabel setProfile = new JLabel("Set new name and email");
+    private static final JLabel name = new JLabel("Name:");
+    private static final JTextField nameTextField = new JTextField(16);
+    private static final JLabel email = new JLabel("Email:");
+    private static final JTextField emailTextField = new JTextField(16);
+    private static final JButton submitButton = new JButton("Submit");
 
     /**
      * SettingScreen displays the setting screen.
      * @param width sets the width of the window.
      * @param height sets the height of the window.
      * @param about contains owner profile, and version, and contributors.
-     * @param aboutScreen is the JPanel with the about screen.
+     * @author Nathan Grimsey
      */
-    public SettingScreen(int width, int height, About about, AboutScreen aboutScreen) {
-        setBackground(Color.WHITE);
-        setBounds(0, 0, width, height);
-        setOpaque(true);
-        heading.setFont(Main.headingOneFont);
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.insets = Main.paddingInsets;
-        c.weightx = 1;
-        c.weighty = 1;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.NORTHWEST;
-        c.gridwidth = 4;
-        add(heading, c);
+    public SettingScreen(int width, int height) {
+        super(width, height, title, 4);
         c.gridy++;
-        setProfile.setFont(Main.headingTwoFont);
+        setProfile.setFont(Main.HEADING_TWO_FONT);
         add(setProfile, c);
         c.gridy++;
         c.gridwidth = 1;
-        name.setFont(Main.baseFont);
+        name.setFont(Main.BASE_FONT);
         add(name, c);
         c.gridx++;
         c.ipadx = getWidth() / 4;
-        nameTextField.setFont(Main.baseFont);
+        nameTextField.setFont(Main.BASE_FONT);
         add(nameTextField, c);
         c.gridx++;
         c.ipadx = 0;
-        email.setFont(Main.baseFont);
+        email.setFont(Main.BASE_FONT);
         add(email, c);
         c.gridx++;
         c.ipadx = getWidth() / 4;
-        emailTextField.setFont(Main.baseFont);
+        emailTextField.setFont(Main.BASE_FONT);
         add(emailTextField, c);
         c.gridy++;
         c.gridx = 0;
         c.ipadx = 0;
-        submitButton.setFont(Main.baseFont);
+        submitButton.setFont(Main.BASE_FONT);
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                about.updateProfile(nameTextField.getText(), emailTextField.getText());
+                About.updateProfile(nameTextField.getText(), emailTextField.getText());
                 nameTextField.setText("");
                 emailTextField.setText("");
-                aboutScreen.refreshProfile();
             }
         });
         add(submitButton, c);
     }
-
-    /**
-     * menuHeading gets red of the spacing on the header if the menu is open.
-     * @param isMenuOpen is if the menu is open.
-     */
-    public void menuHeading(boolean isMenuOpen) {
-        if (isMenuOpen) {
-            heading.setText("Settings");
-        }
-        else {
-            heading.setText("     Settings");
-        }
-    }
-
 }
