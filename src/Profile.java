@@ -45,5 +45,16 @@ public class Profile {
     public String getEmail() {
         return this.email;
     }
+
+    /**
+     * sets the name and email of a Profile.
+     * @param name name to set Profile to.
+     * @param email email to set Profile to.
+     * @author Nathan Grimsey
+     */
+    public void set(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
     
 }

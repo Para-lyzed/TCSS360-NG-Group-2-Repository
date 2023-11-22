@@ -50,7 +50,7 @@ public class About {
      * @param email is the new email.
      */
     public static void updateProfile(String name, String email) {
-        owner = new Profile(name, email);
+        owner.set(name, email);
     }
 
 }
