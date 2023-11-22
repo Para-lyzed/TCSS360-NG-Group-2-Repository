@@ -5,15 +5,14 @@ import javax.swing.*;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * SettingScreen.java
  * 
  * @author Nathan Grimsey
- * @author Maple Gunn
  *
  */
 public class SettingScreen extends BaseMainMenuScreen {
-    private static final String title = "Settings";
+    public static final String title = "Settings";
     private static final JLabel setProfile = new JLabel("Set new name and email");
     private static final JLabel name = new JLabel("Name:");
     private static final JTextField nameTextField = new JTextField(16);
@@ -26,6 +25,7 @@ public class SettingScreen extends BaseMainMenuScreen {
      * @param width sets the width of the window.
      * @param height sets the height of the window.
      * @param about contains owner profile, and version, and contributors.
+     * @author Nathan Grimsey
      */
     public SettingScreen(int width, int height) {
         super(width, height, title, 4);

@@ -1,6 +1,6 @@
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * About.java
  * 
  * @author Nathan Grimsey
@@ -15,6 +15,8 @@ public class About {
     /**
      * getOwner gets the owner registered to the app.
      * @return owner of the app.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
      */
     public static Profile getOwner() {
         return owner;
@@ -23,6 +25,7 @@ public class About {
     /**
      * getOwnerString returns a string with the owner name and email.
      * @return Owner name and email as a string.
+     * @author Nathan Grimsey
      */
     public static String getOwnerString() {
         return owner.getName() + " (" + owner.getEmail() + ")";
@@ -31,6 +34,8 @@ public class About {
     /**
      * getVersion returns app version.
      * @return app version.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
      */
     public static String getVersion() {
         return version;
@@ -39,6 +44,7 @@ public class About {
     /**
      * getContributers returns project contributors.
      * @return project contributors.
+     * @author Nathan Grimsey
      */
     public static String[] getContributors() {
         return contributors;
@@ -48,6 +54,7 @@ public class About {
      * updateProfile sets new name and email for owner.
      * @param name is the new name.
      * @param email is the new email.
+     * @author Nathan Grimsey
      */
     public static void updateProfile(String name, String email) {
         owner.set(name, email);

@@ -4,11 +4,10 @@ import java.awt.Insets;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * Main.java
  * 
  * @author Nathan Grimsey
- * @author Maple Gunn
  *
  */
 public class Main {
@@ -19,6 +18,8 @@ public class Main {
     public static final Font SPACER_FONT = new Font("Arial", Font.BOLD, 75);
     public static final Font BASE_FONT = new Font("Arial", Font.PLAIN, 24);
     public static final Font VERSION_FONT = new Font("Arial", Font.PLAIN, 14);
+    public static final int DEFAULT_WINDOW_WIDTH = 1000;
+    public static final int DEFAULT_WINDOW_HEIGHT = 600;
     public static final int MENU_WIDTH = 350;
     public static final int PADDING = 20;
     public static final Insets MENU_INSETS = new Insets(PADDING, PADDING, PADDING, PADDING);
@@ -28,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        BASE_FRAME = new BaseFrame(1000, 600);
+        BASE_FRAME = new BaseFrame();
         BASE_FRAME.setVisible(true);
 
         }

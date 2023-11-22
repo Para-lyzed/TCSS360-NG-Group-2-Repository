@@ -1,6 +1,6 @@
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * Profile.java
  * 
  * @author Nathan Grimsey
@@ -15,6 +15,8 @@ public class Profile {
      * Profile constructs a profile object that contains a name and email.
      * @param name is a name.
      * @param email is an email.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
      */
     public Profile(String name, String email) {
         this.name = name;
@@ -24,6 +26,7 @@ public class Profile {
 
     /**
      * Profile constructs an empty profile as a base case.
+     * @author Nathan Grimsey
      */
     public Profile() {
         this.name = "No name registered";
@@ -33,6 +36,8 @@ public class Profile {
     /**
      * getName returns name of profile.
      * @return name of profile.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
      */
     public String getName() {
         return this.name;
@@ -41,6 +46,8 @@ public class Profile {
     /**
      * getEmail returns the email of profile.
      * @return email of profile.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
      */
     public String getEmail() {
         return this.email;

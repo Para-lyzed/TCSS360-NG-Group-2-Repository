@@ -1,15 +1,14 @@
 import javax.swing.*;
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * AboutScreen.java
  * 
  * @author Nathan Grimsey
- * @author Maple Gunn
  *
  */
 public class AboutScreen extends BaseMainMenuScreen {
-    private static final String title = "About";
+    public static final String title = "About";
     private static JLabel registeredTo;
     private static JLabel currentUser;
     private static JLabel providedBy;
@@ -22,6 +21,7 @@ public class AboutScreen extends BaseMainMenuScreen {
      * @param width the width of the screen.
      * @param height the height of the screen.
      * @param about contains owner profile, and version, and contributors.
+     * @author Nathan Grimsey
      */
     public AboutScreen(int width, int height) {
         super(width, height, title, 1);
@@ -52,6 +52,7 @@ public class AboutScreen extends BaseMainMenuScreen {
 
     /**
      * refreshProfile sets the current user to the owner.
+     * @author Nathan Grimsey
      */
     public void refreshProfile() {
         currentUser.setText(About.getOwnerString());
