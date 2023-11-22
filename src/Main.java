@@ -26,7 +26,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        JFrame baseFrame = new BaseFrame(1000, 600, new About(new Profile()));
+        JFrame baseFrame = new BaseFrame(1000, 600);
         baseFrame.setVisible(true);
 
         }

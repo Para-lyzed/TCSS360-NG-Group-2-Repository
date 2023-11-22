@@ -8,48 +8,40 @@
  *
  */
 public class About {
-    private Profile owner;
-    private String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
-    private String version = "0.1";
-
-    /**
-     * About constructs an about object that stores an owner, version number, and contributors.
-     * @param owner is the apps user.
-     */
-    public About(Profile owner) {
-        this.owner = owner;
-    }
+    private static Profile owner = new Profile();
+    private static String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
+    private static String version = "0.1";
 
     /**
      * getOwner gets the owner registered to the app.
      * @return owner of the app.
      */
-    public Profile getOwner() {
-        return this.owner;
+    public static Profile getOwner() {
+        return owner;
     }
 
     /**
      * getOwnerString returns a string with the owner name and email.
      * @return Owner name and email as a string.
      */
-    public String getOwnerString() {
-        return this.owner.getName() + " (" + this.owner.getEmail() + ")";
+    public static String getOwnerString() {
+        return owner.getName() + " (" + owner.getEmail() + ")";
     }
 
     /**
      * getVersion returns app version.
      * @return app version.
      */
-    public String getVersion() {
-        return this.version;
+    public static String getVersion() {
+        return version;
     }
 
     /**
      * getContributers returns project contributors.
      * @return project contributors.
      */
-    public String[] getContributors() {
-        return this.contributors;
+    public static String[] getContributors() {
+        return contributors;
     }
 
     /**
@@ -57,8 +49,8 @@ public class About {
      * @param name is the new name.
      * @param email is the new email.
      */
-    public void updateProfile(String name, String email) {
-        this.owner = new Profile(name, email);
+    public static void updateProfile(String name, String email) {
+        owner = new Profile(name, email);
     }
 
 }

@@ -31,7 +31,7 @@ public class SettingScreen extends JPanel {
      * @param about contains owner profile, and version, and contributors.
      * @param aboutScreen is the JPanel with the about screen.
      */
-    public SettingScreen(int width, int height, About about, AboutScreen aboutScreen) {
+    public SettingScreen(int width, int height, AboutScreen aboutScreen) {
         setBackground(Color.WHITE);
         setBounds(0, 0, width, height);
         setOpaque(true);
@@ -72,7 +72,7 @@ public class SettingScreen extends JPanel {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                about.updateProfile(nameTextField.getText(), emailTextField.getText());
+                About.updateProfile(nameTextField.getText(), emailTextField.getText());
                 nameTextField.setText("");
                 emailTextField.setText("");
                 aboutScreen.refreshProfile();
