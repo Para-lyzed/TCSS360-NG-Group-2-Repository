@@ -26,9 +26,8 @@ public class SettingScreen extends BaseMainMenuScreen {
      * @param width sets the width of the window.
      * @param height sets the height of the window.
      * @param about contains owner profile, and version, and contributors.
-     * @param aboutScreen is the JPanel with the about screen.
      */
-    public SettingScreen(int width, int height, AboutScreen aboutScreen) {
+    public SettingScreen(int width, int height) {
         super(width, height, title, 4);
         c.gridy++;
         setProfile.setFont(Main.HEADING_TWO_FONT);
@@ -59,7 +58,6 @@ public class SettingScreen extends BaseMainMenuScreen {
                 About.updateProfile(nameTextField.getText(), emailTextField.getText());
                 nameTextField.setText("");
                 emailTextField.setText("");
-                aboutScreen.refreshProfile();
             }
         });
         add(submitButton, c);

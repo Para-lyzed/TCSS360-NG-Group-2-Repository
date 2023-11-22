@@ -24,7 +24,6 @@ public class BaseFrame extends JFrame {
      * BaseFrame contains the entire window for the app.
      * @param width sets the width of the window.
      * @param height sets the height of the window.
-     * @param about contains owner profile, and version, and contributors.
      */
     public BaseFrame(int width, int height) {
         setTitle("MVP Project Planner - Projects");
@@ -36,8 +35,8 @@ public class BaseFrame extends JFrame {
         lPane = new JLayeredPane();
         projectScreen = new ProjectScreen(getWidth(), getHeight());
         aboutScreen = new AboutScreen(getWidth(), getHeight());
-        settingScreen = new SettingScreen(width, height, aboutScreen);
-        mainMenu = new Menu(true, getHeight(), this);
+        settingScreen = new SettingScreen(width, height);
+        mainMenu = new Menu(true, getHeight());
         add(lPane, BorderLayout.CENTER);
         lPane.setBounds(0, 0, getWidth(), getHeight());
         lPane.add(projectScreen, BorderLayout.CENTER, 1);
@@ -68,6 +67,7 @@ public class BaseFrame extends JFrame {
             case "About":
                 setTitle("MVP Project Planner - About");
                 lPane.add(aboutScreen, BorderLayout.CENTER, 1);
+                aboutScreen.refreshProfile();
                 break;
         
             default:

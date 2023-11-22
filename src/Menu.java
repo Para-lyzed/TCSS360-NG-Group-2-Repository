@@ -21,7 +21,6 @@ public class Menu extends JPanel {
     private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
     private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
     private static int menuIconSize = Main.MENU_WIDTH/7;
-    private BaseFrame hostFrame;
     private String[] entries;
     private GridBagConstraints c;
     private JButton menuButton;
@@ -32,10 +31,8 @@ public class Menu extends JPanel {
      * Creates a menu by which the user is able to navigate to another page.
      * @param isMainMenu true if the menu is on the main screen, else false if it is a project view menu
      * @param height the initial height of the menu
-     * @param hostFrame the JFrame that is using this JPanel
      */
-    public Menu(boolean isMainMenu, int height, BaseFrame hostFrame) {
-        this.hostFrame = hostFrame;
+    public Menu(boolean isMainMenu, int height) {
         if (isMainMenu) {
             this.entries = mainEntries;
         }
@@ -122,7 +119,7 @@ public class Menu extends JPanel {
      * Handles the UI elements to open menu when the menu button is pressed.
      */
     private void menuPressed() {
-        this.hostFrame.menuOpen(true);
+        Main.BASE_FRAME.menuOpen(true);
         this.remove(this.menuButton);
         this.add(this.backButton, this.c);
         for (int i = 0; i < this.menuEntries.size(); i++) {
@@ -131,15 +128,15 @@ public class Menu extends JPanel {
         }
         this.c.gridy = 0;
         this.setOpaque(true);
-        this.hostFrame.pack();
-        this.hostFrame.repaint();
+        Main.BASE_FRAME.pack();
+        Main.BASE_FRAME.repaint();
     }
 
     /**
      * Handles the UI elements to close menu when the back button is pressed.
      */
     private void closeMenu() {
-        this.hostFrame.menuOpen(false);
+        Main.BASE_FRAME.menuOpen(false);
         this.remove(this.backButton);
         this.add(this.menuButton, this.c);
         for (int i = 0; i < this.menuEntries.size(); i++) {
@@ -148,8 +145,8 @@ public class Menu extends JPanel {
         }
         this.c.gridy = 0;
         this.setOpaque(false);
-        this.hostFrame.pack();
-        this.hostFrame.repaint();
+        Main.BASE_FRAME.pack();
+        Main.BASE_FRAME.repaint();
     }
 
     /**
@@ -157,7 +154,7 @@ public class Menu extends JPanel {
      * @param entryName name of the menu entry pressed.
      */
     private void entryPressed(String entryName) {
-        this.hostFrame.switchScreen(entryName);
+        Main.BASE_FRAME.switchScreen(entryName);
         closeMenu();
     }
 }

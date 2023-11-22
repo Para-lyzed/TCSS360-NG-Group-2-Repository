@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -25,12 +23,13 @@ public class Main {
     public static final int PADDING = 20;
     public static final Insets MENU_INSETS = new Insets(PADDING, PADDING, PADDING, PADDING);
     public static final Insets PADDING_INSETS = new Insets(PADDING / 2, PADDING, PADDING, PADDING);
+    public static BaseFrame BASE_FRAME;
     public static Color BACKGROUND_COLOR = Color.WHITE;
 
     public static void main(String[] args) {
 
-        JFrame baseFrame = new BaseFrame(1000, 600);
-        baseFrame.setVisible(true);
+        BASE_FRAME = new BaseFrame(1000, 600);
+        BASE_FRAME.setVisible(true);
 
         }
     }
