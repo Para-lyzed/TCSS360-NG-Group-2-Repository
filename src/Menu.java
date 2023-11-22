@@ -20,7 +20,7 @@ import javax.swing.*;
 public class Menu extends JPanel {
     private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
     private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
-    private static int menuIconSize = Main.menuWidth/7;
+    private static int menuIconSize = Main.MENU_WIDTH/7;
     private BaseFrame hostFrame;
     private String[] entries;
     private GridBagConstraints c;
@@ -43,12 +43,12 @@ public class Menu extends JPanel {
             this.entries = projectEntries;
         }
         this.setBackground(Color.GRAY);
-        this.setBounds(0, 0, Main.menuWidth, height);
+        this.setBounds(0, 0, Main.MENU_WIDTH, height);
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
         this.menuEntries = new ArrayList<>(this.entries.length);
         this.c = new GridBagConstraints();
-        this.c.insets = Main.menuInsets;
+        this.c.insets = Main.MENU_INSETS;
         this.c.weightx = 1;
         this.c.weighty = 1;
         this.c.gridx = 0;
@@ -86,7 +86,7 @@ public class Menu extends JPanel {
             entry.setContentAreaFilled(false);
             entry.setFocusPainted(false);
             entry.setOpaque(false);
-            entry.setFont(Main.menuFont);
+            entry.setFont(Main.MENU_FONT);
             entry.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class Menu extends JPanel {
         spacer.setContentAreaFilled(true);
         spacer.setFocusPainted(false);
         spacer.setOpaque(true);
-        spacer.setFont(Main.spacerFont);
+        spacer.setFont(Main.SPACER_FONT);
         this.menuEntries.add(spacer);
         this.menuButton.addActionListener(new ActionListener() {
             @Override

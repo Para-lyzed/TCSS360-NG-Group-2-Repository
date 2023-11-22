@@ -26,13 +26,13 @@ public class AboutScreen extends BaseMainMenuScreen {
     public AboutScreen(int width, int height) {
         super(width, height, title, 1);
         registeredTo = new JLabel("This app is registered to:");
-        registeredTo.setFont(Main.headingTwoFont);
+        registeredTo.setFont(Main.HEADING_TWO_FONT);
         currentUser = new JLabel(About.getOwnerString());
-        currentUser.setFont(Main.baseFont);
+        currentUser.setFont(Main.BASE_FONT);
         providedBy = new JLabel("This app is provided by:");
-        providedBy.setFont(Main.headingTwoFont);
+        providedBy.setFont(Main.HEADING_TWO_FONT);
         version = new JLabel("Version v" + About.getVersion());
-        version.setFont(Main.versionFont);
+        version.setFont(Main.VERSION_FONT);
         c.gridy++;
         add(registeredTo, c);
         c.gridy++;
@@ -43,7 +43,7 @@ public class AboutScreen extends BaseMainMenuScreen {
         for(int i = 0; i < contributors.length; i++) {
             c.gridy++;
             JLabel contributor = new JLabel(contributors[i]);
-            contributor.setFont(Main.baseFont);
+            contributor.setFont(Main.BASE_FONT);
             add(contributor, c);
         }
         c.gridy++;

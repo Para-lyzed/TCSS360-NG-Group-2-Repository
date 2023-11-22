@@ -31,28 +31,28 @@ public class SettingScreen extends BaseMainMenuScreen {
     public SettingScreen(int width, int height, AboutScreen aboutScreen) {
         super(width, height, title, 4);
         c.gridy++;
-        setProfile.setFont(Main.headingTwoFont);
+        setProfile.setFont(Main.HEADING_TWO_FONT);
         add(setProfile, c);
         c.gridy++;
         c.gridwidth = 1;
-        name.setFont(Main.baseFont);
+        name.setFont(Main.BASE_FONT);
         add(name, c);
         c.gridx++;
         c.ipadx = getWidth() / 4;
-        nameTextField.setFont(Main.baseFont);
+        nameTextField.setFont(Main.BASE_FONT);
         add(nameTextField, c);
         c.gridx++;
         c.ipadx = 0;
-        email.setFont(Main.baseFont);
+        email.setFont(Main.BASE_FONT);
         add(email, c);
         c.gridx++;
         c.ipadx = getWidth() / 4;
-        emailTextField.setFont(Main.baseFont);
+        emailTextField.setFont(Main.BASE_FONT);
         add(emailTextField, c);
         c.gridy++;
         c.gridx = 0;
         c.ipadx = 0;
-        submitButton.setFont(Main.baseFont);
+        submitButton.setFont(Main.BASE_FONT);
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

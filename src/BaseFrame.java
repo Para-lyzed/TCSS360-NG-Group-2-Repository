@@ -104,7 +104,7 @@ public class BaseFrame extends JFrame {
     public void menuOpen(boolean isOpen) {
         int yBound;
         if (isOpen) {
-            yBound = Main.menuWidth;
+            yBound = Main.MENU_WIDTH;
         }
         else {
             yBound = 0;
