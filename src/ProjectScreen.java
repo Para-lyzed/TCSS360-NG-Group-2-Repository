@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  */
 public class ProjectScreen extends JPanel {
-    private JLabel heading = new JLabel("     Projects");
+    private static JLabel heading = new JLabel("     Projects");
 
     /**
      * Constructs a project screen that the user can use to select or create a project.

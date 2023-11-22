@@ -16,13 +16,13 @@ import javax.swing.*;
  *
  */
 public class SettingScreen extends JPanel {
-    private JLabel heading = new JLabel("     Settings");
-    private JLabel setProfile = new JLabel("Set new name and email");
-    private JLabel name = new JLabel("Name:");
-    private JTextField nameTextField = new JTextField(16);
-    private JLabel email = new JLabel("Email:");
-    private JTextField emailTextField = new JTextField(16);
-    private JButton submitButton = new JButton("Submit");
+    private static JLabel heading = new JLabel("     Settings");
+    private static JLabel setProfile = new JLabel("Set new name and email");
+    private static JLabel name = new JLabel("Name:");
+    private static JTextField nameTextField = new JTextField(16);
+    private static JLabel email = new JLabel("Email:");
+    private static JTextField emailTextField = new JTextField(16);
+    private static JButton submitButton = new JButton("Submit");
 
     /**
      * SettingScreen displays the setting screen.

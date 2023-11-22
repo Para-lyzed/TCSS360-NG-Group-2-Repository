@@ -13,12 +13,12 @@ import javax.swing.*;
  *
  */
 public class AboutScreen extends JPanel {
-    private JLabel heading = new JLabel("     About");
-    private JLabel registeredTo;
-    private JLabel currentUser;
-    private JLabel providedBy;
-    private JLabel version;
-    private String[] contributors;
+    private static JLabel heading = new JLabel("     About");
+    private static JLabel registeredTo;
+    private static JLabel currentUser;
+    private static JLabel providedBy;
+    private static JLabel version;
+    private static String[] contributors;
 
     /**
      * AboutScreen creates the window with information on the app.
