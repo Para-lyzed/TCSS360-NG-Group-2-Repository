@@ -1,6 +1,3 @@
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,8 +12,8 @@ import javax.swing.*;
  * @author Maple Gunn
  *
  */
-public class SettingScreen extends JPanel {
-    private static JLabel heading = new JLabel("     Settings");
+public class SettingScreen extends BaseMainMenuScreen {
+    private static final String title = "Settings";
     private static JLabel setProfile = new JLabel("Set new name and email");
     private static JLabel name = new JLabel("Name:");
     private static JTextField nameTextField = new JTextField(16);
@@ -32,20 +29,7 @@ public class SettingScreen extends JPanel {
      * @param aboutScreen is the JPanel with the about screen.
      */
     public SettingScreen(int width, int height, AboutScreen aboutScreen) {
-        setBackground(Color.WHITE);
-        setBounds(0, 0, width, height);
-        setOpaque(true);
-        heading.setFont(Main.headingOneFont);
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.insets = Main.paddingInsets;
-        c.weightx = 1;
-        c.weighty = 1;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.NORTHWEST;
-        c.gridwidth = 4;
-        add(heading, c);
+        super(width, height, title, 4);
         c.gridy++;
         setProfile.setFont(Main.headingTwoFont);
         add(setProfile, c);
@@ -80,18 +64,4 @@ public class SettingScreen extends JPanel {
         });
         add(submitButton, c);
     }
-
-    /**
-     * menuHeading gets red of the spacing on the header if the menu is open.
-     * @param isMenuOpen is if the menu is open.
-     */
-    public void menuHeading(boolean isMenuOpen) {
-        if (isMenuOpen) {
-            heading.setText("Settings");
-        }
-        else {
-            heading.setText("     Settings");
-        }
-    }
-
 }

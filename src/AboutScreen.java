@@ -1,7 +1,3 @@
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
 import javax.swing.*;
 /**
  * TCSS 360B
@@ -12,8 +8,8 @@ import javax.swing.*;
  * @author Maple Gunn
  *
  */
-public class AboutScreen extends JPanel {
-    private static JLabel heading = new JLabel("     About");
+public class AboutScreen extends BaseMainMenuScreen {
+    private static final String title = "About";
     private static JLabel registeredTo;
     private static JLabel currentUser;
     private static JLabel providedBy;
@@ -28,19 +24,7 @@ public class AboutScreen extends JPanel {
      * @param about contains owner profile, and version, and contributors.
      */
     public AboutScreen(int width, int height) {
-        setBackground(Color.WHITE);
-        setBounds(0, 0, width, height);
-        setOpaque(true);
-        heading.setFont(Main.headingOneFont);
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.insets = Main.paddingInsets;
-        c.weightx = 1;
-        c.weighty = 1;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.NORTHWEST;
-        add(heading, c);
+        super(width, height, title, 1);
         registeredTo = new JLabel("This app is registered to:");
         registeredTo.setFont(Main.headingTwoFont);
         currentUser = new JLabel(About.getOwnerString());
@@ -72,18 +56,4 @@ public class AboutScreen extends JPanel {
     public void refreshProfile() {
         currentUser.setText(About.getOwnerString());
     }
-
-    /**
-     * menuHeading gets rid of the spacing on the header if the menu is open.
-     * @param isMenuOpen is if the menu is open.
-     */
-    public void menuHeading(boolean isMenuOpen) {
-        if (isMenuOpen) {
-            heading.setText("About");
-        }
-        else {
-            heading.setText("     About");
-        }
-    }
-
 }
