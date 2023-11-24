@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * Menu.java
  * 
  * @author Nathan Grimsey
@@ -20,16 +20,22 @@ import javax.swing.*;
 public class Menu extends JPanel {
     private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
     private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
-    private static int menuIconSize = Main.menuWidth/7;
-    private BaseFrame hostFrame;
+    private static int menuIconSize = Main.MENU_WIDTH/7;
+    private int menuHeight;
     private String[] entries;
     private GridBagConstraints c;
     private JButton menuButton;
     private JButton backButton;
     private ArrayList<JButton> menuEntries;
 
-    public Menu(boolean isMainMenu, int minHeight, BaseFrame hostFrame) {
-        this.hostFrame = hostFrame;
+    /**
+     * Creates a menu by which the user is able to navigate to another page.
+     * @param isMainMenu true if the menu is on the main screen, else false if it is a project view menu
+     * @param height the initial height of the menu
+     * @author Nathan Grimsey
+     */
+    public Menu(boolean isMainMenu, int height) {
+        this.menuHeight = height;
         if (isMainMenu) {
             this.entries = mainEntries;
         }
@@ -37,12 +43,12 @@ public class Menu extends JPanel {
             this.entries = projectEntries;
         }
         this.setBackground(Color.GRAY);
-        this.setBounds(0, 0, Main.menuWidth, minHeight);
+        this.setBounds(0, 0, Main.MENU_WIDTH, this.menuHeight);
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
         this.menuEntries = new ArrayList<>(this.entries.length);
         this.c = new GridBagConstraints();
-        this.c.insets = Main.menuInsets;
+        this.c.insets = Main.MENU_INSETS;
         this.c.weightx = 1;
         this.c.weighty = 1;
         this.c.gridx = 0;
@@ -72,7 +78,6 @@ public class Menu extends JPanel {
         this.backButton.setContentAreaFilled(false);
         this.backButton.setFocusPainted(false);
         this.backButton.setOpaque(false);
-        // Font menuFont = new Font("Arial", Font.BOLD, 32);
         for (int i = 0; i < this.entries.length; i++) {
             JButton entry = new JButton(this.entries[i]);
             entry.setForeground(Color.BLACK);
@@ -81,7 +86,7 @@ public class Menu extends JPanel {
             entry.setContentAreaFilled(false);
             entry.setFocusPainted(false);
             entry.setOpaque(false);
-            entry.setFont(Main.menuFont);
+            entry.setFont(Main.MENU_FONT);
             entry.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -96,8 +101,7 @@ public class Menu extends JPanel {
         spacer.setContentAreaFilled(true);
         spacer.setFocusPainted(false);
         spacer.setOpaque(true);
-        // Font spacerFont = new Font("Arial", Font.BOLD, 75);
-        spacer.setFont(Main.spacerFont);
+        spacer.setFont(Main.SPACER_FONT);
         this.menuEntries.add(spacer);
         this.menuButton.addActionListener(new ActionListener() {
             @Override
@@ -114,8 +118,12 @@ public class Menu extends JPanel {
         this.c.gridy = 0;
     }
 
+    /**
+     * Handles the UI elements to open menu when the menu button is pressed.
+     * @author Nathan Grimsey
+     */
     private void menuPressed() {
-        this.hostFrame.menuOpen(true);
+        Main.BASE_FRAME.menuOpen(true);
         this.remove(this.menuButton);
         this.add(this.backButton, this.c);
         for (int i = 0; i < this.menuEntries.size(); i++) {
@@ -124,12 +132,15 @@ public class Menu extends JPanel {
         }
         this.c.gridy = 0;
         this.setOpaque(true);
-        this.hostFrame.pack();
-        this.hostFrame.repaint();
+        Main.BASE_FRAME.repaint();
     }
 
+    /**
+     * Handles the UI elements to close menu when the back button is pressed.
+     * @author Nathan Grimsey
+     */
     private void closeMenu() {
-        this.hostFrame.menuOpen(false);
+        Main.BASE_FRAME.menuOpen(false);
         this.remove(this.backButton);
         this.add(this.menuButton, this.c);
         for (int i = 0; i < this.menuEntries.size(); i++) {
@@ -138,12 +149,26 @@ public class Menu extends JPanel {
         }
         this.c.gridy = 0;
         this.setOpaque(false);
-        this.hostFrame.pack();
-        this.hostFrame.repaint();
+        Main.BASE_FRAME.repaint();
     }
 
+    /**
+     * Changes the current screen when a menu entry is pressed.
+     * @param entryName name of the menu entry pressed.
+     * @author Nathan Grimsey
+     */
     private void entryPressed(String entryName) {
-        this.hostFrame.switchScreen(entryName);
+        Main.BASE_FRAME.switchScreen(entryName);
         closeMenu();
+    }
+
+    /**
+     * sets the height of the menu.
+     * @param height the height to set the menu to.
+     * @author Nathan Grimsey
+     */
+    public void setHeight(int height) {
+        this.menuHeight = height;
+        this.setBounds(0, 0, Main.MENU_WIDTH, this.menuHeight);
     }
 }

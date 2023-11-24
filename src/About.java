@@ -1,6 +1,6 @@
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 1
+ * Team Deliverable - Iteration 2
  * About.java
  * 
  * @author Nathan Grimsey
@@ -8,32 +8,56 @@
  *
  */
 public class About {
-    private Profile owner;
-    private String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
-    private String version = "0.1";
+    private static Profile owner = new Profile();
+    private static final String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
+    private static final String version = "0.1";
 
-    public About(Profile owner) {
-        this.owner = owner;
+    /**
+     * getOwner gets the owner registered to the app.
+     * @return owner of the app.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
+     */
+    public static Profile getOwner() {
+        return owner;
     }
 
-    public Profile getOwner() {
-        return this.owner;
+    /**
+     * getOwnerString returns a string with the owner name and email.
+     * @return Owner name and email as a string.
+     * @author Nathan Grimsey
+     */
+    public static String getOwnerString() {
+        return owner.getName() + " (" + owner.getEmail() + ")";
     }
 
-    public String getOwnerString() {
-        return this.owner.getName() + " (" + this.owner.getEmail() + ")";
+    /**
+     * getVersion returns app version.
+     * @return app version.
+     * @author Nathan Grimsey
+     * @author Maple Gunn
+     */
+    public static String getVersion() {
+        return version;
     }
 
-    public String getVersion() {
-        return this.version;
+    /**
+     * getContributers returns project contributors.
+     * @return project contributors.
+     * @author Nathan Grimsey
+     */
+    public static String[] getContributors() {
+        return contributors;
     }
 
-    public String[] getContributors() {
-        return this.contributors;
-    }
-
-    public void updateProfile(String name, String email) {
-        this.owner = new Profile(name, email);
+    /**
+     * updateProfile sets new name and email for owner.
+     * @param name is the new name.
+     * @param email is the new email.
+     * @author Nathan Grimsey
+     */
+    public static void updateProfile(String name, String email) {
+        owner.set(name, email);
     }
 
 }
