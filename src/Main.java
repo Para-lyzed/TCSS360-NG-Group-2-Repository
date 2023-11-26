@@ -8,7 +8,7 @@ import java.awt.Insets;
  * Main.java
  * 
  * @author Nathan Grimsey
- *
+*
  */
 public class Main {
     public static final String HEADING_SPACER = "     ";
@@ -31,6 +31,8 @@ public class Main {
 
         BASE_FRAME = new BaseFrame();
         BASE_FRAME.setVisible(true);
+
+        DataIO.loadUser("userData.txt");
 
         }
     }

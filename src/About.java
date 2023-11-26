@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * TCSS 360B
  * Team Deliverable - Iteration 2
@@ -7,7 +9,7 @@
  * @author Maple Gunn
  *
  */
-public class About {
+public class About implements Serializable {
     private static Profile owner = new Profile();
     private static final String[] contributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
     private static final String version = "0.1";
@@ -58,6 +60,7 @@ public class About {
      */
     public static void updateProfile(String name, String email) {
         owner.set(name, email);
-    }
 
+        DataIO.saveUser("userData.txt", getOwner());
+    }
 }
