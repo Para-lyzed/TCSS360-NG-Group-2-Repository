@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.*;
 
@@ -56,6 +58,8 @@ public class SettingScreen extends BaseMainMenuScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 About.updateProfile(nameTextField.getText(), emailTextField.getText());
+                Path filePath = Paths.get(Main.fileName);
+                DataIO.saveProgramData(filePath);
                 nameTextField.setText("");
                 emailTextField.setText("");
             }

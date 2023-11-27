@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * TCSS 360B
@@ -26,14 +28,17 @@ public class Main {
     public static final Insets PADDING_INSETS = new Insets(PADDING / 2, PADDING, PADDING, PADDING);
     public static BaseFrame BASE_FRAME;
     public static Color BACKGROUND_COLOR = Color.WHITE;
+    public static final String fileName = "programdata.mpp";
 
     public static void main(String[] args) {
 
         BASE_FRAME = new BaseFrame();
         BASE_FRAME.setVisible(true);
 
-        DataIO.loadUser("userData.txt");
+        Path filePath = Paths.get(fileName);
 
+        Profile importedProfile = DataIO.loadProgramData(filePath);
+        About.updateProfile(importedProfile.getName(), importedProfile.getEmail());
         }
     }
 
