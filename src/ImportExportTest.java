@@ -4,8 +4,16 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.*;
 
+/**
+ * Test class for imoprting and exporting files.
+ * @author Nathan Grimsey
+ */
 public class ImportExportTest {
     
+    /**
+     * Tests saving and loading a Profile.
+     * @author Nathan Grimsey
+     */
     @Test
     public void testSaveAndLoadProfile() {
         final Profile testProfile = new Profile("Testname", "Testemail");
@@ -16,4 +24,5 @@ public class ImportExportTest {
         DataIO.loadProgramData(testPath);
         Assertions.assertTrue(testProfile.equals(About.getOwner()));
     }
+    
 }
