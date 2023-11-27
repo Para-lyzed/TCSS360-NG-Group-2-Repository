@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * TCSS 360B
  * Team Deliverable - Iteration 2
@@ -7,7 +9,7 @@
  * @author Maple Gunn
  *
  */
-public class Profile {
+public class Profile implements Serializable {
     private String name;
     private String email;
 

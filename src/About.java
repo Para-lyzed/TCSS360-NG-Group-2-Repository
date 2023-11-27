@@ -56,8 +56,5 @@ public class About {
      * @param email is the new email.
      * @author Nathan Grimsey
      */
-    public static void updateProfile(String name, String email) {
-        owner.set(name, email);
-    }
-
+    public static void updateProfile(String name, String email) { owner.set(name, email); }
 }
