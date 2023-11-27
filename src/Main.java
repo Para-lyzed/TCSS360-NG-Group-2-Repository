@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -10,7 +11,7 @@ import java.nio.file.Paths;
  * Main.java
  * 
  * @author Nathan Grimsey
-*
+ *
  */
 public class Main {
     public static final String HEADING_SPACER = "     ";
@@ -24,23 +25,28 @@ public class Main {
     public static final int DEFAULT_WINDOW_HEIGHT = 600;
     public static final int MENU_WIDTH = 350;
     public static final int PADDING = 20;
+    public static final int FILE_IMPORT_SETTINGS = 0;
+    public static final int FILE_EXPORT_SETTINGS = 1;
+    public static final int FILE_IMPORT_ALL = 2;
+    public static final int FILE_EXPORT_ALL = 3;
+    public static final int FILE_LOAD = 4;
+    public static final int FILE_SAVE = 5;
     public static final Insets MENU_INSETS = new Insets(PADDING, PADDING, PADDING, PADDING);
     public static final Insets PADDING_INSETS = new Insets(PADDING / 2, PADDING, PADDING, PADDING);
     public static BaseFrame BASE_FRAME;
     public static Color BACKGROUND_COLOR = Color.WHITE;
-    public static final String fileName = "programdata.mpp";
+    public static final Path PROJECT_DATA_FILE_PATH = Paths.get("programdata.mpp");
 
     public static void main(String[] args) {
 
         BASE_FRAME = new BaseFrame();
         BASE_FRAME.setVisible(true);
 
-        Path filePath = Paths.get(fileName);
-
-        Profile importedProfile = DataIO.loadProgramData(filePath);
-        About.updateProfile(importedProfile.getName(), importedProfile.getEmail());
+        if (Files.exists(PROJECT_DATA_FILE_PATH)) {
+            DataIO.loadProgramData(PROJECT_DATA_FILE_PATH);
         }
     }
+}
 
 
 

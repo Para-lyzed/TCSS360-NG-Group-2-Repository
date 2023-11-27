@@ -51,10 +51,21 @@ public class About {
     }
 
     /**
-     * updateProfile sets new name and email for owner.
+     * updateProfile sets new Profile for owner.
      * @param name is the new name.
      * @param email is the new email.
      * @author Nathan Grimsey
      */
-    public static void updateProfile(String name, String email) { owner.set(name, email); }
+    public static void updateProfile(String name, String email) {
+        owner.set(name, email);
+    }
+
+    /**
+     * updateProfile sets new Profile for owner.
+     * @param profile the Profile to update owner with.
+     * @author Nathan Grimsey
+     */
+    public static void updateProfile(Profile profile) {
+        owner = profile;
+    }
 }
