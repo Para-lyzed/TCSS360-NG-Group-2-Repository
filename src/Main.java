@@ -41,7 +41,6 @@ public class Main {
 
         BASE_FRAME = new BaseFrame();
         BASE_FRAME.setVisible(true);
-
         if (Files.exists(PROJECT_DATA_FILE_PATH)) {
             DataIO.loadProgramData(PROJECT_DATA_FILE_PATH);
         }
