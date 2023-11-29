@@ -1,9 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.file.Path;
+import java.io.File;
 import java.nio.file.Paths;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * TCSS 360B
@@ -21,6 +22,9 @@ public class SettingScreen extends BaseMainMenuScreen {
     private static final JLabel email = new JLabel("Email:");
     private static final JTextField emailTextField = new JTextField(16);
     private static final JButton submitButton = new JButton("Submit");
+    private static final JButton importSettingsButton = new JButton("Import Settings");
+    private static final JButton exportSettingsButton = new JButton("Export Settings");
+    private static final JFileChooser fileChooser = new JFileChooser();
 
     /**
      * SettingScreen displays the setting screen.
@@ -58,12 +62,44 @@ public class SettingScreen extends BaseMainMenuScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 About.updateProfile(nameTextField.getText(), emailTextField.getText());
-                Path filePath = Paths.get(Main.fileName);
-                DataIO.saveProgramData(filePath);
+                DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
                 nameTextField.setText("");
                 emailTextField.setText("");
             }
         });
         add(submitButton, c);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("MPP Settings File", "mpp"));
+        c.gridy++;
+        importSettingsButton.setFont(Main.BASE_FONT);
+        importSettingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fileChooser.setSelectedFile(new File(""));
+                int returnVal;
+                returnVal = fileChooser.showOpenDialog(Main.BASE_FRAME);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    DataIO.importProgramData(fileChooser.getSelectedFile().toPath());
+                }
+            }
+        });
+        add(importSettingsButton, c);
+        c.gridx = 1;
+        exportSettingsButton.setFont(Main.BASE_FONT);
+        exportSettingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fileChooser.setSelectedFile(new File(Main.PROJECT_DATA_FILE_PATH.toString()));
+                int returnVal;
+                returnVal = fileChooser.showSaveDialog(Main.BASE_FRAME);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    String exportPathString = fileChooser.getSelectedFile().toPath().toString();
+                    if (!exportPathString.endsWith(".mpp")) {
+                        exportPathString += ".mpp";
+                    }
+                    DataIO.saveProgramData(Paths.get(exportPathString));
+                }
+            }
+        });
+        add(exportSettingsButton, c);
     }
 }

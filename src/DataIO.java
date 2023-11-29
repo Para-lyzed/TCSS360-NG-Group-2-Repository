@@ -14,9 +14,11 @@ public class DataIO {
     /**
      * saveProgramData saves user data to a specified filePath.
      * @param filePath the filePath the data should be saved to.
+     * @return boolean that is false if save encountered an error.
      * @author Cody Dukes
      */
-    public static void saveProgramData(Path filePath) {
+    public static boolean saveProgramData(Path filePath) {
+        boolean successfulSave = true;
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
@@ -26,42 +28,66 @@ public class DataIO {
             objectOut.close();
             fileOut.close();
 
-        } catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
-
-        } catch (IOException error) {
-            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
         }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            successfulSave = false;
+
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            successfulSave = false;
+        }
+        return successfulSave;
     }
 
     /**
      * loadProgramData loads the data saved at a specified filePath.
      * @param filePath the filePath the data should be saved to.
+     * @return boolean that is false if load encountered an error.
      * @author Cody Dukes
      */
-    public static Profile loadProgramData(Path filePath){
-        Profile user = null;
-
+    public static boolean loadProgramData(Path filePath){
+        boolean successfulLoad = true;
         try {
             FileInputStream fileIn = new FileInputStream(filePath.toFile());
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            user = (Profile) objectIn.readObject();
+            About.updateProfile((Profile) objectIn.readObject());
 
             objectIn.close();
             fileIn.close();
 
-        } catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
-
-        } catch (IOException error) {
-            System.out.printf("\nError occurred while reading file " + filePath, filePath);
-
-        } catch (ClassNotFoundException error) {
-            System.out.printf("\nCould not read class from file " + filePath, filePath);
         }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            successfulLoad = false;
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+            successfulLoad = false;
+        }
+        catch (ClassNotFoundException error) {
+            System.out.printf("\nCould not read class from file " + filePath, filePath);
+            successfulLoad = false;
+        }
+        return successfulLoad;
+    }
 
-        return user;
+    /**
+     * importProgramData imports prgram data from a file that was previously exported from MPP.
+     * @param filePath the path of the file to import data from.
+     * @return boolean that is false if there was an error encountered in importing.
+     */
+    public static boolean importProgramData(Path filePath) {
+        boolean success = loadProgramData(filePath);
+        if (success) {
+            success = saveProgramData(Main.PROJECT_DATA_FILE_PATH);
+        }
+        else {
+            success = false;
+        }
+        return success;
     }
 
 //    public boolean saveProject(Project project, Path filePath) { return false; }

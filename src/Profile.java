@@ -65,5 +65,17 @@ public class Profile implements Serializable {
         this.name = name;
         this.email = email;
     }
+
+    /**
+     * determines whether two Profiles are equal.
+     * @param profile the Profile to compare to.
+     * @return true if the Profiles are equal.
+     */
+    public boolean equals(Profile profile) {
+        if (this.name.equals(profile.getName()) && this.email.equals(profile.getEmail())) {
+            return true;
+        }
+        return false;
+    }
     
 }
