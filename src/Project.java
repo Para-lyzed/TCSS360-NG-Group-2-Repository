@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Image;
 
+/**
+ *
+ */
 public class Project {
     private String name;
     private List<Expense> expenses;
@@ -20,7 +23,10 @@ public class Project {
     private String description;
     private List<Image> images;
 
-    // Constructor
+    /**
+     * Constructor for project objects
+     * @param name is the name of the project
+     */
     public Project(String name) {
         this.name = name;
         this.expenses = new ArrayList<>();
@@ -29,77 +35,125 @@ public class Project {
         this.images = new ArrayList<>();
     }
 
-    // Getter
+    /**
+     * Getter method for name
+     * @return project name
+     * @Author Maple
+     */
     public String getName() {
         return name;
     }
 
-    // Getter
+    /**
+     * Gets list of expenses
+     * @return list of expenses
+     * @Author Maple
+     */
     public List<Expense> getExpenses() {
         return expenses;
     }
 
-    // Getter
+    /**
+     * Getter for tools
+     * @return tools
+     * @Author Maple
+     */
     public List<Tool> getTools() {
         return tools;
     }
 
-    // Getter
+    /**
+     * Getter for logs
+     * @return logs
+     * @Author Maple
+     */
     public List<Log> getLogs() {
         return logs;
     }
 
-    // Getter
+    /**
+     * Getter for description
+     * @return description
+     * @Author Maple
+     */
     public String getDescription() {
         return description;
     }
 
-    // Method
+    /**
+     * Add an expense to the project
+     * @Author Maple
+     */
     public void addExpense(String category, String name, int quantity, int price) {
-        // Implementation
+        Expense newExpense = new Expense(name, category, price, quantity);
+        expenses.add(newExpense);
     }
 
-    // Method
+    /**
+     * Add a material to the project
+     * @Author Maple
+     */
     public void addExpense(Material material, int quantity) {
         Expense newExpense = (Expense) material;
         newExpense.setQuantity(quantity);
         expenses.add(newExpense);
     }
 
-    // Method
+    /**
+     * Add a tool to the project
+     * @Author Maple
+     */
     public void addExpense(Tool tool, int quantity) {
         Expense newExpense = (Expense) tool;
         newExpense.setQuantity(quantity);
         expenses.add(newExpense);
     }
 
-    // Method
+    /**
+     * Add a tool to the project
+     * @Author Maple
+     */
     public void addTool(Tool tool) {
         this.tools.add(tool);
     }
 
-    // Method
+    /**
+     * Add a log to the project
+     * @Author Maple
+     */
     public void addLog(Log log) {
         this.logs.add(log);
     }
 
-    // Method
+    /**
+     * Get images
+     * @return Images
+     * @Author Maple
+     */
     public List<Image> getImages() {
-        // Implementation
         return images;
     }
 
-    // Method
+    /**
+     * Add images to project.
+     * @Author Maple
+     */
     public void addImage(Image image) {
         images.add(image);
     }
 
-    // Method
+    /**
+     * Set an image in the list of images
+     * @Author Maple
+     */
     public void setImages(List<Image> images) {
         this.images = images;
     }
 
-    // Method
+    /**
+     * Update an expense
+     * @Author Maple
+     */
     public void updateExpense(Expense expense, String category, String name, int quantity, int price) {
         Expense e;
         for (int i = 0; i < expenses.size()-1; i++) {
@@ -115,7 +169,10 @@ public class Project {
         }
     }
 
-    // Method
+    /**
+     * Update an expense to a material
+     * @Author Maple
+     */
     public void updateExpense(Expense expense, Material material, int quantity) {
         Expense e;
         for (int i = 0; i < expenses.size()-1; i++) {
@@ -132,23 +189,69 @@ public class Project {
     }
 
 
-    // Method
+    /**
+     * Update an expense to a tool
+     * @Author Maple
+     */
     public void updateExpense(Expense expense, Tool tool, int quantity) {
-        // Implementation
+        Expense e;
+        for (int i = 0; i < expenses.size()-1; i++) {
+
+            if (expenses.get(i).compareTo(expense) == 0) {
+                e = expenses.get(i);
+                e.setCategory(tool.getCategory());
+                e.setName(tool.getName());
+                e.setQuantity(quantity);
+                e.setPrice(tool.getPrice());
+                break;
+            }
+        }
     }
 
-    // Method
+    /**
+     * Remove an expense
+     * @Author Maple
+     */
     public void removeExpense(Expense expense) {
-        // Implementation
+        Expense e;
+        for (int i = 0; i < expenses.size()-1; i++) {
+
+            if (expenses.get(i).compareTo(expense) == 0) {
+                expenses.remove(i);
+                break;
+            }
+        }
     }
 
-    // Method
+    /**
+     * Remove a tool
+     * @Author Maple
+     */
     public void removeTool(Tool tool) {
         // Implementation
+        Expense e;
+        for (int i = 0; i < tools.size()-1; i++) {
+
+            if (tools.get(i).compareTo(tool) == 0) {
+                tools.remove(i);
+                break;
+            }
+        }
     }
 
+/* Logs haven't been implemented yet
     // Method
     public void removeLog(Log log) {
-        // Implementation
+        Expense e;
+        for (int i = 0; i < logs.size()-1; i++) {
+
+            if (logs.get(i).compareTo(log) == 0) {
+                logs.remove(i);
+                break;
+            }
+        }
     }
+    }
+
+ */
 }
