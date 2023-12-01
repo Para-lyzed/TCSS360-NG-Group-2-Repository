@@ -27,7 +27,7 @@ User stories:
 
 ## Coding conventions followed
 
-* Using Comparable for object comparisons for objects expected to be in lists
+* Using Comparable for objects expected to be in lists
 * Class Javadocs with our team name the main author(s)
 * Method Javadocs with author(s)
 * Use camelCase on local variables
