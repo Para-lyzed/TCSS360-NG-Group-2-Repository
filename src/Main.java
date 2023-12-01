@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 2
+ * Team MVP - Deliverable 3
  * Main.java
  * 
  * @author Nathan Grimsey

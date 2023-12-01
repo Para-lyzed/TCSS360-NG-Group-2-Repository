@@ -1,18 +1,13 @@
-/**
- * TCSS 360B
- * Project.java
- *
- * @author Maple Gunn
- *
- */
-
-import com.sun.nio.file.ExtendedOpenOption;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Image;
 
 /**
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * Project.java
+ *
+ * @author Maple Gunn
  *
  */
 public class Project {
@@ -26,6 +21,8 @@ public class Project {
     /**
      * Constructor for project objects
      * @param name is the name of the project
+     * 
+     * @author Maple Gunn
      */
     public Project(String name) {
         this.name = name;
@@ -38,7 +35,8 @@ public class Project {
     /**
      * Getter method for name
      * @return project name
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public String getName() {
         return name;
@@ -47,7 +45,8 @@ public class Project {
     /**
      * Gets list of expenses
      * @return list of expenses
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public List<Expense> getExpenses() {
         return expenses;
@@ -56,7 +55,8 @@ public class Project {
     /**
      * Getter for tools
      * @return tools
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public List<Tool> getTools() {
         return tools;
@@ -65,7 +65,8 @@ public class Project {
     /**
      * Getter for logs
      * @return logs
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public List<Log> getLogs() {
         return logs;
@@ -74,15 +75,17 @@ public class Project {
     /**
      * Getter for description
      * @return description
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Add an expense to the project
-     * @Author Maple
+     * Add a generic expense to the project
+     * 
+     * @author Maple Gunn
      */
     public void addExpense(String category, String name, int quantity, int price) {
         Expense newExpense = new Expense(name, category, price, quantity);
@@ -90,8 +93,9 @@ public class Project {
     }
 
     /**
-     * Add a material to the project
-     * @Author Maple
+     * Add a material as an expense to the project
+     * 
+     * @author Maple Gunn
      */
     public void addExpense(Material material, int quantity) {
         Expense newExpense = (Expense) material;
@@ -100,8 +104,9 @@ public class Project {
     }
 
     /**
-     * Add a tool to the project
-     * @Author Maple
+     * Add a tool as an expense to the project
+     * 
+     * @author Maple Gunn
      */
     public void addExpense(Tool tool, int quantity) {
         Expense newExpense = (Expense) tool;
@@ -110,8 +115,9 @@ public class Project {
     }
 
     /**
-     * Add a tool to the project
-     * @Author Maple
+     * Add a required tool to the project
+     * 
+     * @author Maple Gunn
      */
     public void addTool(Tool tool) {
         this.tools.add(tool);
@@ -119,7 +125,8 @@ public class Project {
 
     /**
      * Add a log to the project
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public void addLog(Log log) {
         this.logs.add(log);
@@ -128,31 +135,35 @@ public class Project {
     /**
      * Get images
      * @return Images
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public List<Image> getImages() {
         return images;
     }
 
     /**
-     * Add images to project.
-     * @Author Maple
+     * Add image to project.
+     * 
+     * @author Maple Gunn
      */
     public void addImage(Image image) {
         images.add(image);
     }
 
     /**
-     * Set an image in the list of images
-     * @Author Maple
+     * Set the list of images to the one provided.
+     * 
+     * @author Maple Gunn
      */
     public void setImages(List<Image> images) {
         this.images = images;
     }
 
     /**
-     * Update an expense
-     * @Author Maple
+     * Update a generic expense
+     * 
+     * @author Maple Gunn
      */
     public void updateExpense(Expense expense, String category, String name, int quantity, int price) {
         Expense e;
@@ -170,8 +181,9 @@ public class Project {
     }
 
     /**
-     * Update an expense to a material
-     * @Author Maple
+     * Update an expense by using a material
+     * 
+     * @author Maple Gunn
      */
     public void updateExpense(Expense expense, Material material, int quantity) {
         Expense e;
@@ -190,8 +202,9 @@ public class Project {
 
 
     /**
-     * Update an expense to a tool
-     * @Author Maple
+     * Update an expense by using a a tool
+     * 
+     * @author Maple Gunn
      */
     public void updateExpense(Expense expense, Tool tool, int quantity) {
         Expense e;
@@ -210,10 +223,10 @@ public class Project {
 
     /**
      * Remove an expense
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public void removeExpense(Expense expense) {
-        Expense e;
         for (int i = 0; i < expenses.size()-1; i++) {
 
             if (expenses.get(i).compareTo(expense) == 0) {
@@ -225,11 +238,10 @@ public class Project {
 
     /**
      * Remove a tool
-     * @Author Maple
+     * 
+     * @author Maple Gunn
      */
     public void removeTool(Tool tool) {
-        // Implementation
-        Expense e;
         for (int i = 0; i < tools.size()-1; i++) {
 
             if (tools.get(i).compareTo(tool) == 0) {
@@ -240,7 +252,6 @@ public class Project {
     }
 
 /* Logs haven't been implemented yet
-    // Method
     public void removeLog(Log log) {
         Expense e;
         for (int i = 0; i < logs.size()-1; i++) {

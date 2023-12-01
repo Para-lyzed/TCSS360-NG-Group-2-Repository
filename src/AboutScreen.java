@@ -1,7 +1,7 @@
 import javax.swing.*;
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 2
+ * Team MVP - Deliverable 3
  * AboutScreen.java
  * 
  * @author Nathan Grimsey

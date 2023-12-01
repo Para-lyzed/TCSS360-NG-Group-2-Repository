@@ -1,6 +1,6 @@
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 2
+ * Team MVP - Deliverable 3
  * ProjectScreen.java
  * 
  * @author Nathan Grimsey

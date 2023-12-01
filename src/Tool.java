@@ -1,5 +1,11 @@
-import java.util.List;
-
+/**
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * Tool.java
+ * 
+ * @author Maple Gunn
+ *
+ */
 public class Tool extends Expense {
 
     // Constructor

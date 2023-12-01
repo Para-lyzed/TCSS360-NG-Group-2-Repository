@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 2
+ * Team MVP - Deliverable 3
  * Profile.java
  * 
  * @author Nathan Grimsey
