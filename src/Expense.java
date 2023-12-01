@@ -1,5 +1,14 @@
 import java.util.List;
 import java.awt.Image;
+
+/**
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * Expense.java
+ * 
+ * @author Maple Gunn
+ *
+ */
 public class Expense implements Comparable<Expense> {
     protected String name;
     protected String category;

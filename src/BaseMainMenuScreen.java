@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 2
+ * Team MVP - Deliverable 3
  * BaseMainMenuScreen.java
  * 
  * @author Nathan Grimsey

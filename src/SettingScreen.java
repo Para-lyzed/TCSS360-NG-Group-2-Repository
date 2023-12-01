@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * TCSS 360B
- * Team Deliverable - Iteration 2
+ * Team MVP - Deliverable 3
  * SettingScreen.java
  * 
  * @author Nathan Grimsey

@@ -5,7 +5,10 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.*;
 
 /**
- * Test class for imoprting and exporting files.
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * ImportExportTest.java
+ * 
  * @author Nathan Grimsey
  */
 public class ImportExportTest {
