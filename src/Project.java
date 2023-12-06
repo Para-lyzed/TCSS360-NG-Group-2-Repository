@@ -5,7 +5,9 @@ import java.awt.Image;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Project.java
+ * Project.java creates projects which store expenses and logs for users to
+ * manage. It is a backend class, containing the information for ProjectScreen
+ * to generate a GUI.
  *
  * @author Maple Gunn
  *
@@ -17,30 +19,60 @@ public class Project {
     private List<Log> logs;
     private String description;
     private List<Image> images;
+    private int Budget;
+    private int totalCost;
 
     /**
      * Constructor for project objects
+     *
      * @param name is the name of the project
-     * 
      * @author Maple Gunn
      */
-    public Project(String name) {
+    public Project(String name, int Budget) {
         this.name = name;
         this.expenses = new ArrayList<>();
         this.tools = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.images = new ArrayList<>();
+        this.Budget = Budget;
+
     }
 
     /**
      * Getter method for name
+     *
      * @return project name
-     * 
      * @author Maple Gunn
      */
     public String getName() {
         return name;
     }
+
+    /**
+     * Updates the total cost of the project whenever you add or remove an expense.
+     *
+     * @author Maple Gunn
+     */
+    public int updateTotalCost() {
+        int total = 0;
+        for (int i = 0; i < expenses.size() - 1; i++) {
+            total += (expenses.get(i).getPrice() * expenses.get(i).getQuantity());
+        }
+        return total;
+    }
+
+    /**
+     * Get total cost of the project.
+     *
+     * @return total cost of project
+     *
+     * @author Maple Gunn
+     */
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+
 
     /**
      * Gets list of expenses
@@ -90,6 +122,7 @@ public class Project {
     public void addExpense(String category, String name, int quantity, int price) {
         Expense newExpense = new Expense(name, category, price, quantity);
         expenses.add(newExpense);
+        updateTotalCost();
     }
 
     /**
@@ -101,6 +134,7 @@ public class Project {
         Expense newExpense = (Expense) material;
         newExpense.setQuantity(quantity);
         expenses.add(newExpense);
+        updateTotalCost();
     }
 
     /**
@@ -112,6 +146,7 @@ public class Project {
         Expense newExpense = (Expense) tool;
         newExpense.setQuantity(quantity);
         expenses.add(newExpense);
+        updateTotalCost();
     }
 
     /**
@@ -121,6 +156,7 @@ public class Project {
      */
     public void addTool(Tool tool) {
         this.tools.add(tool);
+        updateTotalCost();
     }
 
     /**
@@ -175,6 +211,7 @@ public class Project {
                 e.setName(name);
                 e.setQuantity(quantity);
                 e.setPrice(price);
+                updateTotalCost();
                 break;
             }
         }
@@ -195,6 +232,7 @@ public class Project {
                 e.setName(material.getName());
                 e.setQuantity(quantity);
                 e.setPrice(material.getPrice());
+                updateTotalCost();
                 break;
             }
         }
@@ -202,7 +240,7 @@ public class Project {
 
 
     /**
-     * Update an expense by using a a tool
+     * Update an expense by using a tool
      * 
      * @author Maple Gunn
      */
@@ -216,6 +254,7 @@ public class Project {
                 e.setName(tool.getName());
                 e.setQuantity(quantity);
                 e.setPrice(tool.getPrice());
+                updateTotalCost();
                 break;
             }
         }
@@ -231,6 +270,7 @@ public class Project {
 
             if (expenses.get(i).compareTo(expense) == 0) {
                 expenses.remove(i);
+                updateTotalCost();
                 break;
             }
         }
@@ -246,6 +286,7 @@ public class Project {
 
             if (tools.get(i).compareTo(tool) == 0) {
                 tools.remove(i);
+                updateTotalCost();
                 break;
             }
         }
