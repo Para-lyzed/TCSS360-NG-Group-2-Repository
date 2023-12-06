@@ -4,6 +4,7 @@ import java.awt.Insets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  * TCSS 360B
@@ -45,6 +46,25 @@ public class Main {
             DataIO.loadProgramData(PROJECT_DATA_FILE_PATH);
         }
     }
+
+    /** Searches a list of project names and returns whichever contains a
+     * prompted string
+     *
+     * @param str
+     * @return list of searched projects
+     */
+
+
+//    public ArrayList searchProject (String str) {
+//        ArrayList<String> foundProjects = new ArrayList<>();
+//        for (int i = 0; i < recentProjectsList.length(); i++) {
+//            String projectName = recentProjectsList.get(i);
+//            if (projectName.contains(str)) {
+//                foundProjects.add(projectName);
+//            }
+//        }
+//        return foundProjects;
+//    }
 }
 
 

@@ -4,11 +4,15 @@ import java.awt.Image;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Expense.java
+ * Expense.java creates an Expense object, which is inherited by tools and materials.
+ * It contains information on expenses for projects, such as name, category,
+ * and description.
  * 
  * @author Maple Gunn
  *
  */
+
+
 public class Expense implements Comparable<Expense> {
     protected String name;
     protected String category;
@@ -17,7 +21,15 @@ public class Expense implements Comparable<Expense> {
     protected int quantity;
     protected List<Image> images;
 
-    // Constructor
+    /**
+     * Constructor for the Expense Object.
+     * @param name is the name of the expense.
+     * @param category is the expense category.
+     * @param price is the price of the expense.
+     * @param quantity is the quantity of that expense.
+     *
+     * @author Maple Gunn
+     */
     public Expense(String name, String category, int price, int quantity) {
         this.name = name;
         this.category = category;
@@ -25,74 +37,145 @@ public class Expense implements Comparable<Expense> {
         this.quantity = quantity;
     }
 
-    // Getter
+    /**
+     * Getter method for name
+     * @return name of expense.
+     *
+     * @author Maple Gunn
+     */
     public String getName() {
         return name;
     }
 
-    // Setter
+    /**
+     * Setter method for name.
+     *
+     * @author Maple Gunn
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    // Getter
+    /**
+     * Getter method for category.
+     * @return category.
+     *
+     * @author Maple Gunn
+     */
     public String getCategory() {
         return category;
     }
 
-    // Setter
+    /**
+     * Setter method for category.
+     *
+     * @author Maple Gunn
+     */
     public void setCategory(String category) {
         this.category = category;
     }
 
-    // Getter
+    /**
+     * Getter method for description
+     * @return category.
+     *
+     * @author Maple Gunn
+     */
     public String getDescription() {
         return description;
     }
 
-    // Setter
+    /**
+     * Setter method for category.
+     *
+     * @author Maple Gunn
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    // Getter
+    /**
+     * Getter method for price.
+     * @return price.
+     *
+     * @author Maple Gunn
+     */
     public int getPrice() {
         return price;
     }
 
-    // Setter
+    /**
+     * Setter method for price
+     *
+     * @author Maple Gunn
+     */
     public void setPrice(int price) {
         this.price = price;
     }
 
-    // Getter
+    /**
+     * Getter method for quantity.
+     * @return quantity
+     *
+     * @author Maple Gunn
+     */
     public int getQuantity() {
         return quantity;
     }
 
-    // Setter
+    /**
+     * Setter for quantity.
+     *
+     * @author Maple Gunn
+     */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    // Getter
+    /**
+     * Getter method for images.
+     * @return images.
+     *
+     * @author Maple Gunn
+     */
     public List<Image> getImages() {
         return images;
     }
 
-    // Setter
+    /**
+     * Setter for images.
+     *
+     * @author Maple Gunn
+     */
     public void setImages(List<Image> images) {
         this.images = images;
     }
 
-    // Method
+    /**
+     * Add image to expense.
+     *
+     * @author Maple Gunn
+     */
     public void addImage(Image image) {
-        // Implementation
+        images.add(image);
     }
 
-    // Method
+    /**
+     * Sets data for an expense.
+     *
+     * @param name
+     * @param category
+     * @param description
+     * @param price
+     * @param quantity
+     *
+     * @author Maple Gunn
+     */
     public void set(String name, String category, String description, int price, int quantity) {
-        // Implementation
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     @Override
