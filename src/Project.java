@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Image;
@@ -13,7 +14,7 @@ import java.awt.Image;
  * @author Nathan Grimsey
  *
  */
-public class Project {
+public class Project implements Serializable {
     private String name;
     private List<Expense> expenses;
     private List<Tool> tools;
