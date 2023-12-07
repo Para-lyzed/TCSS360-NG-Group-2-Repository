@@ -1,4 +1,6 @@
 import java.awt.GridBagConstraints;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,7 +14,7 @@ import javax.swing.JTextField;
  * @author Nathan Grimsey
  *
  */
-public class NewScreen extends BaseMainMenuScreen {
+public class NewScreen extends BaseScreen {
 
     protected static final int gridWidth = 6;
     protected static final JLabel nameLabel = new JLabel("Name*");
@@ -27,11 +29,34 @@ public class NewScreen extends BaseMainMenuScreen {
 
     public NewScreen(int width, int height, String title, int firstFieldsWidth, String fieldTwoString) {
         super(width, height, title, gridWidth);
+        menuHeading(true);
         fieldTwoLabel = new JLabel(fieldTwoString);
         nameLabel.setFont(Main.HEADING_TWO_FONT);
         nameTextField.setFont(Main.BASE_FONT);
+        nameTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                
+            }
+        });
         fieldTwoLabel.setFont(Main.HEADING_TWO_FONT);
         fieldTwoTextField.setFont(Main.BASE_FONT);
+        fieldTwoTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                fieldTwoTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                
+            }
+        });
         descriptionLabel.setFont(Main.HEADING_TWO_FONT);
         descriptionTextField.setFont(Main.BASE_FONT);
         requiredFieldsLabel.setFont(Main.BASE_FONT);
@@ -62,6 +87,15 @@ public class NewScreen extends BaseMainMenuScreen {
         add(saveButton, c);
         this.c.gridx++;
         add(cancelButton, c);
+    }
+
+    protected void inputError() {
+        if (nameTextField.getText().isEmpty()) {
+            nameTextField.setBackground(Main.TEXT_ERROR);
+        }
+        if (fieldTwoTextField.getText().isEmpty()) {
+            fieldTwoTextField.setBackground(Main.TEXT_ERROR);
+        }
     }
 
 }

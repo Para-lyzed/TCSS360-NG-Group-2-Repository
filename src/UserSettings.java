@@ -2,7 +2,6 @@ import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * TCSS 360B
@@ -15,9 +14,10 @@ import java.util.Map;
  */
 public class UserSettings implements Serializable {
 
-    private static Profile userProfile;
-    private static Map<String, Path> recentProjectsMap;
-    private static ArrayList<String> recentProjectsList;
+    private Profile userProfile;
+    private HashMap<String, String> recentProjectsMap;
+    private ArrayList<String> recentProjectsList;
+    private boolean darkMode;
 
     /**
      * UserSettings constructs a UserSettings object that contains a profile, a Map, and a list.
@@ -26,10 +26,12 @@ public class UserSettings implements Serializable {
      * @param projectsList is a list containing the recent projects.
      * @author Cody Dukes
      */
-    public UserSettings(Profile profile, Map<String, Path> projectsMap, ArrayList<String> projectsList) {
+    public UserSettings(Profile profile, HashMap<String, String> projectsMap, ArrayList<String> projectsList, boolean mode) {
         userProfile = profile;
         recentProjectsMap = projectsMap;
         recentProjectsList = projectsList;
+        darkMode = mode;
+        DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
     }
 
     /**
@@ -41,6 +43,7 @@ public class UserSettings implements Serializable {
         userProfile = new Profile();
         recentProjectsMap = new HashMap<>();
         recentProjectsList = new ArrayList<>();
+        darkMode = false;
     }
 
     /**
@@ -51,12 +54,25 @@ public class UserSettings implements Serializable {
      * @param filePath the path to the most recent project.
      * @author Cody Dukes
      */
-    public static void updateMostRecentProject(String name, Path filePath) {
+    public void updateMostRecentProject(String name, Path filePath) {
         if (recentProjectsList.contains(name)) {
             recentProjectsList.remove(name);
         }
         recentProjectsList.add(0, name);
-        recentProjectsMap.put(name, filePath);
+        recentProjectsMap.put(name, filePath.toString());
+        DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
+    }
+
+    /**
+     * Remove a Project from the recents list.
+     * @param name the name of the Project to remove.
+     * 
+     * @author Nathan Grimsey
+     */
+    public void removeProject(String name) {
+        recentProjectsList.remove(name);
+        recentProjectsMap.remove(name);
+        DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
     }
 
     /**
@@ -66,7 +82,11 @@ public class UserSettings implements Serializable {
      * @author Cody Dukes
      */
     public Path getFilePathFromName(String name) {
-        return recentProjectsMap.get(name);
+        String path = recentProjectsMap.get(name);
+        if (path.equals(null)) {
+            return null;
+        }
+        return Path.of(path);
     }
 
     /**
@@ -85,5 +105,33 @@ public class UserSettings implements Serializable {
      */
     public Profile getProfile() {
         return userProfile;
+    }
+
+    /**
+     * Gets the darkMode boolean.
+     * @return boolean of whether the user is in dark mode or not.
+     */
+    public boolean getDarkMode() {
+        return darkMode;
+    }
+
+    /**
+     * Sets the darkMode boolean.
+     * @param mode the value to set the darkMode boolean to.
+     */
+    public void setDarkMode(boolean mode) {
+        darkMode = mode;
+    }
+
+    public void verifySelf() {
+        if (userProfile == null) {
+            userProfile = new Profile();
+        }
+        if (recentProjectsMap == null) {
+            recentProjectsMap = new HashMap<>();
+        }
+        if (recentProjectsList == null) {
+            recentProjectsList = new ArrayList<>();
+        }
     }
 }

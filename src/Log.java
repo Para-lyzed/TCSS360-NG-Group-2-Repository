@@ -1,4 +1,5 @@
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -10,7 +11,7 @@ import java.time.LocalDate;
  * @author Cody Dukes
  *
  */
-public class Log {
+public class Log implements Serializable {
     private String name;
     private LocalDate date;
     private String description;

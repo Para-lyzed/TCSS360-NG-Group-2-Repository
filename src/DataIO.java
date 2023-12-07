@@ -37,6 +37,7 @@ public class DataIO {
         }
         catch (IOException error) {
             System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            error.printStackTrace();
         }
         return successfulSave;
     }
@@ -54,6 +55,7 @@ public class DataIO {
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
             Main.userSettings = (UserSettings) objectIn.readObject();
+            Main.userSettings.verifySelf();
             About.updateProfile(Main.userSettings.getProfile());
 
             objectIn.close();
@@ -98,7 +100,7 @@ public class DataIO {
      * @author Cody Dukes
      * @author Nathan Grimsey
      */
-    public boolean saveProject(Project project, Path filePath) {
+    public static boolean saveProject(Project project, Path filePath) {
         boolean successfulSave = false;
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
@@ -116,10 +118,11 @@ public class DataIO {
         }
         catch (IOException error) {
             System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            error.printStackTrace();
         }
 
         if (successfulSave) {
-            UserSettings.updateMostRecentProject(project.getName(), filePath);
+            Main.userSettings.updateMostRecentProject(project.getName(), filePath);
         }
 
         return successfulSave;
@@ -133,13 +136,13 @@ public class DataIO {
      * @author Cody Dukes
      * @author Nathan Grimsey
      */
-    public Project loadProject(Path filePath) throws ClassCastException, InvalidClassException {
+    public static Project loadProject(Path filePath) throws ClassCastException, InvalidClassException {
         try {
             FileInputStream fileIn = new FileInputStream(filePath.toFile());
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
             Project importedProject = (Project) objectIn.readObject();
-            UserSettings.updateMostRecentProject(importedProject.getName(), filePath);
+            Main.userSettings.updateMostRecentProject(importedProject.getName(), filePath);
 
             objectIn.close();
             fileIn.close();
@@ -158,10 +161,10 @@ public class DataIO {
         return null;
     }
 
-//    public boolean saveTool(Tool tool, Path filePath){ return false; }
-//    public boolean loadTool(){ return false; }
-//    public boolean saveMaterial(Material material, Path filePath) { return false; }
-//    public boolean loadMaterial() { return false; }
+//    public static boolean saveTool(Tool tool, Path filePath){ return false; }
+//    public static Tool loadTool(){ return null; }
+//    public static boolean saveMaterial(Material material, Path filePath) { return false; }
+//    public static Material loadMaterial() { return null; }
 //    public boolean exportAll(Path filePath) { return false; }
 //    public boolean importAll(Path filePath) { return false; }
 

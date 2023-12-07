@@ -37,7 +37,7 @@ public class Project implements Serializable {
         this.logs = new ArrayList<>();
         this.images = new ArrayList<>();
         this.budget = budget;
-
+        this.totalCost = 0;
     }
 
     /**
@@ -87,6 +87,16 @@ public class Project implements Serializable {
     }
 
     /**
+     * Sets the list of expenses.
+     * @param expenseList the list of expenses to set to.
+     * 
+     * @authon Nathan Grimsey
+     */
+    public void setExpenses(ArrayList<Expense> expenseList) {
+        expenses = expenseList;
+    }
+
+    /**
      * Getter for tools
      * @return tools
      * 
@@ -114,6 +124,15 @@ public class Project implements Serializable {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Set the description of a Project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

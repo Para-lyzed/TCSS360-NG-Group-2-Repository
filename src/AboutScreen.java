@@ -7,7 +7,7 @@ import javax.swing.*;
  * @author Nathan Grimsey
  *
  */
-public class AboutScreen extends BaseMainMenuScreen {
+public class AboutScreen extends BaseScreen {
     public static final String title = "About";
     private static JLabel registeredTo;
     private static JLabel currentUser;

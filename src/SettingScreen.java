@@ -17,7 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Nathan Grimsey
  *
  */
-public class SettingScreen extends BaseMainMenuScreen {
+public class SettingScreen extends BaseScreen {
     public static final String title = "Settings";
     private static final JLabel setProfile = new JLabel("Set new name and email");
     private static final JLabel name = new JLabel("Name:");
@@ -48,7 +48,7 @@ public class SettingScreen extends BaseMainMenuScreen {
         c.weighty = 20;
         add(scrollablePane, c);
         mainContent = new JPanel();
-        mainContent.setBackground(Main.BACKGROUND_COLOR);
+        mainContent.setBackground(Main.BACKGROUND);
         scrollablePane.setViewportView(mainContent);
         scrollablePane.setBorder(BorderFactory.createEmptyBorder());
         mainContent.setLayout(new GridBagLayout());
@@ -78,13 +78,13 @@ public class SettingScreen extends BaseMainMenuScreen {
         c.ipadx = 0;
         darkModeCheckBox.setFont(Main.BASE_FONT);
         darkModeCheckBox.setOpaque(false);
-        // if (UserSettings.isDarkMode()) {
-        //     darkMode.setEnabled(true);
-        // }
+        if (Main.userSettings.getDarkMode()) {
+            darkModeCheckBox.setEnabled(true);
+        }
         darkModeCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // UserSettings.toggleDarkMode();
+                Main.userSettings.setDarkMode(!Main.userSettings.getDarkMode());
             }
         });
         mainContent.add(darkModeCheckBox, c);

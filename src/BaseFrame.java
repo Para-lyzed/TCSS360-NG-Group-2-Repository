@@ -15,14 +15,17 @@ import javax.swing.JLayeredPane;
  *
  */
 public class BaseFrame extends JFrame {
-    private static final String titlePrefix = "MVP Project Planner - ";
+    private static final String defaultTitlePrefix = "MVP Project Planner - ";
+    private static String titlePrefix;
     private static JLayeredPane lPane;
     private static Menu mainMenu;
+    private static Menu projectMenu;
     private static ProjectSelectScreen projectSelectScreen;
     private static AboutScreen aboutScreen;
     private static SettingScreen settingScreen;
     private static NewProjectScreen newProjectScreen;
-    private static BaseMainMenuScreen currentScreen;
+    private static ProjectOverviewScreen projectOverviewScreen;
+    private static BaseScreen currentScreen;
     public static boolean menuOpen;
 
     /**
@@ -32,7 +35,8 @@ public class BaseFrame extends JFrame {
      * @author Nathan Grimsey
      */
     public BaseFrame() {
-        setTitle("MVP Project Planner - Projects");
+        titlePrefix = defaultTitlePrefix;
+        setTitle(titlePrefix + "Projects");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(Main.DEFAULT_WINDOW_WIDTH, Main.DEFAULT_WINDOW_HEIGHT));
         setMinimumSize(getPreferredSize());
@@ -42,12 +46,13 @@ public class BaseFrame extends JFrame {
         aboutScreen = new AboutScreen(getWidth(), getHeight());
         settingScreen = new SettingScreen(getWidth(), getHeight());
         mainMenu = new Menu(true, getHeight());
+        projectMenu = new Menu(false, getHeight());
         newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
         menuOpen = false;
         add(lPane, BorderLayout.CENTER);
         currentScreen = projectSelectScreen;
-        lPane.add(currentScreen, BorderLayout.CENTER, 1);
         lPane.add(mainMenu, BorderLayout.WEST, 0);
+        lPane.add(currentScreen, BorderLayout.CENTER, 1);
         addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent componentEvent) {
                 if (menuOpen) {
@@ -57,6 +62,7 @@ public class BaseFrame extends JFrame {
                     currentScreen.setBounds(0, 0, getWidth(), getHeight());
                 }
                 mainMenu.setHeight(getHeight());
+                projectMenu.setHeight(getHeight());
             }
         });
     }
@@ -76,6 +82,7 @@ public class BaseFrame extends JFrame {
             case "Projects":
                 lPane.add(projectSelectScreen, BorderLayout.CENTER, 1);
                 currentScreen = projectSelectScreen;
+                projectSelectScreen.refresh();
                 break;
             
             case "Settings":
@@ -90,8 +97,15 @@ public class BaseFrame extends JFrame {
                 break;
             
             case "Create a New Project":
+                newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
                 lPane.add(newProjectScreen, BorderLayout.CENTER);
+                lPane.remove(mainMenu);
                 currentScreen = newProjectScreen;
+                break;
+
+            case "Overview":
+                lPane.add(projectOverviewScreen, BorderLayout.CENTER);
+                currentScreen = projectOverviewScreen;
                 break;
         
             default:
@@ -112,9 +126,15 @@ public class BaseFrame extends JFrame {
             
                     case "About":
                         lPane.remove(aboutScreen);
+                        break;
 
                     case "Create a New Project":
                         lPane.remove(newProjectScreen);
+                        break;
+
+                    case "Overview":
+                        lPane.remove(projectOverviewScreen);
+                        break;
                 }
             menuOpen(false);
             repaint();
@@ -150,11 +170,30 @@ public class BaseFrame extends JFrame {
                     aboutScreen.menuHeading(isOpen);
                     aboutScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;
+                
+                case "Overview":
+                    projectOverviewScreen.menuHeading(isOpen);
+                    projectOverviewScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
             
                 default:
                     break;
             }
             repaint();
+    }
+
+    public void openProject(Project project) {
+        projectOverviewScreen = new ProjectOverviewScreen(getWidth(), getHeight(), project);
+        switchScreen("Overview");
+        titlePrefix = project.getName() + " - ";
+        setTitle(titlePrefix + "Overview");
+        lPane.add(projectMenu, BorderLayout.WEST, 0);
+    }
+
+    public void resetToMainMenu() {
+        lPane.remove(projectMenu);
+        lPane.add(mainMenu, BorderLayout.WEST, 0);
+        switchScreen("Projects");
     }
 
 }

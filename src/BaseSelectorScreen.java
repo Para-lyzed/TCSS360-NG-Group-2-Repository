@@ -1,15 +1,12 @@
-import java.awt.Color;
 import java.awt.GridBagConstraints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  * TCSS 360B
@@ -19,17 +16,19 @@ import javax.swing.event.ListSelectionListener;
  * @author Nathan Grimsey
  *
  */
-public class BaseMainMenuSelectorScreen extends BaseMainMenuScreen {
+public class BaseSelectorScreen extends BaseScreen {
 
     protected static final JLabel searchLabel = new JLabel("Search: ");
+    protected static final JFileChooser fileChooser = new JFileChooser();
     protected JTextField searchBar;
     protected JScrollPane scrollablePane;
     // protected String[] recentFiles = { "Value 1", "Value 2", "Value 3", "Value 4", "Value 5", "Value 6", "Value 7", "Value 8", "Value 9", "Value 10", "Value 11", "Value 12", "Value 13", "Value 14", "Value 15", "Value 16" };
-    protected String[] recentFiles = { "" };
+    protected ArrayList<String> recentFiles = new ArrayList<>();
     protected JList<String> listPane;
     protected JButton createButton;
+    protected JButton importButton;
 
-    public BaseMainMenuSelectorScreen(int width, int height, String title, String createButtonName) {
+    public BaseSelectorScreen(int width, int height, String title, String createButtonName, String importButtonName) {
         super(width, height, title, 2);
         searchLabel.setFont(Main.BASE_FONT);
         this.c.fill = GridBagConstraints.NONE;
@@ -42,17 +41,9 @@ public class BaseMainMenuSelectorScreen extends BaseMainMenuScreen {
         this.c.gridx = 1;
         this.c.weightx = 50;
         this.add(this.searchBar, c);
-        this.listPane = new JList<String>(this.recentFiles);
-        this.listPane.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    System.out.println(selectFile());
-                }
-            }
-        });
+        this.listPane = new JList<String>(this.recentFiles.toArray(new String[recentFiles.size()]));
         this.listPane.setFont(Main.BASE_FONT);
-        this.listPane.setBackground(Color.LIGHT_GRAY);
+        this.listPane.setBackground(Main.SECONDARY_BACKGROUND);
         this.listPane.setOpaque(true);
         this.scrollablePane = new JScrollPane(this.listPane);
         this.c.fill = GridBagConstraints.BOTH;
@@ -66,12 +57,14 @@ public class BaseMainMenuSelectorScreen extends BaseMainMenuScreen {
         this.createButton.setFont(Main.BASE_FONT);
         this.c.fill = GridBagConstraints.NONE;
         this.c.gridy++;
+        this.c.gridwidth = 1;
         this.c.weighty = 1;
         this.add(createButton, c);
-    }
-
-    private String selectFile() {
-        return this.listPane.getSelectedValue();
+        this.importButton = new JButton(importButtonName);
+        this.importButton.setFont(Main.BASE_FONT);
+        this.c.gridx++;
+        this.c.gridwidth = 1;
+        this.add(importButton, c);
     }
 
 }

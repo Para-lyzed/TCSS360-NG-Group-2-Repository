@@ -1,5 +1,6 @@
 import java.util.List;
 import java.awt.Image;
+import java.io.Serializable;
 
 /**
  * TCSS 360B
@@ -13,7 +14,7 @@ import java.awt.Image;
  */
 
 
-public class Expense implements Comparable<Expense> {
+public class Expense implements Comparable<Expense>, Serializable {
     protected String name;
     protected String category;
     protected String description;
