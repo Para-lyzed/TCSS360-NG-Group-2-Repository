@@ -157,7 +157,6 @@ public class Project {
      */
     public void addTool(Tool tool) {
         this.tools.add(tool);
-        updateTotalCost();
     }
 
     /**
@@ -306,7 +305,6 @@ public class Project {
 
             if (tools.get(i).compareTo(tool) == 0) {
                 tools.remove(i);
-                updateTotalCost();
                 break;
             }
         }
