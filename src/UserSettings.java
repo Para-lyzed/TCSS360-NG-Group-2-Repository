@@ -83,7 +83,7 @@ public class UserSettings implements Serializable {
      * @return Profile object.
      * @author Cody Dukes
      */
-    public static Profile getProfile() {
+    public Profile getProfile() {
         return userProfile;
     }
 }

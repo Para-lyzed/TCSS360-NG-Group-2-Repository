@@ -37,14 +37,20 @@ public class Main {
     public static BaseFrame BASE_FRAME;
     public static Color BACKGROUND_COLOR = Color.WHITE;
     public static final Path PROJECT_DATA_FILE_PATH = Paths.get("programdata.mpp");
+    public static UserSettings userSettings;
 
     public static void main(String[] args) {
 
         BASE_FRAME = new BaseFrame();
         BASE_FRAME.setVisible(true);
+        boolean programDataLoad = false;
         if (Files.exists(PROJECT_DATA_FILE_PATH)) {
-            DataIO.loadProgramData(PROJECT_DATA_FILE_PATH);
+            programDataLoad = DataIO.loadProgramData(PROJECT_DATA_FILE_PATH);
         }
+        if (!programDataLoad) {
+            userSettings = new UserSettings();
+        }
+
     }
 
     /** Searches a list of project names and returns whichever contains a
@@ -53,18 +59,17 @@ public class Main {
      * @param str
      * @return list of searched projects
      */
-
-
-//    public ArrayList searchProject (String str) {
-//        ArrayList<String> foundProjects = new ArrayList<>();
-//        for (int i = 0; i < recentProjectsList.length(); i++) {
-//            String projectName = recentProjectsList.get(i);
-//            if (projectName.contains(str)) {
-//                foundProjects.add(projectName);
-//            }
-//        }
-//        return foundProjects;
-//    }
+    public ArrayList<String> searchProject (String str) {
+        ArrayList<String> foundProjects = new ArrayList<>();
+        ArrayList<String> recentProjectsList = userSettings.getRecentProjectList();
+        for (int i = 0; i < recentProjectsList.size(); i++) {
+            String projectName = recentProjectsList.get(i);
+            if (projectName.contains(str)) {
+                foundProjects.add(projectName);
+            }
+        }
+        return foundProjects;
+    }
 }
 
 
