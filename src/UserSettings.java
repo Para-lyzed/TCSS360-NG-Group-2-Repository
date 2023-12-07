@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -9,25 +10,37 @@ import java.util.Map;
  * UserSettings.java
  *
  * @author Cody Dukes
+ * @author Nathan Grimsey
  *
  */
 public class UserSettings implements Serializable {
 
-    private static Profile account;
+    private static Profile userProfile;
     private static Map<String, Path> recentProjectsMap;
     private static ArrayList<String> recentProjectsList;
 
     /**
      * UserSettings constructs a UserSettings object that contains a profile, a Map, and a list.
-     * @param account is a profile containing a name and email.
-     * @param recentProjectsMap is a map containing the recent projects.
-     * @param recentProjectsList is a list containing the recent projects.
+     * @param profile is a profile containing a name and email.
+     * @param projectsMap is a map containing the recent projects.
+     * @param projectsList is a list containing the recent projects.
      * @author Cody Dukes
      */
-    public UserSettings(Profile account, Map<String, Path> recentProjectsMap, ArrayList<String> recentProjectsList) {
-        UserSettings.account = account;
-        UserSettings.recentProjectsMap = recentProjectsMap;
-        UserSettings.recentProjectsList = recentProjectsList;
+    public UserSettings(Profile profile, Map<String, Path> projectsMap, ArrayList<String> projectsList) {
+        userProfile = profile;
+        recentProjectsMap = projectsMap;
+        recentProjectsList = projectsList;
+    }
+
+    /**
+     * Default constructor for UserSettings object.
+     * 
+     * @author Nathan Grimsey
+     */
+    public UserSettings() {
+        userProfile = new Profile();
+        recentProjectsMap = new HashMap<>();
+        recentProjectsList = new ArrayList<>();
     }
 
     /**
@@ -41,11 +54,9 @@ public class UserSettings implements Serializable {
     public static void updateMostRecentProject(String name, Path filePath) {
         if (recentProjectsList.contains(name)) {
             recentProjectsList.remove(name);
-            recentProjectsList.add(0, name);
-        } else {
-            recentProjectsList.add(0, name);
-            recentProjectsMap.put(name, filePath);
         }
+        recentProjectsList.add(0, name);
+        recentProjectsMap.put(name, filePath);
     }
 
     /**
@@ -73,6 +84,6 @@ public class UserSettings implements Serializable {
      * @author Cody Dukes
      */
     public static Profile getProfile() {
-        return account;
+        return userProfile;
     }
 }
