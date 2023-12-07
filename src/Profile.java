@@ -23,7 +23,6 @@ public class Profile implements Serializable {
     public Profile(String name, String email) {
         this.name = name;
         this.email = email;
-
     }
 
     /**
