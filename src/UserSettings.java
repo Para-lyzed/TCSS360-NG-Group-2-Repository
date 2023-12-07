@@ -14,8 +14,8 @@ import java.util.Map;
 public class UserSettings implements Serializable {
 
     private static Profile account;
-    private Map<String, Path> recentProjectsMap;
-    private ArrayList<String> recentProjectsList;
+    private static Map<String, Path> recentProjectsMap;
+    private static ArrayList<String> recentProjectsList;
 
     /**
      * UserSettings constructs a UserSettings object that contains a profile, a Map, and a list.
@@ -25,9 +25,9 @@ public class UserSettings implements Serializable {
      * @author Cody Dukes
      */
     public UserSettings(Profile account, Map<String, Path> recentProjectsMap, ArrayList<String> recentProjectsList) {
-        this.account = account;
-        this.recentProjectsMap = recentProjectsMap;
-        this.recentProjectsList = recentProjectsList;
+        UserSettings.account = account;
+        UserSettings.recentProjectsMap = recentProjectsMap;
+        UserSettings.recentProjectsList = recentProjectsList;
     }
 
     /**
@@ -38,7 +38,7 @@ public class UserSettings implements Serializable {
      * @param filePath the path to the most recent project.
      * @author Cody Dukes
      */
-    public void updateMostRecentProject(String name, Path filePath) {
+    public static void updateMostRecentProject(String name, Path filePath) {
         if (recentProjectsList.contains(name)) {
             recentProjectsList.remove(name);
             recentProjectsList.add(0, name);
@@ -55,7 +55,7 @@ public class UserSettings implements Serializable {
      * @author Cody Dukes
      */
     public Path getFilePathFromName(String name) {
-        return this.recentProjectsMap.get(name);
+        return recentProjectsMap.get(name);
     }
 
     /**
@@ -64,7 +64,7 @@ public class UserSettings implements Serializable {
      * @author Cody Dukes
      */
     public ArrayList<String> getRecentProjectList() {
-        return this.recentProjectsList;
+        return recentProjectsList;
     }
 
     /**

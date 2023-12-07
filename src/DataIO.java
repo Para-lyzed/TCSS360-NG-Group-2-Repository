@@ -88,8 +88,58 @@ public class DataIO {
         return success;
     }
 
-//    public boolean saveProject(Project project, Path filePath) { return false; }
-//    public boolean loadProject(Project project, Path filePath) { return false; }
+    public boolean saveProject(Project project, Path filePath) {
+        UserSettings.updateMostRecentProject(project.getName(), filePath);
+
+        boolean successfulSave = true;
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+            objectOut.writeObject(project);
+
+            objectOut.close();
+            fileOut.close();
+
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            successfulSave = false;
+
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            successfulSave = false;
+        }
+        return successfulSave;
+    }
+    public boolean loadProject(Project project, Path filePath) {
+        boolean successfulLoad = true;
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath.toFile());
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+            UserSettings.updateMostRecentProject(((UserSettings) objectIn.readObject()).getRecentProjectList().get(0), filePath);
+
+            objectIn.close();
+            fileIn.close();
+
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            successfulLoad = false;
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+            successfulLoad = false;
+        }
+        catch (ClassNotFoundException error) {
+            System.out.printf("\nCould not read class from file " + filePath, filePath);
+            successfulLoad = false;
+        }
+        return successfulLoad;
+    }
+
 //    public boolean saveTool(Tool tool, Path filePath){ return false; }
 //    public boolean loadTool(){ return false; }
 //    public boolean saveMaterial(Material material, Path filePath) { return false; }
