@@ -1,3 +1,6 @@
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -21,10 +24,13 @@ public class SettingScreen extends BaseMainMenuScreen {
     private static final JTextField nameTextField = new JTextField(16);
     private static final JLabel email = new JLabel("Email:");
     private static final JTextField emailTextField = new JTextField(16);
-    private static final JButton submitButton = new JButton("Submit");
+    private static final JButton saveButton = new JButton("Save");
     private static final JButton importSettingsButton = new JButton("Import Settings");
     private static final JButton exportSettingsButton = new JButton("Export Settings");
     private static final JFileChooser fileChooser = new JFileChooser();
+    private static final JCheckBox darkModeCheckBox = new JCheckBox("Dark mode");
+    private static JPanel mainContent;
+    private static JScrollPane scrollablePane;
 
     /**
      * SettingScreen displays the setting screen.
@@ -34,40 +40,70 @@ public class SettingScreen extends BaseMainMenuScreen {
      * @author Nathan Grimsey
      */
     public SettingScreen(int width, int height) {
-        super(width, height, title, 4);
+        super(width, height, title, 1);
+        scrollablePane = new JScrollPane();
+        scrollablePane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridy++;
+        c.weighty = 20;
+        add(scrollablePane, c);
+        mainContent = new JPanel();
+        mainContent.setBackground(Main.BACKGROUND_COLOR);
+        scrollablePane.setViewportView(mainContent);
+        scrollablePane.setBorder(BorderFactory.createEmptyBorder());
+        mainContent.setLayout(new GridBagLayout());
         setProfile.setFont(Main.HEADING_TWO_FONT);
-        add(setProfile, c);
+        c.weighty = 1;
+        c.gridy = 0;
+        c.gridwidth = 4;
+        mainContent.add(setProfile, c);
         c.gridy++;
         c.gridwidth = 1;
         name.setFont(Main.BASE_FONT);
-        add(name, c);
+        mainContent.add(name, c);
         c.gridx++;
         c.ipadx = getWidth() / 4;
         nameTextField.setFont(Main.BASE_FONT);
-        add(nameTextField, c);
+        mainContent.add(nameTextField, c);
         c.gridx++;
         c.ipadx = 0;
         email.setFont(Main.BASE_FONT);
-        add(email, c);
+        mainContent.add(email, c);
         c.gridx++;
         c.ipadx = getWidth() / 4;
         emailTextField.setFont(Main.BASE_FONT);
-        add(emailTextField, c);
+        mainContent.add(emailTextField, c);
         c.gridy++;
         c.gridx = 0;
         c.ipadx = 0;
-        submitButton.setFont(Main.BASE_FONT);
-        submitButton.addActionListener(new ActionListener() {
+        darkModeCheckBox.setFont(Main.BASE_FONT);
+        darkModeCheckBox.setOpaque(false);
+        // if (UserSettings.isDarkMode()) {
+        //     darkMode.setEnabled(true);
+        // }
+        darkModeCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                About.updateProfile(nameTextField.getText(), emailTextField.getText());
-                DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
-                nameTextField.setText("");
-                emailTextField.setText("");
+                // UserSettings.toggleDarkMode();
             }
         });
-        add(submitButton, c);
+        mainContent.add(darkModeCheckBox, c);
+        c.gridy++;
+        saveButton.setFont(Main.BASE_FONT);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nameString = nameTextField.getText();
+                String emailString = emailTextField.getText();
+                if (!nameString.isEmpty() && !emailString.isEmpty()) {
+                    About.updateProfile(nameString, emailString);
+                    nameTextField.setText("");
+                    emailTextField.setText("");
+                }
+                DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
+            }
+        });
+        mainContent.add(saveButton, c);
         fileChooser.setFileFilter(new FileNameExtensionFilter("MPP Settings File", "mpp"));
         c.gridy++;
         importSettingsButton.setFont(Main.BASE_FONT);
@@ -82,7 +118,7 @@ public class SettingScreen extends BaseMainMenuScreen {
                 }
             }
         });
-        add(importSettingsButton, c);
+        mainContent.add(importSettingsButton, c);
         c.gridx = 1;
         exportSettingsButton.setFont(Main.BASE_FONT);
         exportSettingsButton.addActionListener(new ActionListener() {
@@ -100,6 +136,7 @@ public class SettingScreen extends BaseMainMenuScreen {
                 }
             }
         });
-        add(exportSettingsButton, c);
+        mainContent.add(exportSettingsButton, c);
+        mainContent.setPreferredSize(new Dimension(scrollablePane.getWidth(), mainContent.getPreferredSize().height));
     }
 }
