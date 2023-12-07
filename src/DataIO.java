@@ -23,7 +23,7 @@ public class DataIO {
             FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(About.getOwner());
+            objectOut.writeObject(UserSettings.getProfile());
 
             objectOut.close();
             fileOut.close();

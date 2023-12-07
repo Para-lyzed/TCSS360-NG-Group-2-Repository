@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class UserSettings implements Serializable {
 
-    private Profile account;
+    private static Profile account;
     private Map<String, Path> recentProjectsMap;
     private ArrayList<String> recentProjectsList;
 
@@ -72,7 +72,7 @@ public class UserSettings implements Serializable {
      * @return Profile object.
      * @author Cody Dukes
      */
-    public Profile getProfile() {
-        return this.account;
+    public static Profile getProfile() {
+        return account;
     }
 }
