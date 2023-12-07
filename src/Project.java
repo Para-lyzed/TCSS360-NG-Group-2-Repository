@@ -10,6 +10,7 @@ import java.awt.Image;
  * to generate a GUI.
  *
  * @author Maple Gunn
+ * @author Nathan Grimsey
  *
  */
 public class Project {
@@ -19,7 +20,7 @@ public class Project {
     private List<Log> logs;
     private String description;
     private List<Image> images;
-    private int Budget;
+    private int budget;
     private int totalCost;
 
     /**
@@ -28,13 +29,13 @@ public class Project {
      * @param name is the name of the project
      * @author Maple Gunn
      */
-    public Project(String name, int Budget) {
+    public Project(String name, int budget) {
         this.name = name;
         this.expenses = new ArrayList<>();
         this.tools = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.images = new ArrayList<>();
-        this.Budget = Budget;
+        this.budget = budget;
 
     }
 
@@ -156,7 +157,6 @@ public class Project {
      */
     public void addTool(Tool tool) {
         this.tools.add(tool);
-        updateTotalCost();
     }
 
     /**
@@ -194,6 +194,25 @@ public class Project {
      */
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    /**
+     * Get the budget of the project.
+     * 
+     * @author Nathan Grimsey
+     * @return the budget of the project.
+     */
+    public int getBudget() {
+        return this.budget;
+    }
+
+    /**
+     * Set the budget of the project.
+     * 
+     * @author Nathan Grimsey
+     */
+    public void setBudget(int value) {
+        this.budget = value;
     }
 
     /**
@@ -277,7 +296,7 @@ public class Project {
     }
 
     /**
-     * Remove a tool
+     * Remove a required tool
      * 
      * @author Maple Gunn
      */
@@ -286,7 +305,6 @@ public class Project {
 
             if (tools.get(i).compareTo(tool) == 0) {
                 tools.remove(i);
-                updateTotalCost();
                 break;
             }
         }
