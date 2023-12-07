@@ -53,7 +53,7 @@ public class DataIO {
             FileInputStream fileIn = new FileInputStream(filePath.toFile());
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            About.updateProfile((Profile) objectIn.readObject());
+            About.updateProfile(((UserSettings) objectIn.readObject()).getProfile());
 
             objectIn.close();
             fileIn.close();
@@ -84,9 +84,7 @@ public class DataIO {
         if (success) {
             success = saveProgramData(Main.PROJECT_DATA_FILE_PATH);
         }
-        else {
-            success = false;
-        }
+
         return success;
     }
 
