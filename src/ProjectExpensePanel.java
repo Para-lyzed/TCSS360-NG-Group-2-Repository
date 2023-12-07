@@ -109,12 +109,14 @@ public class ProjectExpensePanel extends ProjectOverviewPanel {
         ArrayList<Expense> expenses = new ArrayList<>();
         for (int i = 0; i < expenseTextFields.size(); i++) {
             ArrayList<JTextField> rowTextFields = expenseTextFields.get(i);
-            Expense expense = new Expense(rowTextFields.get(0).getText(), rowTextFields.get(1).getText(), Integer.parseInt(rowTextFields.get(2).getText()), Integer.parseInt(rowTextFields.get(3).getText()));
-            expenses.add(expense);
+            if (!rowTextFields.get(0).getText().isEmpty() && !rowTextFields.get(1).getText().isEmpty() && !rowTextFields.get(2).getText().isEmpty() && !rowTextFields.get(3).getText().isEmpty()) {
+                Expense expense = new Expense(rowTextFields.get(0).getText(), rowTextFields.get(1).getText(), Integer.parseInt(rowTextFields.get(2).getText()), Integer.parseInt(rowTextFields.get(3).getText()));
+                expenses.add(expense);
+            }
         }
         project.setExpenses(expenses);
         overviewScreen.refreshBudget();
-        overviewScreen.repaint();
+        Main.BASE_FRAME.repaint();
     }
 
 }

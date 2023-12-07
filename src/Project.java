@@ -57,7 +57,7 @@ public class Project implements Serializable {
      */
     public int updateTotalCost() {
         int total = 0;
-        for (int i = 0; i < expenses.size() - 1; i++) {
+        for (int i = 0; i < expenses.size(); i++) {
             total += (expenses.get(i).getPrice() * expenses.get(i).getQuantity());
         }
         return total;
@@ -94,6 +94,7 @@ public class Project implements Serializable {
      */
     public void setExpenses(ArrayList<Expense> expenseList) {
         expenses = expenseList;
+        updateTotalCost();
     }
 
     /**

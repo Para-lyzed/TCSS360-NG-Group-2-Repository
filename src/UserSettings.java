@@ -83,7 +83,7 @@ public class UserSettings implements Serializable {
      */
     public Path getFilePathFromName(String name) {
         String path = recentProjectsMap.get(name);
-        if (path.equals(null)) {
+        if (path == null) {
             return null;
         }
         return Path.of(path);

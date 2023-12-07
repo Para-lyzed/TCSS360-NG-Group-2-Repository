@@ -42,6 +42,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                 else {
                     recentFiles = Main.searchProject(searchText);
                 }
+                listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
             }
         });
         this.listPane.addListSelectionListener(new ListSelectionListener() {

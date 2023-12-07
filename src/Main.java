@@ -68,7 +68,7 @@ public class Main {
         ArrayList<String> recentProjectsList = userSettings.getRecentProjectList();
         for (int i = 0; i < recentProjectsList.size(); i++) {
             String projectName = recentProjectsList.get(i);
-            if (projectName.contains(str)) {
+            if (projectName.toLowerCase().contains(str.toLowerCase())) {
                 foundProjects.add(projectName);
             }
         }

@@ -82,6 +82,7 @@ public class BaseFrame extends JFrame {
             case "Projects":
                 lPane.add(projectSelectScreen, BorderLayout.CENTER, 1);
                 currentScreen = projectSelectScreen;
+                titlePrefix = defaultTitlePrefix;
                 projectSelectScreen.refresh();
                 break;
             
@@ -98,13 +99,13 @@ public class BaseFrame extends JFrame {
             
             case "Create a New Project":
                 newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
-                lPane.add(newProjectScreen, BorderLayout.CENTER);
+                lPane.add(newProjectScreen, BorderLayout.CENTER, 1);
                 lPane.remove(mainMenu);
                 currentScreen = newProjectScreen;
                 break;
 
             case "Overview":
-                lPane.add(projectOverviewScreen, BorderLayout.CENTER);
+                lPane.add(projectOverviewScreen, BorderLayout.CENTER, 1);
                 currentScreen = projectOverviewScreen;
                 break;
         

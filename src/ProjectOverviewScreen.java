@@ -22,8 +22,8 @@ public class ProjectOverviewScreen extends BaseScreen {
     private static final JLabel expensesLabel = new JLabel("Expenses");
     private static final JLabel toolsLabel = new JLabel("Tools");
     private static final JLabel logsLabel = new JLabel("Logs");
-    private static final JButton saveButton = new JButton("Save");
     private static final JFileChooser fileChooser = new JFileChooser();
+    private JButton saveButton = new JButton("Save");
     private Project loadedProject;
     private String budgetString;
     private JLabel budgetLabel;
