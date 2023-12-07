@@ -75,7 +75,7 @@ public class DataIO {
     }
 
     /**
-     * importProgramData imports prgram data from a file that was previously exported from MPP.
+     * importProgramData imports program data from a file that was previously exported from MPP.
      * @param filePath the path of the file to import data from.
      * @return boolean that is false if there was an error encountered in importing.
      */
