@@ -29,13 +29,13 @@ public class Project {
      * @param name is the name of the project
      * @author Maple Gunn
      */
-    public Project(String name, int Budget) {
+    public Project(String name, int budget) {
         this.name = name;
         this.expenses = new ArrayList<>();
         this.tools = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.images = new ArrayList<>();
-        this.budget = Budget;
+        this.budget = budget;
 
     }
 
