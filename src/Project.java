@@ -10,6 +10,7 @@ import java.awt.Image;
  * to generate a GUI.
  *
  * @author Maple Gunn
+ * @author Nathan Grimsey
  *
  */
 public class Project {
@@ -19,7 +20,7 @@ public class Project {
     private List<Log> logs;
     private String description;
     private List<Image> images;
-    private int Budget;
+    private int budget;
     private int totalCost;
 
     /**
@@ -34,7 +35,7 @@ public class Project {
         this.tools = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.images = new ArrayList<>();
-        this.Budget = Budget;
+        this.budget = Budget;
 
     }
 
@@ -194,6 +195,25 @@ public class Project {
      */
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    /**
+     * Get the budget of the project.
+     * 
+     * @author Nathan Grimsey
+     * @return the budget of the project.
+     */
+    public int getBudget() {
+        return this.budget;
+    }
+
+    /**
+     * Set the budget of the project.
+     * 
+     * @author Nathan Grimsey
+     */
+    public void setBudget(int value) {
+        this.budget = value;
     }
 
     /**
