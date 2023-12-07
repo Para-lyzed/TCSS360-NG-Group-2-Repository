@@ -12,16 +12,16 @@ import javax.swing.JPanel;
  * @author Nathan Grimsey
  *
  */
-public class BaseMainMenuScreen extends JPanel {
+public class BaseScreen extends JPanel {
     protected String title;
     protected JLabel heading;
     protected String headingUnspaced;
     protected String headingSpaced;
     protected GridBagConstraints c;
 
-    public BaseMainMenuScreen(int width, int height, String title, int headingGridWidth) {
+    public BaseScreen(int width, int height, String title, int headingGridWidth) {
         this.title = title;
-        setBackground(Main.BACKGROUND_COLOR);
+        setBackground(Main.BACKGROUND);
         setBounds(0, 0, width, height);
         setOpaque(true);
         this.headingUnspaced = title;

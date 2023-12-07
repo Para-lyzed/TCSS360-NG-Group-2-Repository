@@ -158,7 +158,12 @@ public class Menu extends JPanel {
      * @author Nathan Grimsey
      */
     private void entryPressed(String entryName) {
-        Main.BASE_FRAME.switchScreen(entryName);
+        if (entryName.equals("Back to main menu")) {
+            Main.BASE_FRAME.resetToMainMenu();
+        }
+        else {
+            Main.BASE_FRAME.switchScreen(entryName);
+        }
         closeMenu();
     }
 
