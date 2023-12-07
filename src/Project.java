@@ -296,7 +296,7 @@ public class Project {
     }
 
     /**
-     * Remove a tool
+     * Remove a required tool
      * 
      * @author Maple Gunn
      */
