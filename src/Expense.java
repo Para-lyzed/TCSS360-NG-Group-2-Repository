@@ -77,7 +77,7 @@ public class Expense implements Comparable<Expense> {
 
     /**
      * Getter method for description
-     * @return category.
+     * @return description.
      *
      * @author Maple Gunn
      */
@@ -86,7 +86,7 @@ public class Expense implements Comparable<Expense> {
     }
 
     /**
-     * Setter method for category.
+     * Setter method for description.
      *
      * @author Maple Gunn
      */
