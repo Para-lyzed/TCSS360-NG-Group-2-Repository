@@ -64,12 +64,6 @@ public class BaseMainMenuSelectorScreen extends BaseMainMenuScreen {
         this.add(this.scrollablePane, c);
         this.createButton = new JButton(createButtonName);
         this.createButton.setFont(Main.BASE_FONT);
-        this.createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Create " + createButtonName);
-            }
-        });
         this.c.fill = GridBagConstraints.NONE;
         this.c.gridy++;
         this.c.weighty = 1;

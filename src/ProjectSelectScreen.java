@@ -4,12 +4,12 @@ import java.awt.event.ActionListener;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * ProjectScreen.java
+ * ProjectSelectScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
-public class ProjectScreen extends BaseMainMenuSelectorScreen {
+public class ProjectSelectScreen extends BaseMainMenuSelectorScreen {
     private static final String title = "Projects";
     private static final String newButtonName = "New Project";
 
@@ -19,7 +19,7 @@ public class ProjectScreen extends BaseMainMenuSelectorScreen {
      * @param height the height of the window
      * @author Nathan Grimsey
      */
-    public ProjectScreen(int width, int height) {
+    public ProjectSelectScreen(int width, int height) {
         super(width, height, title, newButtonName);
         // this.recentFiles = UserSettings.getRecentProjectsList.toArray();
         // this.listPane.setListData(this.recentFiles)
@@ -28,6 +28,12 @@ public class ProjectScreen extends BaseMainMenuSelectorScreen {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(searchBar.getText());
                 // this.recentFiles = Main.searchProject(searchBar.getText()).toArray();
+            }
+        });
+        this.createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.BASE_FRAME.switchScreen("Create a New Project");
             }
         });
     }
