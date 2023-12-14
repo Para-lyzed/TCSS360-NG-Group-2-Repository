@@ -78,5 +78,14 @@ public class Profile implements Serializable {
         }
         return false;
     }
+
+    /**
+     * Returns toString of profile.
+     * @return String representation of a profile.
+     * @author Maple Gunn
+     */
+    public String toString() {
+        return getName() + ", " + getEmail();
+    }
     
 }
