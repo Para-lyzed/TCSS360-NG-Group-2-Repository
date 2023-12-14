@@ -16,6 +16,7 @@ public class DataIO {
      * saveProgramData saves user data to a specified filePath.
      * @param filePath the filePath the data should be saved to.
      * @return boolean that is false if save encountered an error.
+     *
      * @author Cody Dukes
      */
     public static boolean saveProgramData(Path filePath) {
@@ -44,8 +45,9 @@ public class DataIO {
 
     /**
      * loadProgramData loads the data saved at a specified filePath.
-     * @param filePath the filePath the data should be saved to.
+     * @param filePath the filePath the data should be loaded from.
      * @return boolean that is false if load encountered an error.
+     *
      * @author Cody Dukes
      */
     public static boolean loadProgramData(Path filePath){
@@ -122,7 +124,7 @@ public class DataIO {
         }
 
         if (successfulSave) {
-            Main.userSettings.updateMostRecentProject(project.getName(), filePath);
+            Main.userSettings.updateMostRecent(project.getName(), filePath, 0);
         }
 
         return successfulSave;
@@ -142,7 +144,7 @@ public class DataIO {
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
             Project importedProject = (Project) objectIn.readObject();
-            Main.userSettings.updateMostRecentProject(importedProject.getName(), filePath);
+            Main.userSettings.updateMostRecent(importedProject.getName(), filePath, 0);
 
             objectIn.close();
             fileIn.close();
@@ -161,11 +163,206 @@ public class DataIO {
         return null;
     }
 
-//    public static boolean saveTool(Tool tool, Path filePath){ return false; }
-//    public static Tool loadTool(){ return null; }
-//    public static boolean saveMaterial(Material material, Path filePath) { return false; }
-//    public static Material loadMaterial() { return null; }
-//    public boolean exportAll(Path filePath) { return false; }
-//    public boolean importAll(Path filePath) { return false; }
+    /**
+     * Saves a tool to the given location.
+     * @param tool the Tool to be saved.
+     * @param filePath a filePath chosen by the user.
+     * @return boolean that is false if there was an error encountered in saving.
+     *
+     * @author Cody Dukes
+     */
+    public static boolean saveTool(Tool tool, Path filePath){
+        boolean successfulSave = false;
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
+            objectOut.writeObject(tool);
+
+            objectOut.close();
+            fileOut.close();
+
+            successfulSave = true;
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            error.printStackTrace();
+        }
+
+        if (successfulSave) {
+            Main.userSettings.updateMostRecent(tool.getName(), filePath, 1);
+        }
+
+        return successfulSave;
+    }
+
+    /**
+     * Loads a tool from the given location.
+     * @param filePath a filePath chosen by the user.
+     * @return a Tool that has been deserialized from the given filePath.
+     *
+     * @author Cody Dukes
+     */
+    public static Tool loadTool(Path filePath) throws ClassCastException, InvalidClassException {
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath.toFile());
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+            Tool importedTool = (Tool) objectIn.readObject();
+            Main.userSettings.updateMostRecent(importedTool.getName(), filePath, 1);
+
+            objectIn.close();
+            fileIn.close();
+
+            return importedTool;
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+        }
+        catch (ClassNotFoundException error) {
+            System.out.printf("\nCould not read class from file " + filePath, filePath);
+        }
+        return null;
+    }
+
+    /**
+     * Saves a material to the given location.
+     * @param material the Material to be saved.
+     * @param filePath a filePath chosen by the user.
+     * @return boolean that is false if there was an error encountered in saving.
+     *
+     * @author Cody Dukes
+     */
+    public static boolean saveMaterial(Material material, Path filePath) {
+        boolean successfulSave = false;
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+            objectOut.writeObject(material);
+
+            objectOut.close();
+            fileOut.close();
+
+            successfulSave = true;
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            error.printStackTrace();
+        }
+
+        if (successfulSave) {
+            Main.userSettings.updateMostRecent(material.getName(), filePath, 2);
+        }
+
+        return successfulSave;
+    }
+
+    /**
+     * Loads a material from the given location.
+     * @param filePath a filePath chosen by the user.
+     * @return a Material that has been deserialized from the given filePath.
+     *
+     * @author Cody Dukes
+     */
+    public static Material loadMaterial(Path filePath) throws ClassCastException, InvalidClassException {
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath.toFile());
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+            Material importedMaterial = (Material) objectIn.readObject();
+            Main.userSettings.updateMostRecent(importedMaterial.getName(), filePath, 2);
+
+            objectIn.close();
+            fileIn.close();
+
+            return importedMaterial;
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+        }
+        catch (ClassNotFoundException error) {
+            System.out.printf("\nCould not read class from file " + filePath, filePath);
+        }
+        return null;
+    }
+
+    /**
+     * exportAll exports all data to a specified filePath.
+     * @param filePath the filePath the data should be exported to.
+     * @return boolean that is false if exporting encountered an error.
+     *
+     * @author Cody Dukes
+     */
+    public boolean exportAll(Path filePath) {
+        boolean successfulExport = false;
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath.toFile());
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+            objectOut.writeObject(Main.userSettings.getRecentProjectsList());
+            objectOut.writeObject(Main.userSettings.getRecentToolsList());
+            objectOut.writeObject(Main.userSettings.getRecentMaterialsList());
+
+            objectOut.close();
+            fileOut.close();
+
+            successfulExport = true;
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while exporting to file " + filePath, filePath);
+            error.printStackTrace();
+        }
+
+        return successfulExport;
+    }
+
+    /**
+     * importAll imports all data to a specified filePath.
+     * @param filePath the filePath the data should be imported from.
+     * @return boolean that is false if importing encountered an error.
+     *
+     * @author Cody Dukes
+     */
+    public boolean importAll(Path filePath) {
+        boolean successfulImport = false;
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath.toFile());
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+            Main.userSettings = (UserSettings) objectIn.readObject();
+            Main.userSettings.verifySelf();
+            About.updateProfile(Main.userSettings.getProfile());
+
+            objectIn.close();
+            fileIn.close();
+
+            successfulImport = true;
+        }
+        catch (FileNotFoundException error) {
+            System.out.printf("\nFile " + filePath + " not found.", filePath);
+        }
+        catch (IOException error) {
+            System.out.printf("\nError occurred while importing file " + filePath, filePath);
+        }
+        catch (ClassNotFoundException error) {
+            System.out.printf("\nCould not read class from file " + filePath, filePath);
+        }
+        return successfulImport;
+    }
 }

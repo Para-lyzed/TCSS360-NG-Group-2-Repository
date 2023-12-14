@@ -29,7 +29,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
      */
     public ProjectSelectScreen(int width, int height) {
         super(width, height, title, newButtonName, importButtonName);
-        this.recentFiles = Main.userSettings.getRecentProjectList();
+        this.recentFiles = Main.userSettings.getRecentProjectsList();
         this.listPane.setListData(this.recentFiles.toArray(new String[this.recentFiles.size()]));
         this.searchBar.addActionListener(new ActionListener() {
             @Override
@@ -37,7 +37,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                 // System.out.println(searchBar.getText());
                 String searchText = searchBar.getText();
                 if (searchText.isEmpty()){
-                    recentFiles = Main.userSettings.getRecentProjectList();
+                    recentFiles = Main.userSettings.getRecentProjectsList();
                 }
                 else {
                     recentFiles = Main.searchProject(searchText);
@@ -50,7 +50,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String projectName = listPane.getSelectedValue();
-                    Path projectPath = Main.userSettings.getFilePathFromName(projectName);
+                    Path projectPath = Main.userSettings.getFilePathFromName(projectName, 0);
                     if (projectPath != null) {
                         try {
                             Main.BASE_FRAME.openProject(DataIO.loadProject(projectPath));
@@ -60,7 +60,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                         }
                     }
                     else {
-                        Main.userSettings.removeProject(projectName);
+                        Main.userSettings.removeProject(projectName, 0);
                     }
                 }
             }
@@ -91,7 +91,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
     }
 
     public void refresh() {
-        recentFiles = Main.userSettings.getRecentProjectList();
+        recentFiles = Main.userSettings.getRecentProjectsList();
         listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
     }
 }

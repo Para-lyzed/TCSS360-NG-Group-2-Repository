@@ -21,6 +21,7 @@ public class Log implements Serializable {
      * Log constructs a Log object that contains a log name and log date.
      * @param date the date the Log was made.
      * @param name the name of the Log.
+     *
      * @author Cody Dukes
      */
     public Log(LocalDate date, String name) {
@@ -31,6 +32,7 @@ public class Log implements Serializable {
     /**
      * getName returns the Log name.
      * @return name the Log name.
+     *
      * @author Cody Dukes
      */
     public String getName(){
@@ -40,6 +42,7 @@ public class Log implements Serializable {
     /**
      * sets the name of a Log.
      * @param name name to set Log to.
+     *
      * @author Cody Dukes
      */
     public void setName(String name) {
@@ -49,6 +52,7 @@ public class Log implements Serializable {
     /**
      * getDate returns the Log date.
      * @return date the Log date.
+     *
      * @author Cody Dukes
      */
     public LocalDate getDate() {
@@ -58,6 +62,7 @@ public class Log implements Serializable {
     /**
      * sets the date of a Log.
      * @param date date Log was made.
+     *
      * @author Cody Dukes
      */
     public void setDate(LocalDate date) {
@@ -67,6 +72,7 @@ public class Log implements Serializable {
     /**
      * getDescription returns the Log description.
      * @return description the Log description.
+     *
      * @author Cody Dukes
      */
     public String getDescription() {
@@ -76,6 +82,7 @@ public class Log implements Serializable {
     /**
      * sets the description of a Log.
      * @param description description of the Log.
+     *
      * @author Cody Dukes
      */
     public void setDescription(String description) {
@@ -85,6 +92,7 @@ public class Log implements Serializable {
     /**
      * getImages returns the Log images.
      * @return images the Log images.
+     *
      * @author Cody Dukes
      */
     public List<Image> getImages() {
@@ -94,6 +102,7 @@ public class Log implements Serializable {
     /**
      * sets the images of a Log.
      * @param images the images associated with a Log.
+     *
      * @author Cody Dukes
      */
     public void setImages(List<Image> images) {
@@ -103,6 +112,7 @@ public class Log implements Serializable {
     /**
      * Adds image to a Log.
      * @param image the images to add to the Log.
+     *
      * @author Cody Dukes
      */
     public void addImage(Image image) {
