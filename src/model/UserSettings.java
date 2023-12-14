@@ -142,12 +142,9 @@ public class UserSettings implements Serializable {
      */
     public void updateMostRecent(String name, Path filePath, int type) {
         ArrayList<String> recentFilesList = getListFromType(type);
-        HashMap<String, String> recentFilesMap = getMapFromType(type);
-        if (recentFilesList.contains(name)) {
-            recentFilesList.remove(name);
-        }
+        recentFilesList.remove(name);
         recentFilesList.add(0, name);
-        recentFilesMap.put(name, filePath.toString());
+        getMapFromType(type).put(name, filePath.toString());
         DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
     }
 
@@ -161,10 +158,8 @@ public class UserSettings implements Serializable {
      * @author Cody Dukes
      */
     public void removeFromRecent(String name, int type) {
-        ArrayList<String> recentFilesList = getListFromType(type);
-        HashMap<String, String> recentFilesMap = getMapFromType(type);
-        recentFilesList.remove(name);
-        recentFilesMap.remove(name);
+        getListFromType(type).remove(name);
+        getMapFromType(type).remove(name);
         DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
     }
 
