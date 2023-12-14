@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -9,16 +9,20 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.Expense;
+import model.Main;
+import model.Project;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.ProjectExpensePanel.java
+ * view.ProjectExpensePanel.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class ProjectExpensePanel extends ProjectOverviewPanel {
-    private static final String addButtonName = "Add model.Expense";
+    private static final String addButtonName = "Add Expense";
     private static final JLabel categoryLabel = new JLabel("Category");
     private static final JLabel nameLabel = new JLabel("Name");
     private static final JLabel numberLabel = new JLabel("#");

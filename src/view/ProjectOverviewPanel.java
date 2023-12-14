@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -10,10 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.ProjectOverviewPanel.java
+ * view.ProjectOverviewPanel.java
  * 
  * @author Nathan Grimsey
  *

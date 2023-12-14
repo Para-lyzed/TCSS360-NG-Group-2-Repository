@@ -26,14 +26,15 @@ public class UserSettings implements Serializable {
     private boolean darkMode;
 
     /**
-     * model.UserSettings constructs a model.UserSettings object that contains a profile, a Map, and a list.
-     * @param profile is a profile containing a name and email.
-     * @param projectsMap is a map containing the recent projects.
-     * @param projectsList is a list containing the recent projects.
-     * @param toolsMap is a map containing the recent tools.
-     * @param toolsList is a list containing the recent tools.
-     * @param materialsMap is a map containing the recent materials.
-     * @param materialsList is a list containing the recent materials.
+     * UserSettings constructs a UserSettings object that contains a Profile, a Map, and a List for recent files of Projects, Tools, and Materials.
+     * 
+     * @param profile is a Profile containing a name and email.
+     * @param projectsMap is a Map containing the recent Projects.
+     * @param projectsList is a List containing the recent Projects.
+     * @param toolsMap is a Map containing the recent Tools.
+     * @param toolsList is a List containing the recent Tools.
+     * @param materialsMap is a Map containing the recent Materials.
+     * @param materialsList is a List containing the recent Materials.
      * @param mode is a boolean representing whether darkMode is enabled.
      *
      * @author Cody Dukes
@@ -53,7 +54,7 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * Default constructor for model.UserSettings object.
+     * Default constructor for UserSettings object.
      *
      * @author Nathan Grimsey
      * @author Cody Dukes
@@ -74,9 +75,10 @@ public class UserSettings implements Serializable {
      * updateMostRecent moves the current element to index 0 of the recentElementsList or,
      * if it does not yet exist, adds it to the front of the list and adds its name and filePath to
      * the recentElementsMap.
-     * @param name the name of the current project to update as most recent.
-     * @param filePath the path to the most recent project.
-     * @param type dictates whether to update projects, tools, or materials using type indicators
+     * 
+     * @param name the name of the current file to update as most recent.
+     * @param filePath the Path to the file to update to most recent.
+     * @param type dictates whether to update Projects, Tools, or Materials using type indicators
      *            0, 1, and 2 respectively.
      *
      * @author Cody Dukes
@@ -117,14 +119,15 @@ public class UserSettings implements Serializable {
 
     /**
      * Removes an element from the recents list.
-     * @param name the name of the model.Project to remove.
+     * 
+     * @param name the name of the element to remove.
      * @param type dictates which element to remove using type indicators
      *            0 (projects), 1 (tools), and 2 (materials).
      *
      * @author Nathan Grimsey
      * @author Cody Dukes
      */
-    public void removeProject(String name, int type) {
+    public void removeFromRecent(String name, int type) {
         switch (type) {
             case 0:
                 recentProjectsList.remove(name);
@@ -150,7 +153,8 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * getFilePathFromName returns the filePath associated with the elements name.
+     * getFilePathFromName returns the filePath associated with the element's name.
+     * 
      * @param name the name of the project to return a filePath to.
      * @param type dictates which kind of filePath to get using type indicators
      *            0 (projects), 1 (tools), and 2 (materials).
@@ -185,8 +189,9 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * getRecentProjectsList returns the list of recent projects.
-     * @return recentProjectsList the list of recent projects.
+     * getRecentProjectsList returns the list of recent Projects.
+     * 
+     * @return recentProjectsList the list of recent Projects.
      *
      * @author Cody Dukes
      */
@@ -195,8 +200,9 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * getRecentToolsList returns the list of recent tools.
-     * @return recentToolList the list of recent tools.
+     * getRecentToolsList returns the list of recent Tools.
+     * 
+     * @return recentToolList the list of recent Tools.
      *
      * @author Cody Dukes
      */
@@ -205,8 +211,9 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * getRecentMaterialsList returns the list of recent materials.
-     * @return recentMaterialsList the list of recent materials.
+     * getRecentMaterialsList returns the list of recent Materials.
+     * 
+     * @return recentMaterialsList the list of recent Materials.
      *
      * @author Cody Dukes
      */
@@ -215,8 +222,9 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * getProfile returns profile object.
-     * @return model.Profile object.
+     * getProfile returns Profile object.
+     * 
+     * @return Profile object.
      *
      * @author Cody Dukes
      */
@@ -226,6 +234,7 @@ public class UserSettings implements Serializable {
 
     /**
      * Gets the darkMode boolean.
+     * 
      * @return boolean of whether the user is in dark mode or not.
      */
     public boolean getDarkMode() {
@@ -234,12 +243,18 @@ public class UserSettings implements Serializable {
 
     /**
      * Sets the darkMode boolean.
+     * 
      * @param mode the value to set the darkMode boolean to.
      */
     public void setDarkMode(boolean mode) {
         darkMode = mode;
     }
 
+    /**
+     * Verifies that all elements are initialized if they were imported as null.
+     * 
+     * @author Nathan Grimsey
+     */
     public void verifySelf() {
         if (userProfile == null) {
             userProfile = new Profile();
@@ -249,6 +264,18 @@ public class UserSettings implements Serializable {
         }
         if (recentProjectsList == null) {
             recentProjectsList = new ArrayList<>();
+        }
+        if (recentToolsMap == null) {
+            recentToolsMap = new HashMap<>();
+        }
+        if (recentToolsList == null) {
+            recentToolsList = new ArrayList<>();
+        }
+        if (recentMaterialsMap == null) {
+            recentMaterialsMap = new HashMap<>();
+        }
+        if (recentMaterialsList == null) {
+            recentMaterialsList = new ArrayList<>();
         }
     }
 }

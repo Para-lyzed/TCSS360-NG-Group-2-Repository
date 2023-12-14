@@ -1,16 +1,19 @@
-package model;
+package view;
 
 import javax.swing.*;
+
+import model.About;
+import model.Main;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.AboutScreen.java
+ * view.AboutScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class AboutScreen extends BaseScreen {
-    public static final String title = "model.About";
+    public static final String title = "About";
     private static JLabel registeredTo;
     private static JLabel currentUser;
     private static JLabel providedBy;
@@ -18,11 +21,12 @@ public class AboutScreen extends BaseScreen {
     private static String[] contributors;
 
     /**
-     * model.AboutScreen creates the window with information on the app.
+     * AboutScreen creates the window with information on the app.
      *
      * @param width the width of the screen.
      * @param height the height of the screen.
      * @param about contains owner profile, and version, and contributors.
+     * 
      * @author Nathan Grimsey
      */
     public AboutScreen(int width, int height) {
@@ -54,6 +58,7 @@ public class AboutScreen extends BaseScreen {
 
     /**
      * refreshProfile sets the current user to the owner.
+     * 
      * @author Nathan Grimsey
      */
     public void refreshProfile() {

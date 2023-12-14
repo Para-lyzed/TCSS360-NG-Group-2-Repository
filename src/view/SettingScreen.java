@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -11,10 +11,14 @@ import java.nio.file.Paths;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.About;
+import model.DataIO;
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.SettingScreen.java
+ * view.SettingScreen.java
  * 
  * @author Nathan Grimsey
  *
@@ -35,10 +39,12 @@ public class SettingScreen extends BaseScreen {
     private static JScrollPane scrollablePane;
 
     /**
-     * model.SettingScreen displays the setting screen.
+     * SettingScreen displays the setting screen.
+     * 
      * @param width sets the width of the window.
      * @param height sets the height of the window.
-     * @param about contains owner profile, and version, and contributors.
+     * @param about contains owner Profile, version, and contributors.
+     * 
      * @author Nathan Grimsey
      */
     public SettingScreen(int width, int height) {

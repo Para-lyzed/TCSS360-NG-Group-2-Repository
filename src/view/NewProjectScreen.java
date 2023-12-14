@@ -1,18 +1,21 @@
-package model;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Main;
+import model.Project;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.NewProjectScreen.java
+ * view.NewProjectScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class NewProjectScreen extends NewScreen {
-    private static final String title = "Create a New model.Project";
+    private static final String title = "Create a New Project";
 
     public NewProjectScreen(int width, int height) {
         super(width, height, title, 3, "Budget*");

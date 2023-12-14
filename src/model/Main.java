@@ -8,12 +8,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import view.BaseFrame;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
  * model.Main.java
  * 
  * @author Nathan Grimsey
+ * @author Maple Gunn
  *
  */
 public class Main {
@@ -59,11 +62,13 @@ public class Main {
 
     }
 
-    /** Searches a list of project names and returns whichever contains a
-     * prompted string
+    /** Searches a list of Project names and returns those that contain a
+     * prompted String.
      *
-     * @param str
-     * @return list of searched projects
+     * @param str the String used for the search.
+     * @return list of Project names matching search term.
+     * 
+     * @author Maple Gunn
      */
     public static ArrayList<String> searchProject (String str) {
         ArrayList<String> foundProjects = new ArrayList<>();

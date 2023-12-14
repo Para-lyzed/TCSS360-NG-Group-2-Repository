@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,23 +10,28 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.DataIO;
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.ProjectSelectScreen.java
+ * view.ProjectSelectScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class ProjectSelectScreen extends BaseSelectorScreen {
     private static final String title = "Projects";
-    private static final String newButtonName = "New model.Project";
-    private static final String importButtonName = "Import model.Project";
+    private static final String newButtonName = "New Project";
+    private static final String importButtonName = "Import Project";
 
     /**
-     * Constructs a project screen that the user can use to select or create a project.
-     * @param width the width of the window
-     * @param height the height of the window
+     * Constructs a Project screen that the user can use to select or create a Project.
+     * 
+     * @param width the width of the window.
+     * @param height the height of the window.
+     * 
      * @author Nathan Grimsey
      */
     public ProjectSelectScreen(int width, int height) {
@@ -62,7 +67,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                         }
                     }
                     else {
-                        Main.userSettings.removeProject(projectName, 0);
+                        Main.userSettings.removeFromRecent(projectName, 0);
                     }
                 }
             }
@@ -70,10 +75,10 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
         this.createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.switchScreen("Create a New model.Project");
+                Main.BASE_FRAME.switchScreen("Create a New Project");
             }
         });
-        fileChooser.setFileFilter(new FileNameExtensionFilter("MPP model.Project File", "proj"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("MPP Project File", "proj"));
         this.importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +97,11 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
         });
     }
 
+    /**
+     * Refreshes the list of recent files to be displayed when there is a change.
+     * 
+     * @author Nathan Grimsey
+     */
     public void refresh() {
         recentFiles = Main.userSettings.getRecentProjectsList();
         listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));

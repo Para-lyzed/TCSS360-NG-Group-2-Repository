@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -10,10 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
+import model.DataIO;
+import model.Main;
+import model.Project;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * ProjectScreen.java
+ * view.ProjectOverviewScreen.java
  * 
  * @author Nathan Grimsey
  *

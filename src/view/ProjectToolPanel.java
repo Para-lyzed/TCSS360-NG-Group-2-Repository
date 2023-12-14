@@ -1,17 +1,19 @@
-package model;
+package view;
 
 import javax.swing.JPanel;
+
+import model.Main;
 
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.ProjectLogPanel.java
+ * view.ProjectToolPanel.java
  * 
  * @author Nathan Grimsey
  *
  */
-public class ProjectLogPanel extends JPanel {
-    public ProjectLogPanel() {
+public class ProjectToolPanel extends JPanel {
+    public ProjectToolPanel() {
         setBackground(Main.SECONDARY_BACKGROUND);
         setOpaque(true);
     }
