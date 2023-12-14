@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Main.java
+ * model.Main.java
  * 
  * @author Nathan Grimsey
  *

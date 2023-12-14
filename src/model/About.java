@@ -1,7 +1,9 @@
+package model;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * About.java
+ * model.About.java
  * 
  * @author Nathan Grimsey
  * @author Maple Gunn
@@ -51,7 +53,7 @@ public class About {
     }
 
     /**
-     * updateProfile sets new Profile for owner.
+     * updateProfile sets new model.Profile for owner.
      * @param name is the new name.
      * @param email is the new email.
      * @author Nathan Grimsey
@@ -61,8 +63,8 @@ public class About {
     }
 
     /**
-     * updateProfile sets new Profile for owner.
-     * @param profile the Profile to update owner with.
+     * updateProfile sets new model.Profile for owner.
+     * @param profile the model.Profile to update owner with.
      * @author Nathan Grimsey
      */
     public static void updateProfile(Profile profile) {

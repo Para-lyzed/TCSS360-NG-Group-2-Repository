@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
 
