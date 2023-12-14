@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.DataIO;
 import model.Main;
+import model.UserSettings;
 
 /**
  * TCSS 360B
@@ -36,7 +37,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
      */
     public ProjectSelectScreen(int width, int height) {
         super(width, height, title, newButtonName, importButtonName);
-        this.recentFiles = Main.userSettings.getRecentProjectsList();
+        this.recentFiles = Main.userSettings.getRecentFilesList(UserSettings.PROJECT);
         this.listPane.setListData(this.recentFiles.toArray(new String[this.recentFiles.size()]));
         this.searchBar.addActionListener(new ActionListener() {
             @Override
@@ -44,10 +45,10 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                 // System.out.println(searchBar.getText());
                 String searchText = searchBar.getText();
                 if (searchText.isEmpty()){
-                    recentFiles = Main.userSettings.getRecentProjectsList();
+                    recentFiles = Main.userSettings.getRecentFilesList(UserSettings.PROJECT);
                 }
                 else {
-                    recentFiles = Main.searchProject(searchText);
+                    recentFiles = Main.searchFiles(searchText, UserSettings.PROJECT);
                 }
                 listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
             }
@@ -57,17 +58,20 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String projectName = listPane.getSelectedValue();
-                    Path projectPath = Main.userSettings.getFilePathFromName(projectName, 0);
-                    if (projectPath != null) {
-                        try {
-                            Main.BASE_FRAME.openProject(DataIO.loadProject(projectPath));
+                    if (projectName != null) {
+                        Path projectPath = Main.userSettings.getFilePathFromName(projectName, UserSettings.PROJECT);
+                        if (projectPath != null) {
+                            try {
+                                Main.BASE_FRAME.openProject(DataIO.loadProject(projectPath));
+                            }
+                            catch (Exception error) {
+                                Main.userSettings.removeFromRecent(projectName, UserSettings.PROJECT);
+                                error.printStackTrace();
+                            }
                         }
-                        catch (Exception error) {
-                            error.printStackTrace();
+                        else {
+                            Main.userSettings.removeFromRecent(projectName, UserSettings.PROJECT);
                         }
-                    }
-                    else {
-                        Main.userSettings.removeFromRecent(projectName, 0);
                     }
                 }
             }
@@ -103,7 +107,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
      * @author Nathan Grimsey
      */
     public void refresh() {
-        recentFiles = Main.userSettings.getRecentProjectsList();
+        recentFiles = Main.userSettings.getRecentFilesList(UserSettings.PROJECT);
         listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
     }
 }
