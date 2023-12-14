@@ -16,7 +16,9 @@ public class About {
 
     /**
      * getOwner gets the owner registered to the app.
+     * 
      * @return owner of the app.
+     * 
      * @author Nathan Grimsey
      * @author Maple Gunn
      */
@@ -25,8 +27,10 @@ public class About {
     }
 
     /**
-     * getOwnerString returns a string with the owner name and email.
-     * @return Owner name and email as a string.
+     * getOwnerString returns a String with the owner name and email.
+     * 
+     * @return Owner name and email as a String.
+     * 
      * @author Nathan Grimsey
      */
     public static String getOwnerString() {
@@ -34,8 +38,10 @@ public class About {
     }
 
     /**
-     * getVersion returns app version.
+     * getVersion gets the app version.
+     * 
      * @return app version.
+     * 
      * @author Nathan Grimsey
      * @author Maple Gunn
      */
@@ -44,8 +50,10 @@ public class About {
     }
 
     /**
-     * getContributers returns project contributors.
-     * @return project contributors.
+     * getContributers gets the MPP contributors.
+     * 
+     * @return MPP contributors.
+     * 
      * @author Nathan Grimsey
      */
     public static String[] getContributors() {
@@ -53,9 +61,11 @@ public class About {
     }
 
     /**
-     * updateProfile sets new model.Profile for owner.
+     * updateProfile sets new Profile for owner.
+     * 
      * @param name is the new name.
      * @param email is the new email.
+     * 
      * @author Nathan Grimsey
      */
     public static void updateProfile(String name, String email) {
@@ -63,8 +73,10 @@ public class About {
     }
 
     /**
-     * updateProfile sets new model.Profile for owner.
-     * @param profile the model.Profile to update owner with.
+     * updateProfile sets new Profile for owner.
+     * 
+     * @param profile the Profile to update owner with.
+     * 
      * @author Nathan Grimsey
      */
     public static void updateProfile(Profile profile) {

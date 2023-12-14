@@ -26,6 +26,7 @@ public class BaseSelectorScreen extends BaseScreen {
     protected static final JFileChooser fileChooser = new JFileChooser();
     protected JTextField searchBar;
     protected JScrollPane scrollablePane;
+    // TODO: Remove this when no longer necessary
     // protected String[] recentFiles = { "Value 1", "Value 2", "Value 3", "Value 4", "Value 5", "Value 6", "Value 7", "Value 8", "Value 9", "Value 10", "Value 11", "Value 12", "Value 13", "Value 14", "Value 15", "Value 16" };
     protected ArrayList<String> recentFiles = new ArrayList<>();
     protected JList<String> listPane;

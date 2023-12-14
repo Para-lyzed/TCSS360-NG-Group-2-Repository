@@ -35,8 +35,10 @@ public class BaseFrame extends JFrame {
 
     /**
      * BaseFrame contains the entire window for the app.
+     * 
      * @param width sets the width of the window.
      * @param height sets the height of the window.
+     * 
      * @author Nathan Grimsey
      */
     public BaseFrame() {
@@ -74,7 +76,9 @@ public class BaseFrame extends JFrame {
 
     /**
      * switchScreen switches the screen of the app currently being viewed.
+     * 
      * @param screenName is the name of the screen to switch to.
+     * 
      * @author Nathan Grimsey
      */
     public void switchScreen(String screenName) {
@@ -149,7 +153,9 @@ public class BaseFrame extends JFrame {
 
     /**
      * menuOpen handles UI elements when the menu is open or closed.
+     * 
      * @param isOpen is whether the menu is open.
+     * 
      * @author Nathan Grimsey
      */
     public void menuOpen(boolean isOpen) {
@@ -188,6 +194,13 @@ public class BaseFrame extends JFrame {
             repaint();
     }
 
+    /**
+     * Opens a Project into a new ProjectOverviewScreen.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
     public void openProject(Project project) {
         projectOverviewScreen = new ProjectOverviewScreen(getWidth(), getHeight(), project);
         switchScreen("Overview");
@@ -196,6 +209,11 @@ public class BaseFrame extends JFrame {
         lPane.add(projectMenu, BorderLayout.WEST, 0);
     }
 
+    /**
+     * Takes the user back to the main menu.
+     * 
+     * @author Nathan Grimsey
+     */
     public void resetToMainMenu() {
         lPane.remove(projectMenu);
         lPane.add(mainMenu, BorderLayout.WEST, 0);

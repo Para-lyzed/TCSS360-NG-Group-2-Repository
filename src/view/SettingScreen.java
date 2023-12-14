@@ -40,9 +40,11 @@ public class SettingScreen extends BaseScreen {
 
     /**
      * SettingScreen displays the setting screen.
+     * 
      * @param width sets the width of the window.
      * @param height sets the height of the window.
-     * @param about contains owner profile, and version, and contributors.
+     * @param about contains owner Profile, version, and contributors.
+     * 
      * @author Nathan Grimsey
      */
     public SettingScreen(int width, int height) {

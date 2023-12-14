@@ -16,9 +16,11 @@ public class Profile implements Serializable {
     private String email;
 
     /**
-     * model.Profile constructs a profile object that contains a name and email.
+     * Profile constructs a profile object that contains a name and email.
+     * 
      * @param name is a name.
      * @param email is an email.
+     * 
      * @author Nathan Grimsey
      * @author Maple Gunn
      */
@@ -28,7 +30,8 @@ public class Profile implements Serializable {
     }
 
     /**
-     * model.Profile constructs an empty profile as a base case.
+     * Profile constructs an empty profile as a default case.
+     * 
      * @author Nathan Grimsey
      */
     public Profile() {
@@ -38,7 +41,9 @@ public class Profile implements Serializable {
 
     /**
      * getName returns name of profile.
+     * 
      * @return name of profile.
+     * 
      * @author Nathan Grimsey
      * @author Maple Gunn
      */
@@ -48,7 +53,9 @@ public class Profile implements Serializable {
 
     /**
      * getEmail returns the email of profile.
+     * 
      * @return email of profile.
+     * 
      * @author Nathan Grimsey
      * @author Maple Gunn
      */
@@ -57,9 +64,11 @@ public class Profile implements Serializable {
     }
 
     /**
-     * sets the name and email of a model.Profile.
-     * @param name name to set model.Profile to.
-     * @param email email to set model.Profile to.
+     * sets the name and email of a Profile.
+     * 
+     * @param name name to set Profile to.
+     * @param email email to set Profile to.
+     * 
      * @author Nathan Grimsey
      */
     public void set(String name, String email) {
@@ -69,7 +78,8 @@ public class Profile implements Serializable {
 
     /**
      * determines whether two Profiles are equal.
-     * @param profile the model.Profile to compare to.
+     * 
+     * @param profile the Profile to compare to.
      * @return true if the Profiles are equal.
      */
     public boolean equals(Profile profile) {
@@ -81,6 +91,7 @@ public class Profile implements Serializable {
 
     /**
      * Returns toString of profile.
+     * 
      * @return String representation of a profile.
      * @author Maple Gunn
      */

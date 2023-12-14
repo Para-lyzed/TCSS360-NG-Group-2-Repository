@@ -47,7 +47,9 @@ public class BaseScreen extends JPanel {
 
     /**
      * menuHeading gets rid of the spacing on the header if the menu is open.
+     * 
      * @param isMenuOpen is if the menu is open.
+     * 
      * @author Nathan Grimsey
      */
     public void menuHeading(boolean isMenuOpen) {

@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.Expense.java creates an model.Expense object, which is inherited by tools and materials.
+ * model.Expense.java creates an Expense object, which is inherited by tools and materials.
  * It contains information on expenses for projects, such as name, category,
  * and description.
  * 
@@ -25,7 +25,8 @@ public class Expense implements Comparable<Expense>, Serializable {
     protected List<Image> images;
 
     /**
-     * Constructor for the model.Expense Object.
+     * Constructor for the Expense Object.
+     * 
      * @param name is the name of the expense.
      * @param category is the expense category.
      * @param price is the price of the expense.
@@ -41,7 +42,8 @@ public class Expense implements Comparable<Expense>, Serializable {
     }
 
     /**
-     * Getter method for name
+     * Getter method for name.
+     * 
      * @return name of expense.
      *
      * @author Maple Gunn
@@ -61,6 +63,7 @@ public class Expense implements Comparable<Expense>, Serializable {
 
     /**
      * Getter method for category.
+     * 
      * @return category.
      *
      * @author Maple Gunn
@@ -79,7 +82,8 @@ public class Expense implements Comparable<Expense>, Serializable {
     }
 
     /**
-     * Getter method for description
+     * Getter method for description.
+     * 
      * @return description.
      *
      * @author Maple Gunn
@@ -99,6 +103,7 @@ public class Expense implements Comparable<Expense>, Serializable {
 
     /**
      * Getter method for price.
+     * 
      * @return price.
      *
      * @author Maple Gunn
@@ -108,7 +113,7 @@ public class Expense implements Comparable<Expense>, Serializable {
     }
 
     /**
-     * Setter method for price
+     * Setter method for price.
      *
      * @author Maple Gunn
      */
@@ -118,7 +123,8 @@ public class Expense implements Comparable<Expense>, Serializable {
 
     /**
      * Getter method for quantity.
-     * @return quantity
+     * 
+     * @return quantity.
      *
      * @author Maple Gunn
      */
@@ -137,6 +143,7 @@ public class Expense implements Comparable<Expense>, Serializable {
 
     /**
      * Getter method for images.
+     * 
      * @return images.
      *
      * @author Maple Gunn
@@ -181,21 +188,29 @@ public class Expense implements Comparable<Expense>, Serializable {
         this.quantity = quantity;
     }
 
+    /**
+     * Compares this Expense to another Expense.
+     * 
+     * @param otherExpense the Expense to compare to.
+     * @return result of the comparison.
+     * 
+     * @author Maple Gunn
+     */
     @Override
-    public int compareTo(Expense o) {
+    public int compareTo(Expense otherExpense) {
         int compareVal = 0;
-        compareVal += this.name.compareTo(o.name);
+        compareVal += this.name.compareTo(otherExpense.getName());
 
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.category.compareTo(o.category);
+        compareVal += this.category.compareTo(otherExpense.getCategory());
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.price - o.price;
+        compareVal += this.price - otherExpense.getPrice();
         return compareVal;
     }
 

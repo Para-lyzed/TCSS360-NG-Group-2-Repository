@@ -34,8 +34,10 @@ public class Menu extends JPanel {
 
     /**
      * Creates a menu by which the user is able to navigate to another page.
-     * @param isMainMenu true if the menu is on the main screen, else false if it is a project view menu
-     * @param height the initial height of the menu
+     * 
+     * @param isMainMenu true if the menu is on the main screen, else false if it is a Project menu.
+     * @param height the initial height of the menu.
+     * 
      * @author Nathan Grimsey
      */
     public Menu(boolean isMainMenu, int height) {
@@ -124,6 +126,7 @@ public class Menu extends JPanel {
 
     /**
      * Handles the UI elements to open menu when the menu button is pressed.
+     * 
      * @author Nathan Grimsey
      */
     private void menuPressed() {
@@ -141,6 +144,7 @@ public class Menu extends JPanel {
 
     /**
      * Handles the UI elements to close menu when the back button is pressed.
+     * 
      * @author Nathan Grimsey
      */
     private void closeMenu() {
@@ -158,7 +162,9 @@ public class Menu extends JPanel {
 
     /**
      * Changes the current screen when a menu entry is pressed.
+     * 
      * @param entryName name of the menu entry pressed.
+     * 
      * @author Nathan Grimsey
      */
     private void entryPressed(String entryName) {
@@ -172,8 +178,10 @@ public class Menu extends JPanel {
     }
 
     /**
-     * sets the height of the menu.
+     * Sets the height of the menu.
+     * 
      * @param height the height to set the menu to.
+     * 
      * @author Nathan Grimsey
      */
     public void setHeight(int height) {

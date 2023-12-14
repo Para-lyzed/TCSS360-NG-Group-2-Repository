@@ -27,9 +27,10 @@ public class Project implements Serializable {
     private int totalCost;
 
     /**
-     * Constructor for project objects
+     * Constructor for Project objects.
      *
-     * @param name is the name of the project
+     * @param name is the name of the Project.
+     * 
      * @author Maple Gunn
      */
     public Project(String name, int budget) {
@@ -43,9 +44,10 @@ public class Project implements Serializable {
     }
 
     /**
-     * Getter method for name
+     * Getter method for name.
      *
-     * @return project name
+     * @return Project name.
+     * 
      * @author Maple Gunn
      */
     public String getName() {
@@ -53,7 +55,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Updates the total cost of the project whenever you add or remove an expense.
+     * Updates the total cost of the Project whenever you add or remove an expense.
      *
      * @author Maple Gunn
      */
@@ -66,9 +68,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Get total cost of the project.
+     * Get total cost of the Project.
      *
-     * @return total cost of project
+     * @return total cost of Project.
      *
      * @author Maple Gunn
      */
@@ -79,8 +81,9 @@ public class Project implements Serializable {
 
 
     /**
-     * Gets list of expenses
-     * @return list of expenses
+     * Gets list of Expenses.
+     * 
+     * @return list of Expenses.
      * 
      * @author Maple Gunn
      */
@@ -89,8 +92,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Sets the list of expenses.
-     * @param expenseList the list of expenses to set to.
+     * Sets the list of Expenses.
+     * 
+     * @param expenseList the list of Expenses to set to.
      * 
      * @authon Nathan Grimsey
      */
@@ -100,8 +104,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Getter for tools
-     * @return tools
+     * Getter for Tools.
+     * 
+     * @return Tools.
      * 
      * @author Maple Gunn
      */
@@ -110,8 +115,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Getter for logs
-     * @return logs
+     * Getter for Logs.
+     * 
+     * @return Logs.
      * 
      * @author Maple Gunn
      */
@@ -120,8 +126,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Getter for description
-     * @return description
+     * Getter for description.
+     * 
+     * @return description.
      * 
      * @author Maple Gunn
      */
@@ -130,7 +137,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Set the description of a model.Project
+     * Set the description of a Project.
      * 
      * @author Nathan Grimsey
      */
@@ -139,7 +146,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add a generic expense to the project
+     * Add a generic expense to the Project.
      * 
      * @author Maple Gunn
      */
@@ -150,7 +157,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add a material as an expense to the project
+     * Add a Mterial as an Expense to the Project.
      * 
      * @author Maple Gunn
      */
@@ -162,7 +169,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add a tool as an expense to the project
+     * Add a Tool as an Expense to the Project.
      * 
      * @author Maple Gunn
      */
@@ -174,7 +181,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add a required tool to the project
+     * Add a required Tool to the Project.
      * 
      * @author Maple Gunn
      */
@@ -183,7 +190,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add a log to the project
+     * Add a Log to the Project.
      * 
      * @author Maple Gunn
      */
@@ -192,8 +199,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Get images
-     * @return Images
+     * Get images.
+     * 
+     * @return images.
      * 
      * @author Maple Gunn
      */
@@ -202,7 +210,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add image to project.
+     * Add image to Project.
      * 
      * @author Maple Gunn
      */
@@ -220,17 +228,18 @@ public class Project implements Serializable {
     }
 
     /**
-     * Get the budget of the project.
+     * Get the budget of the Project.
+     * 
+     * @return the budget of the Project.
      * 
      * @author Nathan Grimsey
-     * @return the budget of the project.
      */
     public int getBudget() {
         return this.budget;
     }
 
     /**
-     * Set the budget of the project.
+     * Set the budget of the Project.
      * 
      * @author Nathan Grimsey
      */
@@ -239,7 +248,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Update a generic expense
+     * Update a generic Expense.
      * 
      * @author Maple Gunn
      */
@@ -260,7 +269,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Update an expense by using a material
+     * Update an Expense by using a Material.
      * 
      * @author Maple Gunn
      */
@@ -282,7 +291,7 @@ public class Project implements Serializable {
 
 
     /**
-     * Update an expense by using a tool
+     * Update an Expense by using a Tool.
      * 
      * @author Maple Gunn
      */
@@ -303,7 +312,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Remove an expense
+     * Remove an Expense.
      * 
      * @author Maple Gunn
      */
@@ -319,7 +328,9 @@ public class Project implements Serializable {
     }
 
     /**
-     * Remove a required tool
+     * Remove a required Tool from the Project.
+     * 
+     * @param tool the Tool to remove.
      * 
      * @author Maple Gunn
      */
@@ -333,10 +344,15 @@ public class Project implements Serializable {
         }
     }
 
-/* Logs haven't been implemented yet
-    public void removeLog(model.Log log) {
-        model.Expense e;
-        for (int i = 0; i < logs.size()-1; i++) {
+    /**
+     * Remove a Log from the Project.
+     * 
+     * @param log the Log to remove.
+     * 
+     * @author Maple Gunn
+     */
+    public void removeLog(Log log) {
+        for (int i = 0; i < logs.size() - 1; i++) {
 
             if (logs.get(i).compareTo(log) == 0) {
                 logs.remove(i);
@@ -344,7 +360,5 @@ public class Project implements Serializable {
             }
         }
     }
-    }
 
- */
 }

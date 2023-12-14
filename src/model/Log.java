@@ -11,18 +11,20 @@ import java.time.LocalDate;
  * model.Log.java
  *
  * @author Cody Dukes
+ * @author Nathan Grimsey
  *
  */
-public class Log implements Serializable {
+public class Log implements Comparable<Log>, Serializable {
     private String name;
     private LocalDate date;
     private String description;
     private List<Image> images;
 
     /**
-     * model.Log constructs a model.Log object that contains a log name and log date.
-     * @param date the date the model.Log was made.
-     * @param name the name of the model.Log.
+     * Log constructs a Log object that contains a log name and log date.
+     * 
+     * @param date the date the Log was made.
+     * @param name the name of the Log.
      *
      * @author Cody Dukes
      */
@@ -32,8 +34,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * getName returns the model.Log name.
-     * @return name the model.Log name.
+     * getName returns the Log name.
+     * 
+     * @return the Log name.
      *
      * @author Cody Dukes
      */
@@ -42,8 +45,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the name of a model.Log.
-     * @param name name to set model.Log to.
+     * sets the name of a Log.
+     * 
+     * @param name name to set Log to.
      *
      * @author Cody Dukes
      */
@@ -52,8 +56,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * getDate returns the model.Log date.
-     * @return date the model.Log date.
+     * getDate returns the Log date.
+     * 
+     * @return the Log date.
      *
      * @author Cody Dukes
      */
@@ -62,8 +67,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the date of a model.Log.
-     * @param date date model.Log was made.
+     * sets the date of a Log.
+     * 
+     * @param date date Log was made.
      *
      * @author Cody Dukes
      */
@@ -72,8 +78,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * getDescription returns the model.Log description.
-     * @return description the model.Log description.
+     * getDescription returns the Log description.
+     * 
+     * @return description the Log description.
      *
      * @author Cody Dukes
      */
@@ -82,8 +89,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the description of a model.Log.
-     * @param description description of the model.Log.
+     * sets the description of a Log.
+     * 
+     * @param description description of the Log.
      *
      * @author Cody Dukes
      */
@@ -92,8 +100,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * getImages returns the model.Log images.
-     * @return images the model.Log images.
+     * getImages returns the Log images.
+     * 
+     * @return images the Log images.
      *
      * @author Cody Dukes
      */
@@ -102,8 +111,9 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the images of a model.Log.
-     * @param images the images associated with a model.Log.
+     * sets the images of a Log.
+     * 
+     * @param images the images associated with a Log.
      *
      * @author Cody Dukes
      */
@@ -112,12 +122,39 @@ public class Log implements Serializable {
     }
 
     /**
-     * Adds image to a model.Log.
-     * @param image the images to add to the model.Log.
+     * Adds image to a Log.
+     * 
+     * @param image the image to add to the Log.
      *
      * @author Cody Dukes
      */
     public void addImage(Image image) {
         this.images.add(image);
+    }
+
+    /**
+     * Compares this Log to another Log.
+     * 
+     * @param otherLog the Log to compare to.
+     * @return result of the comparison.
+     * 
+     * @author Nathan Grimsey
+     */
+    @Override
+    public int compareTo(Log otherLog) {
+        int compareVal = 0;
+        compareVal += this.name.compareTo(otherLog.getName());
+
+        if (compareVal != 0) {
+            return compareVal;
+        }
+
+        compareVal += this.date.compareTo(otherLog.getDate());
+        if (compareVal != 0) {
+            return compareVal;
+        }
+
+        compareVal += this.description.compareTo(otherLog.getDescription());
+        return compareVal;
     }
 }

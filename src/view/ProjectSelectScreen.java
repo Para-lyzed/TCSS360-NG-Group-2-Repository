@@ -27,9 +27,11 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
     private static final String importButtonName = "Import Project";
 
     /**
-     * Constructs a project screen that the user can use to select or create a project.
-     * @param width the width of the window
-     * @param height the height of the window
+     * Constructs a Project screen that the user can use to select or create a Project.
+     * 
+     * @param width the width of the window.
+     * @param height the height of the window.
+     * 
      * @author Nathan Grimsey
      */
     public ProjectSelectScreen(int width, int height) {
@@ -65,7 +67,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                         }
                     }
                     else {
-                        Main.userSettings.removeProject(projectName, 0);
+                        Main.userSettings.removeFromRecent(projectName, 0);
                     }
                 }
             }
@@ -95,6 +97,11 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
         });
     }
 
+    /**
+     * Refreshes the list of recent files to be displayed when there is a change.
+     * 
+     * @author Nathan Grimsey
+     */
     public void refresh() {
         recentFiles = Main.userSettings.getRecentProjectsList();
         listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
