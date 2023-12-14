@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import view.BaseFrame;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3

@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
@@ -10,10 +10,12 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * BaseMainMenuScreen.java
+ * view.BaseSelectorScreen.java
  * 
  * @author Nathan Grimsey
  *

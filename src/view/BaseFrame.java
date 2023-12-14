@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,16 +8,19 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
+import model.Main;
+import model.Project;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.BaseFrame.java
+ * view.BaseFrame.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class BaseFrame extends JFrame {
-    private static final String defaultTitlePrefix = "MVP model.Project Planner - ";
+    private static final String defaultTitlePrefix = "MVP Project Planner - ";
     private static String titlePrefix;
     private static JLayeredPane lPane;
     private static Menu mainMenu;
@@ -31,7 +34,7 @@ public class BaseFrame extends JFrame {
     public static boolean menuOpen;
 
     /**
-     * model.BaseFrame contains the entire window for the app.
+     * BaseFrame contains the entire window for the app.
      * @param width sets the width of the window.
      * @param height sets the height of the window.
      * @author Nathan Grimsey
@@ -93,13 +96,13 @@ public class BaseFrame extends JFrame {
                 currentScreen = settingScreen;
                 break;
             
-            case "model.About":
+            case "About":
                 lPane.add(aboutScreen, BorderLayout.CENTER, 1);
                 currentScreen = aboutScreen;
                 aboutScreen.refreshProfile();
                 break;
             
-            case "Create a New model.Project":
+            case "Create a New Project":
                 newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
                 lPane.add(newProjectScreen, BorderLayout.CENTER, 1);
                 lPane.remove(mainMenu);
@@ -127,11 +130,11 @@ public class BaseFrame extends JFrame {
                         lPane.remove(settingScreen);
                         break;
             
-                    case "model.About":
+                    case "About":
                         lPane.remove(aboutScreen);
                         break;
 
-                    case "Create a New model.Project":
+                    case "Create a New Project":
                         lPane.remove(newProjectScreen);
                         break;
 
@@ -169,7 +172,7 @@ public class BaseFrame extends JFrame {
                     settingScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;
                 
-                case "model.About":
+                case "About":
                     aboutScreen.menuHeading(isOpen);
                     aboutScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;

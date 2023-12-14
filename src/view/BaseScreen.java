@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -6,10 +6,12 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * BaseMainMenuScreen.java
+ * view.BaseScreen.java
  * 
  * @author Nathan Grimsey
  *

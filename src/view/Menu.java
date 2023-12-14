@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -11,18 +11,20 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.Menu.java
+ * view.Menu.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class Menu extends JPanel {
-    private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "model.About"};
-    private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "model.Project Settings"};
-    private static int menuIconSize = Main.MENU_WIDTH/7;
+    private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
+    private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
+    private static int menuIconSize = Main.MENU_WIDTH / 7;
     private int menuHeight;
     private String[] entries;
     private GridBagConstraints c;
@@ -60,10 +62,10 @@ public class Menu extends JPanel {
         this.backButton = new JButton();
         this.add(this.menuButton, this.c);
         try {
-            Image menuImage = ImageIO.read(getClass().getResource("icons/Menu.png"));
+            Image menuImage = ImageIO.read(getClass().getResource("../icons/Menu.png"));
             Image resizedMenuImage = menuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
             this.menuButton.setIcon(new ImageIcon(resizedMenuImage));
-            Image backImage = ImageIO.read(getClass().getResource("icons/Back.png"));
+            Image backImage = ImageIO.read(getClass().getResource("../icons/Back.png"));
             Image resizedBackImage = backImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
             this.backButton.setIcon(new ImageIcon(resizedBackImage));
         }

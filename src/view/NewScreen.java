@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.event.FocusEvent;
@@ -8,10 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.Main;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * model.NewScreen.java
+ * view.NewScreen.java
  * 
  * @author Nathan Grimsey
  *
