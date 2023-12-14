@@ -89,10 +89,10 @@ public class BaseFrame extends JFrame {
         String oldScreen = currentScreen.title;
         switch (screenName) {
             case "Projects":
+                projectSelectScreen.refresh();
                 lPane.add(projectSelectScreen, BorderLayout.CENTER, 1);
                 currentScreen = projectSelectScreen;
                 titlePrefix = defaultTitlePrefix;
-                projectSelectScreen.refresh();
                 break;
             
             case "Settings":
@@ -101,9 +101,9 @@ public class BaseFrame extends JFrame {
                 break;
             
             case "About":
+                aboutScreen.refreshProfile();
                 lPane.add(aboutScreen, BorderLayout.CENTER, 1);
                 currentScreen = aboutScreen;
-                aboutScreen.refreshProfile();
                 break;
             
             case "Create a New Project":

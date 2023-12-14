@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import model.About;
 import model.DataIO;
 import model.Main;
+import model.Profile;
 
 /**
  * TCSS 360B
@@ -81,6 +82,7 @@ public class SettingScreen extends BaseScreen {
         c.ipadx = getWidth() / 4;
         emailTextField.setFont(Main.BASE_FONT);
         mainContent.add(emailTextField, c);
+        fillUserDetails();
         c.gridy++;
         c.gridx = 0;
         c.ipadx = 0;
@@ -105,8 +107,6 @@ public class SettingScreen extends BaseScreen {
                 String emailString = emailTextField.getText();
                 if (!nameString.isEmpty() && !emailString.isEmpty()) {
                     About.updateProfile(nameString, emailString);
-                    nameTextField.setText("");
-                    emailTextField.setText("");
                 }
                 DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
             }
@@ -146,5 +146,13 @@ public class SettingScreen extends BaseScreen {
         });
         mainContent.add(exportSettingsButton, c);
         mainContent.setPreferredSize(new Dimension(scrollablePane.getWidth(), mainContent.getPreferredSize().height));
+    }
+
+    private void fillUserDetails() {
+        Profile user = Main.userSettings.getProfile();
+        if (!(user.getName().equals(Profile.DEFAULT_NAME) || user.getEmail().equals(Profile.DEFAULT_EMAIL))) {
+            nameTextField.setText(user.getName());
+            emailTextField.setText(user.getEmail());
+        }
     }
 }
