@@ -16,6 +16,10 @@ import java.util.HashMap;
  */
 public class UserSettings implements Serializable {
 
+    public static final int PROJECT = 0;
+    public static final int TOOL = 1;
+    public static final int MATERIAL = 2;
+
     private Profile userProfile;
     private HashMap<String, String> recentProjectsMap;
     private ArrayList<String> recentProjectsList;
@@ -67,8 +71,61 @@ public class UserSettings implements Serializable {
         recentToolsList = new ArrayList<>();
         recentMaterialsMap = new HashMap<>();
         recentMaterialsList = new ArrayList<>();
-
         darkMode = false;
+    }
+
+    /**
+     * Gets the proper recent files list that corresponds with a given input type. 
+     * Valid types are PROJECT (0), TOOL (1), and MATERIAL (2). An invalid type will 
+     * throw an IllegalArgumentException. This is a private method, and the type int 
+     * should only ever be given by the backend, hence it throws an unhandled exception.
+     * 
+     * @param type is an int corresponding to PROJECT (0), TOOL (1), and MATERIAL (2).
+     * @return the ArrayList that corresponds to the given input type.
+     * 
+     * @author Nathan Grimsey
+     */
+    private ArrayList<String> getListFromType(int type) {
+        switch (type) {
+            case PROJECT:
+                return recentProjectsList;
+            
+            case TOOL:
+                return recentToolsList;
+            
+            case MATERIAL:
+                return recentMaterialsList;
+            
+            default:
+                throw new IllegalArgumentException("int " + type + " is not a valid selection.");
+        }
+    }
+
+    /**
+     * Gets the proper recent files map that corresponds with a given input type. 
+     * Valid types are PROJECT (0), TOOL (1), and MATERIAL (2). An invalid type will 
+     * throw an IllegalArgumentException. This is a private method, and the type int 
+     * should only ever be given by the backend, hence it throws an unhandled exception.
+     * 
+     * @param type is an int corresponding to PROJECT (0), TOOL (1), and MATERIAL (2).
+     * @return the HashMap that corresponds to the given input type.
+     * 
+     * @author Nathan Grimsey
+     */
+    private HashMap<String, String> getMapFromType(int type) {
+        switch (type) {
+            case PROJECT:
+                return recentProjectsMap;
+            
+            case TOOL:
+                return recentToolsMap;
+            
+            case MATERIAL:
+                return recentMaterialsMap;
+            
+            default:
+                throw new IllegalArgumentException("int " + type + " is not a valid selection.");
+        }
     }
 
     /**
@@ -78,42 +135,16 @@ public class UserSettings implements Serializable {
      * 
      * @param name the name of the current file to update as most recent.
      * @param filePath the Path to the file to update to most recent.
-     * @param type dictates whether to update Projects, Tools, or Materials using type indicators
-     *            0, 1, and 2 respectively.
+     * @param type is an int corresponding to PROJECT (0), TOOL (1), and MATERIAL (2).
      *
      * @author Cody Dukes
+     * @author Nathan Grimsey
      */
     public void updateMostRecent(String name, Path filePath, int type) {
-        switch (type) {
-            case 0:
-                if (recentProjectsList.contains(name)) {
-                    recentProjectsList.remove(name);
-                }
-                recentProjectsList.add(0, name);
-                recentProjectsMap.put(name, filePath.toString());
-                break;
-
-            case 1:
-                if (recentToolsList.contains(name)) {
-                    recentToolsList.remove(name);
-                }
-                recentToolsList.add(0, name);
-                recentToolsMap.put(name, filePath.toString());
-                break;
-
-            case 2:
-                if (recentMaterialsList.contains(name)) {
-                    recentMaterialsList.remove(name);
-                }
-                recentMaterialsList.add(0, name);
-                recentMaterialsMap.put(name, filePath.toString());
-                break;
-
-            default:
-                System.out.printf("\nInvalid type " + type + ", only 0, 1, and 2 permitted.", type);
-                return;
-        }
-
+        ArrayList<String> recentFilesList = getListFromType(type);
+        recentFilesList.remove(name);
+        recentFilesList.add(0, name);
+        getMapFromType(type).put(name, filePath.toString());
         DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
     }
 
@@ -121,34 +152,14 @@ public class UserSettings implements Serializable {
      * Removes an element from the recents list.
      * 
      * @param name the name of the element to remove.
-     * @param type dictates which element to remove using type indicators
-     *            0 (projects), 1 (tools), and 2 (materials).
+     * @param type is an int corresponding to PROJECT (0), TOOL (1), and MATERIAL (2).
      *
      * @author Nathan Grimsey
      * @author Cody Dukes
      */
     public void removeFromRecent(String name, int type) {
-        switch (type) {
-            case 0:
-                recentProjectsList.remove(name);
-                recentProjectsMap.remove(name);
-                break;
-
-            case 1:
-                recentToolsList.remove(name);
-                recentToolsMap.remove(name);
-                break;
-
-            case 2:
-                recentMaterialsList.remove(name);
-                recentMaterialsMap.remove(name);
-                break;
-
-            default:
-                System.out.printf("\nInvalid type " + type + ", only 0, 1, and 2 permitted.", type);
-                return;
-        }
-
+        getListFromType(type).remove(name);
+        getMapFromType(type).remove(name);
         DataIO.saveProgramData(Main.PROJECT_DATA_FILE_PATH);
     }
 
@@ -156,69 +167,26 @@ public class UserSettings implements Serializable {
      * getFilePathFromName returns the filePath associated with the element's name.
      * 
      * @param name the name of the project to return a filePath to.
-     * @param type dictates which kind of filePath to get using type indicators
-     *            0 (projects), 1 (tools), and 2 (materials).
+     * @param type is an int corresponding to PROJECT (0), TOOL (1), and MATERIAL (2).
      * @return filePath to the chosen element.
      *
      * @author Cody Dukes
+     * @author Nathan Grimsey
      */
     public Path getFilePathFromName(String name, int type) {
-        String path;
-        switch (type) {
-            case 0:
-                path = recentProjectsMap.get(name);
-                break;
-
-            case 1:
-                path = recentToolsMap.get(name);
-                break;
-
-            case 2:
-                path = recentMaterialsMap.get(name);
-                break;
-
-            default:
-                System.out.printf("\nInvalid type " + type + ", only 0, 1, and 2 permitted.", type);
-                return null;
-        }
-
-        if (path == null) {
-            return null;
-        }
-        return Path.of(path);
+        return Path.of(getMapFromType(type).get(name));
     }
 
     /**
-     * getRecentProjectsList returns the list of recent Projects.
+     * Gets a recent files list of the specified type.
      * 
-     * @return recentProjectsList the list of recent Projects.
-     *
-     * @author Cody Dukes
-     */
-    public ArrayList<String> getRecentProjectsList() {
-        return recentProjectsList;
-    }
-
-    /**
-     * getRecentToolsList returns the list of recent Tools.
+     * @param type is an int corresponding to PROJECT (0), TOOL (1), and MATERIAL (2).
+     * @return recent files list of the specified type.
      * 
-     * @return recentToolList the list of recent Tools.
-     *
-     * @author Cody Dukes
+     * @author Nathan Grimsey
      */
-    public ArrayList<String> getRecentToolsList() {
-        return recentToolsList;
-    }
-
-    /**
-     * getRecentMaterialsList returns the list of recent Materials.
-     * 
-     * @return recentMaterialsList the list of recent Materials.
-     *
-     * @author Cody Dukes
-     */
-    public ArrayList<String> getRecentMaterialsList() {
-        return recentMaterialsList;
+    public ArrayList<String> getRecentFilesList(int type) {
+        return getListFromType(type);
     }
 
     /**
@@ -236,6 +204,8 @@ public class UserSettings implements Serializable {
      * Gets the darkMode boolean.
      * 
      * @return boolean of whether the user is in dark mode or not.
+     * 
+     * @author Nathan Grimsey
      */
     public boolean getDarkMode() {
         return darkMode;
@@ -245,6 +215,8 @@ public class UserSettings implements Serializable {
      * Sets the darkMode boolean.
      * 
      * @param mode the value to set the darkMode boolean to.
+     * 
+     * @author Nathan Grimsey
      */
     public void setDarkMode(boolean mode) {
         darkMode = mode;

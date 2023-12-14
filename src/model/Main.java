@@ -62,24 +62,25 @@ public class Main {
 
     }
 
-    /** Searches a list of Project names and returns those that contain a
+    /** Searches a list of file names of int type and returns those that contain a
      * prompted String.
      *
-     * @param str the String used for the search.
-     * @return list of Project names matching search term.
+     * @param query the String used for the search.
+     * @return list of file names matching search term.
      * 
      * @author Maple Gunn
+     * @author Nathan Grimsey
      */
-    public static ArrayList<String> searchProject (String str) {
-        ArrayList<String> foundProjects = new ArrayList<>();
-        ArrayList<String> recentProjectsList = userSettings.getRecentProjectsList();
-        for (int i = 0; i < recentProjectsList.size(); i++) {
-            String projectName = recentProjectsList.get(i);
-            if (projectName.toLowerCase().contains(str.toLowerCase())) {
-                foundProjects.add(projectName);
+    public static ArrayList<String> searchFiles (String query, int type) {
+        ArrayList<String> foundFiles = new ArrayList<>();
+        ArrayList<String> recentFilesList = userSettings.getRecentFilesList(type);
+        for (int i = 0; i < recentFilesList.size(); i++) {
+            String fileName = recentFilesList.get(i);
+            if (fileName.toLowerCase().contains(query.toLowerCase())) {
+                foundFiles.add(fileName);
             }
         }
-        return foundProjects;
+        return foundFiles;
     }
 }
 
