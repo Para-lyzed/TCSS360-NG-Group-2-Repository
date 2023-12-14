@@ -204,6 +204,8 @@ public class UserSettings implements Serializable {
      * Gets the darkMode boolean.
      * 
      * @return boolean of whether the user is in dark mode or not.
+     * 
+     * @author Nathan Grimsey
      */
     public boolean getDarkMode() {
         return darkMode;
@@ -213,6 +215,8 @@ public class UserSettings implements Serializable {
      * Sets the darkMode boolean.
      * 
      * @param mode the value to set the darkMode boolean to.
+     * 
+     * @author Nathan Grimsey
      */
     public void setDarkMode(boolean mode) {
         darkMode = mode;
