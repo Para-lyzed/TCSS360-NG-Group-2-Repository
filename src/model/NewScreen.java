@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.GridBagConstraints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -9,7 +11,7 @@ import javax.swing.JTextField;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * NewScreen.java
+ * model.NewScreen.java
  * 
  * @author Nathan Grimsey
  *

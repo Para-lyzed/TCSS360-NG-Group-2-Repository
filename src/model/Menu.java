@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,14 +14,14 @@ import javax.swing.*;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Menu.java
+ * model.Menu.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class Menu extends JPanel {
-    private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
-    private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
+    private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "model.About"};
+    private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "model.Project Settings"};
     private static int menuIconSize = Main.MENU_WIDTH/7;
     private int menuHeight;
     private String[] entries;

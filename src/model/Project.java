@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +8,7 @@ import java.awt.Image;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Project.java creates projects which store expenses and logs for users to
+ * model.Project.java creates projects which store expenses and logs for users to
  * manage. It is a backend class, containing the information for ProjectScreen
  * to generate a GUI.
  *
@@ -128,7 +130,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Set the description of a Project
+     * Set the description of a model.Project
      * 
      * @author Nathan Grimsey
      */
@@ -332,8 +334,8 @@ public class Project implements Serializable {
     }
 
 /* Logs haven't been implemented yet
-    public void removeLog(Log log) {
-        Expense e;
+    public void removeLog(model.Log log) {
+        model.Expense e;
         for (int i = 0; i < logs.size()-1; i++) {
 
             if (logs.get(i).compareTo(log) == 0) {

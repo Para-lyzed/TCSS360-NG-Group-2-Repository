@@ -1,3 +1,5 @@
+package model;
+
 import java.util.List;
 import java.awt.Image;
 import java.io.Serializable;
@@ -5,7 +7,7 @@ import java.io.Serializable;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Expense.java creates an Expense object, which is inherited by tools and materials.
+ * model.Expense.java creates an model.Expense object, which is inherited by tools and materials.
  * It contains information on expenses for projects, such as name, category,
  * and description.
  * 
@@ -23,7 +25,7 @@ public class Expense implements Comparable<Expense>, Serializable {
     protected List<Image> images;
 
     /**
-     * Constructor for the Expense Object.
+     * Constructor for the model.Expense Object.
      * @param name is the name of the expense.
      * @param category is the expense category.
      * @param price is the price of the expense.

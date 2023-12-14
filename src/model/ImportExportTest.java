@@ -1,3 +1,4 @@
+package model;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,14 +8,14 @@ import org.junit.jupiter.api.*;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * ImportExportTest.java
+ * model.ImportExportTest.java
  * 
  * @author Nathan Grimsey
  */
 public class ImportExportTest {
     
     /**
-     * Tests saving and loading a Profile.
+     * Tests saving and loading a model.Profile.
      * @author Nathan Grimsey
      */
     @Test

@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.Image;
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +8,7 @@ import java.time.LocalDate;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Log.java
+ * model.Log.java
  *
  * @author Cody Dukes
  *
@@ -18,9 +20,9 @@ public class Log implements Serializable {
     private List<Image> images;
 
     /**
-     * Log constructs a Log object that contains a log name and log date.
-     * @param date the date the Log was made.
-     * @param name the name of the Log.
+     * model.Log constructs a model.Log object that contains a log name and log date.
+     * @param date the date the model.Log was made.
+     * @param name the name of the model.Log.
      *
      * @author Cody Dukes
      */
@@ -30,8 +32,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * getName returns the Log name.
-     * @return name the Log name.
+     * getName returns the model.Log name.
+     * @return name the model.Log name.
      *
      * @author Cody Dukes
      */
@@ -40,8 +42,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the name of a Log.
-     * @param name name to set Log to.
+     * sets the name of a model.Log.
+     * @param name name to set model.Log to.
      *
      * @author Cody Dukes
      */
@@ -50,8 +52,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * getDate returns the Log date.
-     * @return date the Log date.
+     * getDate returns the model.Log date.
+     * @return date the model.Log date.
      *
      * @author Cody Dukes
      */
@@ -60,8 +62,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the date of a Log.
-     * @param date date Log was made.
+     * sets the date of a model.Log.
+     * @param date date model.Log was made.
      *
      * @author Cody Dukes
      */
@@ -70,8 +72,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * getDescription returns the Log description.
-     * @return description the Log description.
+     * getDescription returns the model.Log description.
+     * @return description the model.Log description.
      *
      * @author Cody Dukes
      */
@@ -80,8 +82,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the description of a Log.
-     * @param description description of the Log.
+     * sets the description of a model.Log.
+     * @param description description of the model.Log.
      *
      * @author Cody Dukes
      */
@@ -90,8 +92,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * getImages returns the Log images.
-     * @return images the Log images.
+     * getImages returns the model.Log images.
+     * @return images the model.Log images.
      *
      * @author Cody Dukes
      */
@@ -100,8 +102,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * sets the images of a Log.
-     * @param images the images associated with a Log.
+     * sets the images of a model.Log.
+     * @param images the images associated with a model.Log.
      *
      * @author Cody Dukes
      */
@@ -110,8 +112,8 @@ public class Log implements Serializable {
     }
 
     /**
-     * Adds image to a Log.
-     * @param image the images to add to the Log.
+     * Adds image to a model.Log.
+     * @param image the images to add to the model.Log.
      *
      * @author Cody Dukes
      */

@@ -1,10 +1,12 @@
+package model;
+
 import java.io.*;
 import java.nio.file.Path;
 
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * DataIO.java
+ * model.DataIO.java
  *
  * @author Cody Dukes
  * @author Nathan Grimsey
@@ -95,7 +97,7 @@ public class DataIO {
 
     /**
      * Saves a project to the given location.
-     * @param project the Project to be saved.
+     * @param project the model.Project to be saved.
      * @param filePath a filePath chosen by the user.
      * @return boolean that is false if there was an error encountered in saving.
      * 
@@ -133,7 +135,7 @@ public class DataIO {
     /**
      * Loads a project from the given location.
      * @param filePath a filePath chosen by the user.
-     * @return a Profile that has been deserialized from the given filePath.
+     * @return a model.Profile that has been deserialized from the given filePath.
      * 
      * @author Cody Dukes
      * @author Nathan Grimsey
@@ -165,7 +167,7 @@ public class DataIO {
 
     /**
      * Saves a tool to the given location.
-     * @param tool the Tool to be saved.
+     * @param tool the model.Tool to be saved.
      * @param filePath a filePath chosen by the user.
      * @return boolean that is false if there was an error encountered in saving.
      *
@@ -202,7 +204,7 @@ public class DataIO {
     /**
      * Loads a tool from the given location.
      * @param filePath a filePath chosen by the user.
-     * @return a Tool that has been deserialized from the given filePath.
+     * @return a model.Tool that has been deserialized from the given filePath.
      *
      * @author Cody Dukes
      */
@@ -233,7 +235,7 @@ public class DataIO {
 
     /**
      * Saves a material to the given location.
-     * @param material the Material to be saved.
+     * @param material the model.Material to be saved.
      * @param filePath a filePath chosen by the user.
      * @return boolean that is false if there was an error encountered in saving.
      *
@@ -270,7 +272,7 @@ public class DataIO {
     /**
      * Loads a material from the given location.
      * @param filePath a filePath chosen by the user.
-     * @return a Material that has been deserialized from the given filePath.
+     * @return a model.Material that has been deserialized from the given filePath.
      *
      * @author Cody Dukes
      */

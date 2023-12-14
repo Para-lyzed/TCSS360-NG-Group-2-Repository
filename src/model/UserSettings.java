@@ -1,3 +1,5 @@
+package model;
+
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import java.util.HashMap;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * UserSettings.java
+ * model.UserSettings.java
  *
  * @author Cody Dukes
  * @author Nathan Grimsey
@@ -24,7 +26,7 @@ public class UserSettings implements Serializable {
     private boolean darkMode;
 
     /**
-     * UserSettings constructs a UserSettings object that contains a profile, a Map, and a list.
+     * model.UserSettings constructs a model.UserSettings object that contains a profile, a Map, and a list.
      * @param profile is a profile containing a name and email.
      * @param projectsMap is a map containing the recent projects.
      * @param projectsList is a list containing the recent projects.
@@ -51,7 +53,7 @@ public class UserSettings implements Serializable {
     }
 
     /**
-     * Default constructor for UserSettings object.
+     * Default constructor for model.UserSettings object.
      *
      * @author Nathan Grimsey
      * @author Cody Dukes
@@ -115,7 +117,7 @@ public class UserSettings implements Serializable {
 
     /**
      * Removes an element from the recents list.
-     * @param name the name of the Project to remove.
+     * @param name the name of the model.Project to remove.
      * @param type dictates which element to remove using type indicators
      *            0 (projects), 1 (tools), and 2 (materials).
      *
@@ -214,7 +216,7 @@ public class UserSettings implements Serializable {
 
     /**
      * getProfile returns profile object.
-     * @return Profile object.
+     * @return model.Profile object.
      *
      * @author Cody Dukes
      */

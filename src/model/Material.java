@@ -1,7 +1,9 @@
+package model;
+
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * Material.java
+ * model.Material.java
  * 
  * @author Maple Gunn
  *

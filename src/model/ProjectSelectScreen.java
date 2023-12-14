@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -11,15 +13,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * ProjectSelectScreen.java
+ * model.ProjectSelectScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
 public class ProjectSelectScreen extends BaseSelectorScreen {
     private static final String title = "Projects";
-    private static final String newButtonName = "New Project";
-    private static final String importButtonName = "Import Project";
+    private static final String newButtonName = "New model.Project";
+    private static final String importButtonName = "Import model.Project";
 
     /**
      * Constructs a project screen that the user can use to select or create a project.
@@ -68,10 +70,10 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
         this.createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.switchScreen("Create a New Project");
+                Main.BASE_FRAME.switchScreen("Create a New model.Project");
             }
         });
-        fileChooser.setFileFilter(new FileNameExtensionFilter("MPP Project File", "proj"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("MPP model.Project File", "proj"));
         this.importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
