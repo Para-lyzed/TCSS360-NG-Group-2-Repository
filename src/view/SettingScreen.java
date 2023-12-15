@@ -38,15 +38,10 @@ public class SettingScreen extends BaseScreen {
     private static final JButton exportSettingsButton = new JButton("Export Settings");
     private static final JFileChooser fileChooser = new JFileChooser();
     private static final JCheckBox darkModeCheckBox = new JCheckBox("Dark mode");
-    private static final int checkBoxIconSize = 30;
     private static Image checkBoxDarkUnchecked;
     private static Image checkBoxDarkChecked;
     private static Image checkBoxLightUnchecked;
     private static Image checkBoxLightChecked;
-    private static Image resizedCheckBoxDarkUnchecked;
-    private static Image resizedCheckBoxDarkChecked;
-    private static Image resizedCheckBoxLightUnchecked;
-    private static Image resizedCheckBoxLightChecked;
     private static JPanel mainContent;
     private static JScrollPane scrollablePane;
 
@@ -112,17 +107,13 @@ public class SettingScreen extends BaseScreen {
             checkBoxDarkChecked = ImageIO.read(getClass().getResource("/icons/DarkChecked.png"));
             checkBoxLightUnchecked = ImageIO.read(getClass().getResource("/icons/LightUnchecked.png"));
             checkBoxLightChecked = ImageIO.read(getClass().getResource("/icons/LightChecked.png"));
-            resizedCheckBoxDarkUnchecked = checkBoxDarkUnchecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
-            resizedCheckBoxDarkChecked = checkBoxDarkChecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
-            resizedCheckBoxLightUnchecked = checkBoxLightUnchecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
-            resizedCheckBoxLightChecked = checkBoxLightChecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
             if (Main.userSettings.getDarkMode()) {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxDarkUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxDarkChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxDarkUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxDarkChecked));
             }
             else {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxLightUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxLightChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxLightUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxLightChecked));
             }
         }
         catch (Exception e) {
@@ -232,12 +223,12 @@ public class SettingScreen extends BaseScreen {
         exportSettingsButton.setBackground(Main.BUTTON_BACKGROUND);
         try {
              if (Main.userSettings.getDarkMode()) {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxDarkUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxDarkChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxDarkUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxDarkChecked));
             }
             else {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxLightUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxLightChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxLightUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxLightChecked));
             }
         }
         catch (Exception e) {
