@@ -108,10 +108,10 @@ public class SettingScreen extends BaseScreen {
         darkModeCheckBox.setForeground(Main.TEXT);
         darkModeCheckBox.setOpaque(false);
         try {
-            checkBoxDarkUnchecked = ImageIO.read(getClass().getResource("../icons/DarkUnchecked.png"));
-            checkBoxDarkChecked = ImageIO.read(getClass().getResource("../icons/DarkChecked.png"));
-            checkBoxLightUnchecked = ImageIO.read(getClass().getResource("../icons/LightUnchecked.png"));
-            checkBoxLightChecked = ImageIO.read(getClass().getResource("../icons/LightChecked.png"));
+            checkBoxDarkUnchecked = ImageIO.read(getClass().getResource("/icons/DarkUnchecked.png"));
+            checkBoxDarkChecked = ImageIO.read(getClass().getResource("/icons/DarkChecked.png"));
+            checkBoxLightUnchecked = ImageIO.read(getClass().getResource("/icons/LightUnchecked.png"));
+            checkBoxLightChecked = ImageIO.read(getClass().getResource("/icons/LightChecked.png"));
             resizedCheckBoxDarkUnchecked = checkBoxDarkUnchecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
             resizedCheckBoxDarkChecked = checkBoxDarkChecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
             resizedCheckBoxLightUnchecked = checkBoxLightUnchecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);

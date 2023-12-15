@@ -71,10 +71,10 @@ public class Menu extends JPanel {
         this.backButton = new JButton();
         this.add(this.menuButton, this.c);
         try {
-            darkMenuImage = ImageIO.read(getClass().getResource("../icons/DarkMenu.png"));
-            darkBackImage = ImageIO.read(getClass().getResource("../icons/DarkBack.png"));
-            lightMenuImage = ImageIO.read(getClass().getResource("../icons/LightMenu.png"));
-            lightBackImage = ImageIO.read(getClass().getResource("../icons/LightBack.png"));
+            darkMenuImage = ImageIO.read(getClass().getResource("/icons/DarkMenu.png"));
+            darkBackImage = ImageIO.read(getClass().getResource("/icons/DarkBack.png"));
+            lightMenuImage = ImageIO.read(getClass().getResource("/icons/LightMenu.png"));
+            lightBackImage = ImageIO.read(getClass().getResource("/icons/LightBack.png"));
             darkResizedMenuImage = darkMenuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
             darkResizedBackImage = darkBackImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
             lightResizedMenuImage = lightMenuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
