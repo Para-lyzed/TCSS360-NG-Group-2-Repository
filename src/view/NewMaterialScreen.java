@@ -31,12 +31,15 @@ public class NewMaterialScreen extends NewScreen {
     public NewMaterialScreen(int width, int height) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);
+        categoryLabel.setForeground(Main.TEXT);
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 4;
         c.gridy = 1;
         c.gridwidth = 2;
         add(categoryLabel, c);
         categoryTextField.setFont(Main.BASE_FONT);
+        categoryTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+        categoryTextField.setCaretColor(Main.CARET);
         c.gridy++;
         add(categoryTextField, c);
         saveButton.addActionListener(new ActionListener() {
@@ -94,6 +97,15 @@ public class NewMaterialScreen extends NewScreen {
         if (categoryTextField.getText().isEmpty()) {
             categoryTextField.setBackground(Main.TEXT_ERROR);
         }
+    }
+
+    @Override
+    public void darkMode() {
+        super.darkMode();
+        categoryLabel.setForeground(Main.TEXT);
+        categoryTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+        categoryTextField.setFont(Main.BASE_FONT);
+        categoryTextField.setCaretColor(Main.CARET);
     }
 
 }

@@ -41,6 +41,7 @@ public class EditMaterialScreen extends NewScreen {
         categoryTextField.setFont(Main.BASE_FONT);
         categoryTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         categoryTextField.setForeground(Main.TEXT);
+        categoryTextField.setCaretColor(Main.CARET);
         c.gridy++;
         add(categoryTextField, c);
         nameTextField.setText(material.getName());

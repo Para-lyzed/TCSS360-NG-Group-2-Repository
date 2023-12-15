@@ -83,6 +83,7 @@ public class SettingScreen extends BaseScreen {
         nameTextField.setFont(Main.BASE_FONT);
         nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         nameTextField.setForeground(Main.TEXT);
+        nameTextField.setCaretColor(Main.CARET);
         mainContent.add(nameTextField, c);
         c.gridx++;
         c.ipadx = 0;
@@ -94,6 +95,7 @@ public class SettingScreen extends BaseScreen {
         emailTextField.setFont(Main.BASE_FONT);
         emailTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         emailTextField.setForeground(Main.TEXT);
+        emailTextField.setCaretColor(Main.CARET);
         mainContent.add(emailTextField, c);
         fillUserDetails();
         c.gridy++;
@@ -101,6 +103,7 @@ public class SettingScreen extends BaseScreen {
         c.ipadx = 0;
         darkModeCheckBox.setFont(Main.BASE_FONT);
         darkModeCheckBox.setForeground(Main.TEXT);
+        darkModeCheckBox.setFocusPainted(false);
         darkModeCheckBox.setOpaque(false);
         try {
             checkBoxDarkUnchecked = ImageIO.read(getClass().getResource("/icons/DarkUnchecked.png"));
@@ -211,9 +214,11 @@ public class SettingScreen extends BaseScreen {
         name.setForeground(Main.TEXT);
         nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         nameTextField.setForeground(Main.TEXT);
+        nameTextField.setCaretColor(Main.CARET);
         email.setForeground(Main.TEXT);
         emailTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         emailTextField.setForeground(Main.TEXT);
+        emailTextField.setCaretColor(Main.CARET);
         darkModeCheckBox.setForeground(Main.TEXT);
         saveButton.setForeground(Main.TEXT);
         saveButton.setBackground(Main.BUTTON_BACKGROUND);

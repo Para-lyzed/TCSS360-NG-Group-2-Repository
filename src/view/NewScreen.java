@@ -40,6 +40,7 @@ public class NewScreen extends BaseScreen {
         nameTextField.setFont(Main.BASE_FONT);
         nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         nameTextField.setForeground(Main.TEXT);
+        nameTextField.setCaretColor(Main.CARET);
         nameTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -56,6 +57,7 @@ public class NewScreen extends BaseScreen {
         fieldTwoTextField.setFont(Main.BASE_FONT);
         fieldTwoTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         fieldTwoTextField.setForeground(Main.TEXT);
+        fieldTwoTextField.setCaretColor(Main.CARET);
         fieldTwoTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -72,6 +74,7 @@ public class NewScreen extends BaseScreen {
         descriptionTextField.setFont(Main.BASE_FONT);
         descriptionTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         descriptionTextField.setForeground(Main.TEXT);
+        descriptionTextField.setCaretColor(Main.CARET);
         requiredFieldsLabel.setFont(Main.BASE_FONT);
         requiredFieldsLabel.setForeground(Main.TEXT);
         saveButton.setFont(Main.BASE_FONT);
