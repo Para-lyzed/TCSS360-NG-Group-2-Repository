@@ -129,7 +129,7 @@ public class Menu extends JPanel {
      * 
      * @author Nathan Grimsey
      */
-    private void menuPressed() {
+    public void menuPressed() {
         Main.BASE_FRAME.menuOpen(true);
         this.remove(this.menuButton);
         this.add(this.backButton, this.c);
@@ -147,7 +147,7 @@ public class Menu extends JPanel {
      * 
      * @author Nathan Grimsey
      */
-    private void closeMenu() {
+    public void closeMenu() {
         Main.BASE_FRAME.menuOpen(false);
         this.remove(this.backButton);
         this.add(this.menuButton, this.c);
@@ -169,7 +169,7 @@ public class Menu extends JPanel {
      */
     private void entryPressed(String entryName) {
         if (entryName.equals("Back to main menu")) {
-            Main.BASE_FRAME.resetToMainMenu();
+            Main.BASE_FRAME.resetToProjects();
         }
         else {
             Main.BASE_FRAME.switchScreen(entryName);

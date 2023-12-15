@@ -28,10 +28,10 @@ public class NewScreen extends BaseScreen {
     protected static final JLabel descriptionLabel = new JLabel("Description");
     protected JTextField descriptionTextField = new JTextField();
     protected static final JLabel requiredFieldsLabel = new JLabel("* Required fields");
-    protected static final JButton saveButton = new JButton("Save");
-    protected static final JButton cancelButton = new JButton("Cancel");
+    protected final JButton saveButton = new JButton("Save");
+    protected final JButton cancelButton = new JButton("Cancel");
 
-    public NewScreen(int width, int height, String title, int firstFieldsWidth, String fieldTwoString) {
+    public NewScreen(int width, int height, String title, int firstFieldWidth, String fieldTwoString) {
         super(width, height, title, gridWidth);
         menuHeading(true);
         fieldTwoLabel = new JLabel(fieldTwoString);
@@ -68,14 +68,14 @@ public class NewScreen extends BaseScreen {
         cancelButton.setFont(Main.BASE_FONT);
         this.c.fill = GridBagConstraints.BOTH;
         this.c.gridy++;
-        this.c.gridwidth = firstFieldsWidth;
+        this.c.gridwidth = firstFieldWidth;
         add(nameLabel, c);
-        this.c.gridx = firstFieldsWidth;
+        this.c.gridx = firstFieldWidth;
         add(fieldTwoLabel, c);
         this.c.gridx = 0;
         this.c.gridy++;
         add(nameTextField, c);
-        this.c.gridx = firstFieldsWidth;
+        this.c.gridx = firstFieldWidth;
         add(fieldTwoTextField, c);
         this.c.gridwidth = gridWidth;
         this.c.gridx = 0;

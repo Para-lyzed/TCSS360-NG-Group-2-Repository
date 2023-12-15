@@ -13,16 +13,16 @@ import model.UserSettings;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * view.ProjectSelectScreen.java
+ * view.MaterialSelectScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
-public class ProjectSelectScreen extends BaseSelectorScreen {
-    private static final String title = "Projects";
-    private static final String type = "Project";
-    private static final String fileExtension = "proj";
-    private static final int userSettingsType = UserSettings.PROJECT;
+public class MaterialSelectScreen extends BaseSelectorScreen {
+    private static final String title = "Materials";
+    private static final String type = "Material";
+    private static final String fileExtension = "mat";
+    private static final int userSettingsType = UserSettings.MATERIAL;
 
     /**
      * Constructs a Project screen that the user can use to select or create a Project.
@@ -32,7 +32,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
      * 
      * @author Nathan Grimsey
      */
-    public ProjectSelectScreen(int width, int height) {
+    public MaterialSelectScreen(int width, int height) {
         super(width, height, title, type, userSettingsType, fileExtension);
         this.importButton.addActionListener(new ActionListener() {
             @Override
@@ -42,7 +42,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                 returnVal = fileChooser.showOpenDialog(Main.BASE_FRAME);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     try {
-                        Main.BASE_FRAME.openProject(DataIO.loadProject(fileChooser.getSelectedFile().toPath()));
+                        Main.BASE_FRAME.openMaterial(DataIO.loadMaterial(fileChooser.getSelectedFile().toPath()));
                     }
                     catch (Exception error) {
                         error.printStackTrace();
@@ -55,7 +55,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
             public void actionPerformed(ActionEvent e) {
                 String fileName = listPane.getSelectedValue();
                 try {
-                    Main.BASE_FRAME.openProject(DataIO.loadProject(Main.userSettings.getFilePathFromName(fileName, userSettingsType)));
+                    Main.BASE_FRAME.openMaterial(DataIO.loadMaterial(Main.userSettings.getFilePathFromName(fileName, userSettingsType)));
                 }
                 catch (Exception error) {
                     Main.userSettings.removeFromRecent(fileName, userSettingsType);

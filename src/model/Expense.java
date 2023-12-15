@@ -39,6 +39,7 @@ public class Expense implements Comparable<Expense>, Serializable {
         this.category = category;
         this.price = price;
         this.quantity = quantity;
+        this.description = new String();
     }
 
     /**

@@ -31,11 +31,11 @@ import model.Main;
  */
 public class BaseSelectorScreen extends BaseScreen {
 
-    private static final JLabel searchLabel = new JLabel("Search: ");
     private static final JLabel confirmDialogLabel = new JLabel("Are you sure?");
-    private static final JButton confirmDialogYesButton = new JButton("Yes");
-    private static final JButton confirmDialogNoButton = new JButton("No");
+    private final JButton confirmDialogYesButton = new JButton("Yes");
+    private final JButton confirmDialogNoButton = new JButton("No");
     private static JDialog confirmDialog;
+    private final JLabel searchLabel = new JLabel("Search: ");
 
     protected final JFileChooser fileChooser = new JFileChooser();
     protected JTextField searchBar;

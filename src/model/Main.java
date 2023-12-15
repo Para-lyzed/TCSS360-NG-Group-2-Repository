@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import view.BaseFrame;
@@ -45,7 +44,7 @@ public class Main {
     public static Color SECONDARY_BACKGROUND = Color.LIGHT_GRAY;
     public static Color TEXT_ERROR = Color.RED;
     public static Color TEXT_BOX_BACKGROUND = Color.WHITE;
-    public static final Path PROJECT_DATA_FILE_PATH = Paths.get("programdata.mpp");
+    public static final Path PROJECT_DATA_FILE_PATH = Path.of("programdata.mpp");
     public static UserSettings userSettings;
 
     public static void main(String[] args) {
