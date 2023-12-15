@@ -38,6 +38,7 @@ public class NewMaterialScreen extends NewScreen {
         c.gridwidth = 2;
         add(categoryLabel, c);
         categoryTextField.setFont(Main.BASE_FONT);
+        categoryTextField.setForeground(Main.TEXT);
         categoryTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         categoryTextField.setCaretColor(Main.CARET);
         c.gridy++;
