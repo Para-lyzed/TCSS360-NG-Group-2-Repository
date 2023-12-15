@@ -19,7 +19,7 @@ public class ExpenseTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        myDefaultExpense = new Expense("Test-Expense", "none", 4, 5);
+        myDefaultExpense = new Expense("Test-Expense", "none", 3, 5);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class ExpenseTest {
 
     @Test
     void testExpensePrice() {
-        final int expectedPrice = 15;
+        final int expectedPrice = 3;
 
         assertEquals(expectedPrice, myDefaultExpense.getPrice(),
                 "This assert tests the default Expense price");

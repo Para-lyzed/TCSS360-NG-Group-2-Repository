@@ -26,7 +26,6 @@ public class AboutTest {
         myFakeProfile = new Profile("John Baker", "jBaker@email.com");
     }
 
-    // TODO: Having trouble finding a decent, working way to test this. Feel free to try.
     @Test
     void testAboutGetOwner() {
         final Profile expectedOwner = myDefaultProfile;
