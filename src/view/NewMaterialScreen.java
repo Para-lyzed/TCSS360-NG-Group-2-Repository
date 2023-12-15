@@ -31,7 +31,7 @@ public class NewMaterialScreen extends NewScreen {
     public NewMaterialScreen(int width, int height) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);
-        this.c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 4;
         c.gridy = 1;
         c.gridwidth = 2;

@@ -48,28 +48,28 @@ public class Menu extends JPanel {
      * @author Nathan Grimsey
      */
     public Menu(boolean isMainMenu, int height) {
-        this.menuHeight = height;
+        menuHeight = height;
         if (isMainMenu) {
-            this.entries = mainEntries;
+            entries = mainEntries;
         }
         else {
-            this.entries = projectEntries;
+            entries = projectEntries;
         }
-        this.setBackground(Main.MENU_BACKGROUND);
-        this.setBounds(0, 0, Main.MENU_WIDTH, this.menuHeight);
-        this.setOpaque(false);
-        this.setLayout(new GridBagLayout());
-        this.menuEntries = new ArrayList<>(this.entries.length);
-        this.c = new GridBagConstraints();
-        this.c.insets = Main.MENU_INSETS;
-        this.c.weightx = 1;
-        this.c.weighty = 1;
-        this.c.gridx = 0;
-        this.c.gridy = 0;
-        this.c.anchor = GridBagConstraints.NORTHWEST;
-        this.menuButton = new JButton();
-        this.backButton = new JButton();
-        this.add(this.menuButton, this.c);
+        setBackground(Main.MENU_BACKGROUND);
+        setBounds(0, 0, Main.MENU_WIDTH, menuHeight);
+        setOpaque(false);
+        setLayout(new GridBagLayout());
+        menuEntries = new ArrayList<>(entries.length);
+        c = new GridBagConstraints();
+        c.insets = Main.MENU_INSETS;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.NORTHWEST;
+        menuButton = new JButton();
+        backButton = new JButton();
+        add(menuButton, c);
         try {
             darkMenuImage = ImageIO.read(getClass().getResource("/icons/DarkMenu.png"));
             darkBackImage = ImageIO.read(getClass().getResource("/icons/DarkBack.png"));
@@ -80,29 +80,29 @@ public class Menu extends JPanel {
             lightResizedMenuImage = lightMenuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
             lightResizedBackImage = lightBackImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
             if (Main.userSettings.getDarkMode()) {
-                this.menuButton.setIcon(new ImageIcon(darkResizedMenuImage));
-                this.backButton.setIcon(new ImageIcon(darkResizedBackImage));
+                menuButton.setIcon(new ImageIcon(darkResizedMenuImage));
+                backButton.setIcon(new ImageIcon(darkResizedBackImage));
             }
             else {
-                this.menuButton.setIcon(new ImageIcon(lightResizedMenuImage));
-                this.backButton.setIcon(new ImageIcon(lightResizedBackImage));
+                menuButton.setIcon(new ImageIcon(lightResizedMenuImage));
+                backButton.setIcon(new ImageIcon(lightResizedBackImage));
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        this.menuButton.setBorder(null);
-        this.menuButton.setBorderPainted(false);
-        this.menuButton.setContentAreaFilled(false);
-        this.menuButton.setFocusPainted(false);
-        this.menuButton.setOpaque(false);
-        this.backButton.setBorder(null);
-        this.backButton.setBorderPainted(false);
-        this.backButton.setContentAreaFilled(false);
-        this.backButton.setFocusPainted(false);
-        this.backButton.setOpaque(false);
-        for (int i = 0; i < this.entries.length; i++) {
-            JButton entry = new JButton(this.entries[i]);
+        menuButton.setBorder(null);
+        menuButton.setBorderPainted(false);
+        menuButton.setContentAreaFilled(false);
+        menuButton.setFocusPainted(false);
+        menuButton.setOpaque(false);
+        backButton.setBorder(null);
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setFocusPainted(false);
+        backButton.setOpaque(false);
+        for (int i = 0; i < entries.length; i++) {
+            JButton entry = new JButton(entries[i]);
             entry.setForeground(Main.TEXT);
             entry.setBorder(null);
             entry.setBorderPainted(false);
@@ -116,7 +116,7 @@ public class Menu extends JPanel {
                     entryPressed(entry.getText());
                 }
             });
-            this.menuEntries.add(entry);
+            menuEntries.add(entry);
         }
         JButton spacer = new JButton();
         spacer.setBorder(null);
@@ -125,20 +125,20 @@ public class Menu extends JPanel {
         spacer.setFocusPainted(false);
         spacer.setOpaque(true);
         spacer.setFont(Main.SPACER_FONT);
-        this.menuEntries.add(spacer);
-        this.menuButton.addActionListener(new ActionListener() {
+        menuEntries.add(spacer);
+        menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menuPressed();
             }
         });
-        this.backButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 closeMenu();
             }
         });
-        this.c.gridy = 0;
+        c.gridy = 0;
     }
 
     /**
@@ -148,14 +148,14 @@ public class Menu extends JPanel {
      */
     public void menuPressed() {
         Main.BASE_FRAME.menuOpen(true);
-        this.remove(this.menuButton);
-        this.add(this.backButton, this.c);
-        for (int i = 0; i < this.menuEntries.size(); i++) {
-            this.c.gridy++;
-            this.add(this.menuEntries.get(i), this.c);
+        remove(menuButton);
+        add(backButton, c);
+        for (int i = 0; i < menuEntries.size(); i++) {
+            c.gridy++;
+            add(menuEntries.get(i), c);
         }
-        this.c.gridy = 0;
-        this.setOpaque(true);
+        c.gridy = 0;
+        setOpaque(true);
         Main.BASE_FRAME.repaint();
     }
 
@@ -166,14 +166,14 @@ public class Menu extends JPanel {
      */
     public void closeMenu() {
         Main.BASE_FRAME.menuOpen(false);
-        this.remove(this.backButton);
-        this.add(this.menuButton, this.c);
-        for (int i = 0; i < this.menuEntries.size(); i++) {
-            this.c.gridy++;
-            this.remove(this.menuEntries.get(i));
+        remove(backButton);
+        add(menuButton, c);
+        for (int i = 0; i < menuEntries.size(); i++) {
+            c.gridy++;
+            remove(menuEntries.get(i));
         }
-        this.c.gridy = 0;
-        this.setOpaque(false);
+        c.gridy = 0;
+        setOpaque(false);
         Main.BASE_FRAME.repaint();
     }
 
@@ -202,8 +202,8 @@ public class Menu extends JPanel {
      * @author Nathan Grimsey
      */
     public void setHeight(int height) {
-        this.menuHeight = height;
-        this.setBounds(0, 0, Main.MENU_WIDTH, this.menuHeight);
+        menuHeight = height;
+        setBounds(0, 0, Main.MENU_WIDTH, menuHeight);
     }
 
     public void darkMode() {
@@ -221,7 +221,7 @@ public class Menu extends JPanel {
             e.printStackTrace();
         }
         for (int i = 0; i < menuEntries.size(); i++) {
-            this.menuEntries.get(i).setForeground(Main.TEXT);
+            menuEntries.get(i).setForeground(Main.TEXT);
         }
         setBackground(Main.MENU_BACKGROUND);
     }

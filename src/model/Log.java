@@ -41,7 +41,7 @@ public class Log implements Comparable<Log>, Serializable {
      * @author Cody Dukes
      */
     public String getName(){
-        return this.name;
+        return name;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Log implements Comparable<Log>, Serializable {
      * @author Cody Dukes
      */
     public LocalDate getDate() {
-        return this.date;
+        return date;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Log implements Comparable<Log>, Serializable {
      * @author Cody Dukes
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     /**
@@ -107,7 +107,7 @@ public class Log implements Comparable<Log>, Serializable {
      * @author Cody Dukes
      */
     public List<Image> getImages() {
-        return this.images;
+        return images;
     }
 
     /**
@@ -129,7 +129,7 @@ public class Log implements Comparable<Log>, Serializable {
      * @author Cody Dukes
      */
     public void addImage(Image image) {
-        this.images.add(image);
+        images.add(image);
     }
 
     /**
@@ -143,18 +143,18 @@ public class Log implements Comparable<Log>, Serializable {
     @Override
     public int compareTo(Log otherLog) {
         int compareVal = 0;
-        compareVal += this.name.compareTo(otherLog.getName());
+        compareVal += name.compareTo(otherLog.getName());
 
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.date.compareTo(otherLog.getDate());
+        compareVal += date.compareTo(otherLog.getDate());
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.description.compareTo(otherLog.getDescription());
+        compareVal += description.compareTo(otherLog.getDescription());
         return compareVal;
     }
 }

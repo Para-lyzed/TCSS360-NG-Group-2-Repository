@@ -39,7 +39,7 @@ public class Expense implements Comparable<Expense>, Serializable {
         this.category = category;
         this.price = price;
         this.quantity = quantity;
-        this.description = new String();
+        description = new String();
     }
 
     /**
@@ -200,18 +200,18 @@ public class Expense implements Comparable<Expense>, Serializable {
     @Override
     public int compareTo(Expense otherExpense) {
         int compareVal = 0;
-        compareVal += this.name.compareTo(otherExpense.getName());
+        compareVal += name.compareTo(otherExpense.getName());
 
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.category.compareTo(otherExpense.getCategory());
+        compareVal += category.compareTo(otherExpense.getCategory());
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.price - otherExpense.getPrice();
+        compareVal += price - otherExpense.getPrice();
         return compareVal;
     }
 

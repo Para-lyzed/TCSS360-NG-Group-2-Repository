@@ -35,12 +35,12 @@ public class Project implements Serializable {
      */
     public Project(String name, int budget) {
         this.name = name;
-        this.expenses = new ArrayList<>();
-        this.tools = new ArrayList<>();
-        this.logs = new ArrayList<>();
-        this.images = new ArrayList<>();
         this.budget = budget;
-        this.totalCost = 0;
+        expenses = new ArrayList<>();
+        tools = new ArrayList<>();
+        logs = new ArrayList<>();
+        images = new ArrayList<>();
+        totalCost = 0;
     }
 
     /**
@@ -186,7 +186,7 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void addTool(Tool tool) {
-        this.tools.add(tool);
+        tools.add(tool);
     }
 
     /**
@@ -195,7 +195,7 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void addLog(Log log) {
-        this.logs.add(log);
+        logs.add(log);
     }
 
     /**
@@ -235,7 +235,7 @@ public class Project implements Serializable {
      * @author Nathan Grimsey
      */
     public int getBudget() {
-        return this.budget;
+        return budget;
     }
 
     /**
@@ -244,7 +244,7 @@ public class Project implements Serializable {
      * @author Nathan Grimsey
      */
     public void setBudget(int value) {
-        this.budget = value;
+        budget = value;
     }
 
     /**

@@ -47,13 +47,15 @@ public class Main {
     private static final Color LIGHT_BUTTON_BACKGROUND = Color.decode("#D9D9D9");
     private static final Color LIGHT_MENU_BACKGROUND = Color.decode("#EBEBEB");
     private static final Color LIGHT_TEXT = Color.decode("#323232");
+    private static final Color LIGHT_CARET = Color.decode("#242424");
     private static final Color DARK_BACKGROUND = Color.decode("#242424");
     private static final Color DARK_SECONDARY_BACKGROUND = Color.decode("#353535");
     private static final Color DARK_TEXT_ERROR = Color.decode("#4E1010");
     private static final Color DARK_TEXT_BOX_BACKGROUND = Color.decode("#444444");
     private static final Color DARK_BUTTON_BACKGROUND = Color.decode("#444444");
     private static final Color DARK_MENU_BACKGROUND = Color.decode("#303030");
-    private static final Color DARK_TEXT = Color.decode("#FFFFFF");
+    private static final Color DARK_TEXT = Color.decode("#FAFAFA");
+    private static final Color DARK_CARET = Color.decode("#EBEBEB");
     public static Color BACKGROUND = DARK_BACKGROUND;
     public static Color SECONDARY_BACKGROUND = DARK_SECONDARY_BACKGROUND;
     public static Color TEXT_ERROR = DARK_TEXT_ERROR;
@@ -61,6 +63,7 @@ public class Main {
     public static Color TEXT = DARK_TEXT;
     public static Color BUTTON_BACKGROUND = DARK_BUTTON_BACKGROUND;
     public static Color MENU_BACKGROUND = DARK_MENU_BACKGROUND;
+    public static Color CARET = DARK_CARET;
     public static final Path PROJECT_DATA_FILE_PATH = Path.of("programdata.mpp");
     public static UserSettings userSettings;
 
@@ -111,6 +114,7 @@ public class Main {
             TEXT = DARK_TEXT;
             BUTTON_BACKGROUND = DARK_BUTTON_BACKGROUND;
             MENU_BACKGROUND = DARK_MENU_BACKGROUND;
+            CARET = DARK_CARET;
         }
         else {
             BACKGROUND = LIGHT_BACKGROUND;
@@ -120,6 +124,7 @@ public class Main {
             TEXT = LIGHT_TEXT;
             BUTTON_BACKGROUND = LIGHT_BUTTON_BACKGROUND;
             MENU_BACKGROUND = LIGHT_MENU_BACKGROUND;
+            CARET = LIGHT_CARET;
         }
     }
 }
