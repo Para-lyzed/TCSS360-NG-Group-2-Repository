@@ -71,7 +71,7 @@ public class UserSettings implements Serializable {
         recentToolsList = new ArrayList<>();
         recentMaterialsMap = new HashMap<>();
         recentMaterialsList = new ArrayList<>();
-        darkMode = false;
+        darkMode = true;
     }
 
     /**

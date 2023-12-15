@@ -12,6 +12,9 @@ import java.io.Serializable;
  *
  */
 public class Profile implements Serializable {
+    public static final String DEFAULT_NAME = "No name registered";
+    public static final String DEFAULT_EMAIL = "No email registered";
+
     private String name;
     private String email;
 

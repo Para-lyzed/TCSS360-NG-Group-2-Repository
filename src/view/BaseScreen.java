@@ -32,7 +32,8 @@ public class BaseScreen extends JPanel {
         this.headingSpaced = Main.HEADING_SPACER + title;
         this.heading = new JLabel();
         this.heading.setFont(Main.HEADING_ONE_FONT);
-        this.heading.setText(headingSpaced);;
+        this.heading.setText(headingSpaced);
+        this.heading.setForeground(Main.TEXT);
         setLayout(new GridBagLayout());
         this.c = new GridBagConstraints();
         this.c.insets = Main.PADDING_INSETS;
@@ -59,6 +60,11 @@ public class BaseScreen extends JPanel {
         else {
             this.heading.setText(this.headingSpaced);
         }
+    }
+
+    public void darkMode() {
+        setBackground(Main.BACKGROUND);
+        heading.setForeground(Main.TEXT);
     }
     
 }

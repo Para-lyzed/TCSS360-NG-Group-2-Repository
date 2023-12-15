@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import model.Main;
+import model.Material;
 import model.Project;
+import model.Tool;
 
 /**
  * TCSS 360B
@@ -26,10 +28,17 @@ public class BaseFrame extends JFrame {
     private static Menu mainMenu;
     private static Menu projectMenu;
     private static ProjectSelectScreen projectSelectScreen;
+    private static ToolSelectScreen toolSelectScreen;
+    private static MaterialSelectScreen materialSelectScreen;
+
     private static AboutScreen aboutScreen;
     private static SettingScreen settingScreen;
     private static NewProjectScreen newProjectScreen;
+    private static NewToolScreen newToolScreen;
+    private static NewMaterialScreen newMaterialScreen;
     private static ProjectOverviewScreen projectOverviewScreen;
+    private static EditToolScreen editToolScreen;
+    private static EditMaterialScreen editMaterialScreen;
     private static BaseScreen currentScreen;
     public static boolean menuOpen;
 
@@ -50,11 +59,15 @@ public class BaseFrame extends JFrame {
         setLayout(new BorderLayout());
         lPane = new JLayeredPane();
         projectSelectScreen = new ProjectSelectScreen(getWidth(), getHeight());
+        toolSelectScreen = new ToolSelectScreen(getWidth(), getHeight());
+        materialSelectScreen = new MaterialSelectScreen(getWidth(), getHeight());
         aboutScreen = new AboutScreen(getWidth(), getHeight());
         settingScreen = new SettingScreen(getWidth(), getHeight());
         mainMenu = new Menu(true, getHeight());
         projectMenu = new Menu(false, getHeight());
         newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
+        newToolScreen = new NewToolScreen(getWidth(), getHeight());
+        newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight());
         menuOpen = false;
         add(lPane, BorderLayout.CENTER);
         currentScreen = projectSelectScreen;
@@ -62,6 +75,12 @@ public class BaseFrame extends JFrame {
         lPane.add(currentScreen, BorderLayout.CENTER, 1);
         addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent componentEvent) {
+                try {
+                    Thread.sleep(15); // This helps to prevent glitches where the panel isn't properly resized.
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
                 if (menuOpen) {
                     currentScreen.setBounds(Main.MENU_WIDTH, 0, getWidth() - Main.MENU_WIDTH, getHeight());
                 }
@@ -89,10 +108,24 @@ public class BaseFrame extends JFrame {
         String oldScreen = currentScreen.title;
         switch (screenName) {
             case "Projects":
+                projectSelectScreen.refresh();
                 lPane.add(projectSelectScreen, BorderLayout.CENTER, 1);
                 currentScreen = projectSelectScreen;
                 titlePrefix = defaultTitlePrefix;
-                projectSelectScreen.refresh();
+                break;
+
+            case "Tools":
+                toolSelectScreen.refresh();
+                lPane.add(toolSelectScreen, BorderLayout.CENTER, 1);
+                currentScreen = toolSelectScreen;
+                titlePrefix = defaultTitlePrefix;
+                break;
+
+            case "Materials":
+                materialSelectScreen.refresh();
+                lPane.add(materialSelectScreen, BorderLayout.CENTER, 1);
+                currentScreen = materialSelectScreen;
+                titlePrefix = defaultTitlePrefix;
                 break;
             
             case "Settings":
@@ -101,9 +134,9 @@ public class BaseFrame extends JFrame {
                 break;
             
             case "About":
+                aboutScreen.refreshProfile();
                 lPane.add(aboutScreen, BorderLayout.CENTER, 1);
                 currentScreen = aboutScreen;
-                aboutScreen.refreshProfile();
                 break;
             
             case "Create a New Project":
@@ -113,9 +146,35 @@ public class BaseFrame extends JFrame {
                 currentScreen = newProjectScreen;
                 break;
 
+            case "Create a New Tool":
+                newToolScreen = new NewToolScreen(getWidth(), getHeight());
+                lPane.add(newToolScreen, BorderLayout.CENTER, 1);
+                lPane.remove(mainMenu);
+                currentScreen = newToolScreen;
+                break;
+
+            case "Create a New Material":
+                newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight());
+                lPane.add(newMaterialScreen, BorderLayout.CENTER, 1);
+                lPane.remove(mainMenu);
+                currentScreen = newMaterialScreen;
+                break;
+
             case "Overview":
                 lPane.add(projectOverviewScreen, BorderLayout.CENTER, 1);
                 currentScreen = projectOverviewScreen;
+                break;
+
+            case "Edit Tool":
+                lPane.add(editToolScreen, BorderLayout.CENTER, 1);
+                lPane.remove(mainMenu);
+                currentScreen = editToolScreen;
+                break;
+
+            case "Edit Material":
+                lPane.add(editMaterialScreen, BorderLayout.CENTER, 1);
+                lPane.remove(mainMenu);
+                currentScreen = editMaterialScreen;
                 break;
         
             default:
@@ -126,26 +185,58 @@ public class BaseFrame extends JFrame {
         if (validName) {
             setTitle(titlePrefix + screenName);
             switch (oldScreen) {
-                    case "Projects":
-                        lPane.remove(projectSelectScreen);
-                        break;
-            
-                    case "Settings":
-                        lPane.remove(settingScreen);
-                        break;
-            
-                    case "About":
-                        lPane.remove(aboutScreen);
-                        break;
+                case "Projects":
+                    lPane.remove(projectSelectScreen);
+                    mainMenu.closeMenu();
+                    break;
 
-                    case "Create a New Project":
-                        lPane.remove(newProjectScreen);
-                        break;
+                case "Tools":
+                    lPane.remove(toolSelectScreen);
+                    mainMenu.closeMenu();
+                    break;
 
-                    case "Overview":
-                        lPane.remove(projectOverviewScreen);
-                        break;
-                }
+                case "Materials":
+                    lPane.remove(materialSelectScreen);
+                    mainMenu.closeMenu();
+                    break;
+        
+                case "Settings":
+                    lPane.remove(settingScreen);
+                    mainMenu.closeMenu();
+                    break;
+        
+                case "About":
+                    lPane.remove(aboutScreen);
+                    mainMenu.closeMenu();
+                    break;
+
+                case "Create a New Project":
+                    lPane.remove(newProjectScreen);
+                    break;
+                
+                case "Create a New Tool":
+                    lPane.remove(newToolScreen);
+                    lPane.add(mainMenu, BorderLayout.WEST, 0);
+                    break;
+
+                case "Create a New Material":
+                    lPane.remove(newMaterialScreen);
+                    lPane.add(mainMenu, BorderLayout.WEST, 0);
+                    break;
+
+                case "Overview":
+                    lPane.remove(projectOverviewScreen);
+                    projectMenu.closeMenu();
+                    break;
+
+                case "Edit Tool":
+                    lPane.remove(editToolScreen);
+                    break;
+
+                case "Edit Material":
+                    lPane.remove(editMaterialScreen);
+                    break;
+            }
             menuOpen(false);
             repaint();
         }
@@ -171,6 +262,16 @@ public class BaseFrame extends JFrame {
                 case "Projects":
                     projectSelectScreen.menuHeading(isOpen);
                     projectSelectScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
+
+                case "Tools":
+                    toolSelectScreen.menuHeading(isOpen);
+                    toolSelectScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
+
+                case "Materials":
+                    materialSelectScreen.menuHeading(isOpen);
+                    materialSelectScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;
                 
                 case "Settings":
@@ -210,14 +311,75 @@ public class BaseFrame extends JFrame {
     }
 
     /**
+     * Opens a Tool into a new ToolScreen.
+     * 
+     * @param tool
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openTool(Tool tool) {
+        editToolScreen = new EditToolScreen(getWidth(), getHeight(), tool);
+        switchScreen("Edit Tool");
+        titlePrefix = tool.getName() + " - ";
+        setTitle(titlePrefix + "Edit Tool");
+    }
+
+    /**
+     * Opens a Material into a new MaterialScreen.
+     * 
+     * @param material
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openMaterial(Material material) {
+        editMaterialScreen = new EditMaterialScreen(getWidth(), getHeight(), material);
+        switchScreen("Edit Material");
+        titlePrefix = material.getName() + " - ";
+        setTitle(titlePrefix + "Edit Material");
+    }
+
+    /**
      * Takes the user back to the main menu.
      * 
      * @author Nathan Grimsey
      */
-    public void resetToMainMenu() {
+    public void resetToProjects() {
         lPane.remove(projectMenu);
         lPane.add(mainMenu, BorderLayout.WEST, 0);
         switchScreen("Projects");
+    }
+
+    /**
+     * Takes the user back to the main menu.
+     * 
+     * @author Nathan Grimsey
+     */
+    public void resetToTools() {
+        lPane.add(mainMenu, BorderLayout.WEST, 0);
+        switchScreen("Tools");
+    }
+
+    /**
+     * Takes the user back to the main menu.
+     * 
+     * @author Nathan Grimsey
+     */
+    public void resetToMaterials() {
+        lPane.add(mainMenu, BorderLayout.WEST, 0);
+        switchScreen("Materials");
+    }
+
+    public void darkMode() {
+        mainMenu.darkMode();
+        projectMenu.darkMode();
+        projectSelectScreen.darkMode();
+        toolSelectScreen.darkMode();
+        materialSelectScreen.darkMode();
+        aboutScreen.darkMode();
+        settingScreen.darkMode();
+        newProjectScreen.darkMode();
+        newToolScreen.darkMode();
+        newMaterialScreen.darkMode();
     }
 
 }

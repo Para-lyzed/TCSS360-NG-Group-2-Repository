@@ -47,7 +47,7 @@ public class NewProjectScreen extends NewScreen {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.resetToMainMenu();
+                Main.BASE_FRAME.resetToProjects();
             }
         });
     }
