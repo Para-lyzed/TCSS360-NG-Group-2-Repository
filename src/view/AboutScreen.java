@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import model.About;
@@ -19,6 +21,7 @@ public class AboutScreen extends BaseScreen {
     private static JLabel providedBy;
     private static JLabel version;
     private static String[] contributors;
+    private static ArrayList<JLabel> contributorLabels = new ArrayList<>();
 
     /**
      * AboutScreen creates the window with information on the app.
@@ -33,12 +36,16 @@ public class AboutScreen extends BaseScreen {
         super(width, height, title, 1);
         registeredTo = new JLabel("This app is registered to:");
         registeredTo.setFont(Main.HEADING_TWO_FONT);
+        registeredTo.setForeground(Main.TEXT);
         currentUser = new JLabel(About.getOwnerString());
         currentUser.setFont(Main.BASE_FONT);
+        currentUser.setForeground(Main.TEXT);
         providedBy = new JLabel("This app is provided by:");
         providedBy.setFont(Main.HEADING_TWO_FONT);
+        providedBy.setForeground(Main.TEXT);
         version = new JLabel("Version v" + About.getVersion());
         version.setFont(Main.VERSION_FONT);
+        version.setForeground(Main.TEXT);
         c.gridy++;
         add(registeredTo, c);
         c.gridy++;
@@ -46,11 +53,12 @@ public class AboutScreen extends BaseScreen {
         c.gridy++;
         add(providedBy, c);
         contributors = About.getContributors();
-        for(int i = 0; i < contributors.length; i++) {
+        for (int i = 0; i < contributors.length; i++) {
             c.gridy++;
-            JLabel contributor = new JLabel(contributors[i]);
-            contributor.setFont(Main.BASE_FONT);
-            add(contributor, c);
+            contributorLabels.add(i, new JLabel(contributors[i]));
+            contributorLabels.get(i).setFont(Main.BASE_FONT);
+            contributorLabels.get(i).setForeground(Main.TEXT);
+            add(contributorLabels.get(i), c);
         }
         c.gridy++;
         add(version, c);
@@ -63,5 +71,17 @@ public class AboutScreen extends BaseScreen {
      */
     public void refreshProfile() {
         currentUser.setText(About.getOwnerString());
+    }
+
+    @Override
+    public void darkMode() {
+        super.darkMode();
+        registeredTo.setForeground(Main.TEXT);
+        currentUser.setForeground(Main.TEXT);
+        providedBy.setForeground(Main.TEXT);
+        version.setForeground(Main.TEXT);
+        for (int i = 0; i < contributorLabels.size(); i++) {
+            contributorLabels.get(i).setForeground(Main.TEXT);
+        }
     }
 }

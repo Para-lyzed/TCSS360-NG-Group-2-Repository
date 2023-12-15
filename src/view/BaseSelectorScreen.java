@@ -52,12 +52,15 @@ public class BaseSelectorScreen extends BaseScreen {
     public BaseSelectorScreen(int width, int height, String title, String type, int userSettingsType, String fileExtension) {
         super(width, height, title, 4);
         searchLabel.setFont(Main.BASE_FONT);
+        searchLabel.setForeground(Main.TEXT);
         this.c.fill = GridBagConstraints.NONE;
         this.c.gridwidth = 1;
         this.c.gridy++;
         this.add(searchLabel, c);
         this.searchBar = new JTextField();
         this.searchBar.setFont(Main.BASE_FONT);
+        this.searchBar.setForeground(Main.TEXT);
+        this.searchBar.setBackground(Main.TEXT_BOX_BACKGROUND);
         this.c.fill = GridBagConstraints.HORIZONTAL;
         this.c.gridx = 1;
         this.c.gridwidth = 3;
@@ -65,6 +68,7 @@ public class BaseSelectorScreen extends BaseScreen {
         this.add(this.searchBar, c);
         this.listPane = new JList<String>(this.recentFiles.toArray(new String[recentFiles.size()]));
         this.listPane.setFont(Main.BASE_FONT);
+        this.listPane.setForeground(Main.TEXT);
         this.listPane.setBackground(Main.SECONDARY_BACKGROUND);
         this.listPane.setOpaque(true);
         this.scrollablePane = new JScrollPane(this.listPane);
@@ -77,6 +81,8 @@ public class BaseSelectorScreen extends BaseScreen {
         this.add(this.scrollablePane, c);
         this.openButton = new JButton("Open");
         this.openButton.setFont(Main.BASE_FONT);
+        this.openButton.setForeground(Main.TEXT);
+        this.openButton.setBackground(Main.BUTTON_BACKGROUND);
         this.openButton.setEnabled(false);
         this.c.fill = GridBagConstraints.NONE;
         this.c.gridy++;
@@ -85,15 +91,21 @@ public class BaseSelectorScreen extends BaseScreen {
         this.add(openButton, c);
         this.deleteButton = new JButton("Delete");
         this.deleteButton.setFont(Main.BASE_FONT);
+        this.deleteButton.setForeground(Main.TEXT);
+        this.deleteButton.setBackground(Main.BUTTON_BACKGROUND);
         this.deleteButton.setEnabled(false);
         this.c.gridx++;
         this.add(deleteButton, c);
         this.createButton = new JButton("New " + type);
         this.createButton.setFont(Main.BASE_FONT);
+        this.createButton.setForeground(Main.TEXT);
+        this.createButton.setBackground(Main.BUTTON_BACKGROUND);
         this.c.gridx++;
         this.add(createButton, c);
         this.importButton = new JButton("Import " + type);
         this.importButton.setFont(Main.BASE_FONT);
+        this.importButton.setForeground(Main.TEXT);
+        this.importButton.setBackground(Main.BUTTON_BACKGROUND);
         this.c.gridx++;
         this.add(importButton, c);
 
@@ -136,11 +148,17 @@ public class BaseSelectorScreen extends BaseScreen {
         confirmDialog.setSize(200, 100);
         confirmDialog.setResizable(false);
         confirmDialog.setLayout(new FlowLayout());
+        confirmDialog.setBackground(Main.BACKGROUND);
         confirmDialogLabel.setFont(Main.BASE_FONT);
+        confirmDialogLabel.setForeground(Main.TEXT);
         confirmDialog.add(confirmDialogLabel);
         confirmDialogYesButton.setFont(Main.BASE_FONT);
+        confirmDialogYesButton.setForeground(Main.TEXT);
+        confirmDialogYesButton.setBackground(Main.BUTTON_BACKGROUND);
         confirmDialog.add(confirmDialogYesButton);
         confirmDialogNoButton.setFont(Main.BASE_FONT);
+        confirmDialogNoButton.setForeground(Main.TEXT);
+        confirmDialogNoButton.setBackground(Main.BUTTON_BACKGROUND);
         confirmDialog.add(confirmDialogNoButton);
         confirmDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         confirmDialog.setVisible(false);
@@ -173,6 +191,30 @@ public class BaseSelectorScreen extends BaseScreen {
 
     protected void updateListPaneEntries() {
         listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
+    }
+
+    @Override
+    public void darkMode() {
+        super.darkMode();
+        confirmDialog.setBackground(Main.BACKGROUND);
+        confirmDialogLabel.setForeground(Main.TEXT);
+        confirmDialogYesButton.setForeground(Main.TEXT);
+        confirmDialogYesButton.setBackground(Main.BUTTON_BACKGROUND);
+        confirmDialogNoButton.setForeground(Main.TEXT);
+        confirmDialogNoButton.setBackground(Main.BUTTON_BACKGROUND);
+        searchLabel.setForeground(Main.TEXT);
+        searchBar.setForeground(Main.TEXT);
+        searchBar.setBackground(Main.TEXT_BOX_BACKGROUND);
+        listPane.setForeground(Main.TEXT);
+        listPane.setBackground(Main.SECONDARY_BACKGROUND);
+        openButton.setForeground(Main.TEXT);
+        openButton.setBackground(Main.BUTTON_BACKGROUND);
+        deleteButton.setForeground(Main.TEXT);
+        deleteButton.setBackground(Main.BUTTON_BACKGROUND);
+        createButton.setForeground(Main.TEXT);
+        createButton.setBackground(Main.BUTTON_BACKGROUND);
+        importButton.setForeground(Main.TEXT);
+        importButton.setBackground(Main.BUTTON_BACKGROUND);
     }
 
 }

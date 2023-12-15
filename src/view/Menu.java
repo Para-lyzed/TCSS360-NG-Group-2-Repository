@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -25,6 +24,14 @@ public class Menu extends JPanel {
     private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
     private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
     private static int menuIconSize = Main.MENU_WIDTH / 7;
+    private static Image darkMenuImage;
+    private static Image darkBackImage;
+    private static Image darkResizedMenuImage;
+    private static Image darkResizedBackImage;
+    private static Image lightMenuImage;
+    private static Image lightBackImage;
+    private static Image lightResizedMenuImage;
+    private static Image lightResizedBackImage;
     private int menuHeight;
     private String[] entries;
     private GridBagConstraints c;
@@ -48,7 +55,7 @@ public class Menu extends JPanel {
         else {
             this.entries = projectEntries;
         }
-        this.setBackground(Color.GRAY);
+        this.setBackground(Main.MENU_BACKGROUND);
         this.setBounds(0, 0, Main.MENU_WIDTH, this.menuHeight);
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
@@ -64,12 +71,22 @@ public class Menu extends JPanel {
         this.backButton = new JButton();
         this.add(this.menuButton, this.c);
         try {
-            Image menuImage = ImageIO.read(getClass().getResource("../icons/Menu.png"));
-            Image resizedMenuImage = menuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
-            this.menuButton.setIcon(new ImageIcon(resizedMenuImage));
-            Image backImage = ImageIO.read(getClass().getResource("../icons/Back.png"));
-            Image resizedBackImage = backImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
-            this.backButton.setIcon(new ImageIcon(resizedBackImage));
+            darkMenuImage = ImageIO.read(getClass().getResource("../icons/DarkMenu.png"));
+            darkBackImage = ImageIO.read(getClass().getResource("../icons/DarkBack.png"));
+            lightMenuImage = ImageIO.read(getClass().getResource("../icons/LightMenu.png"));
+            lightBackImage = ImageIO.read(getClass().getResource("../icons/LightBack.png"));
+            darkResizedMenuImage = darkMenuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
+            darkResizedBackImage = darkBackImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
+            lightResizedMenuImage = lightMenuImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
+            lightResizedBackImage = lightBackImage.getScaledInstance(menuIconSize, menuIconSize, Image.SCALE_SMOOTH);
+            if (Main.userSettings.getDarkMode()) {
+                this.menuButton.setIcon(new ImageIcon(darkResizedMenuImage));
+                this.backButton.setIcon(new ImageIcon(darkResizedBackImage));
+            }
+            else {
+                this.menuButton.setIcon(new ImageIcon(lightResizedMenuImage));
+                this.backButton.setIcon(new ImageIcon(lightResizedBackImage));
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +103,7 @@ public class Menu extends JPanel {
         this.backButton.setOpaque(false);
         for (int i = 0; i < this.entries.length; i++) {
             JButton entry = new JButton(this.entries[i]);
-            entry.setForeground(Color.BLACK);
+            entry.setForeground(Main.TEXT);
             entry.setBorder(null);
             entry.setBorderPainted(false);
             entry.setContentAreaFilled(false);
@@ -187,5 +204,25 @@ public class Menu extends JPanel {
     public void setHeight(int height) {
         this.menuHeight = height;
         this.setBounds(0, 0, Main.MENU_WIDTH, this.menuHeight);
+    }
+
+    public void darkMode() {
+        try {
+            if (Main.userSettings.getDarkMode()) {
+                menuButton.setIcon(new ImageIcon(darkResizedMenuImage));
+                backButton.setIcon(new ImageIcon(darkResizedBackImage));
+            }
+            else {
+                menuButton.setIcon(new ImageIcon(lightResizedMenuImage));
+                backButton.setIcon(new ImageIcon(lightResizedBackImage));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < menuEntries.size(); i++) {
+            this.menuEntries.get(i).setForeground(Main.TEXT);
+        }
+        setBackground(Main.MENU_BACKGROUND);
     }
 }

@@ -32,12 +32,15 @@ public class EditMaterialScreen extends NewScreen {
     public EditMaterialScreen(int width, int height, Material material) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);
+        categoryLabel.setForeground(Main.TEXT);
         this.c.fill = GridBagConstraints.BOTH;
         c.gridx = 4;
         c.gridy = 1;
         c.gridwidth = 2;
         add(categoryLabel, c);
         categoryTextField.setFont(Main.BASE_FONT);
+        categoryTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+        categoryTextField.setForeground(Main.TEXT);
         c.gridy++;
         add(categoryTextField, c);
         nameTextField.setText(material.getName());

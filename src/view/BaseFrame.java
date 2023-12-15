@@ -369,4 +369,17 @@ public class BaseFrame extends JFrame {
         switchScreen("Materials");
     }
 
+    public void darkMode() {
+        mainMenu.darkMode();
+        projectMenu.darkMode();
+        projectSelectScreen.darkMode();
+        toolSelectScreen.darkMode();
+        materialSelectScreen.darkMode();
+        aboutScreen.darkMode();
+        settingScreen.darkMode();
+        newProjectScreen.darkMode();
+        newToolScreen.darkMode();
+        newMaterialScreen.darkMode();
+    }
+
 }
