@@ -49,6 +49,7 @@ public class NewToolScreen extends NewScreen {
                         DataIO.saveTool(newTool, Path.of(exportPathString));
                     }
                     if (inProject) {
+                        Main.BASE_FRAME.addNewToolToProject(newTool);
                         Main.BASE_FRAME.openProjectTools(true);
                     }
                     else {

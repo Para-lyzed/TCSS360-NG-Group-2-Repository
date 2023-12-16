@@ -80,7 +80,7 @@ public class BaseFrame extends JFrame {
         projectMenu = new Menu(false, getHeight());
         newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
         newToolScreen = new NewToolScreen(getWidth(), getHeight(), false);
-        newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight());
+        newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight(), false);
         menuOpen = false;
         add(lPane, BorderLayout.CENTER);
         currentScreen = projectSelectScreen;
@@ -190,9 +190,15 @@ public class BaseFrame extends JFrame {
                 break;
 
             case "Create a New Material":
-                newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight());
+                if (currentlyInsideProject) {
+                    newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight(), true);
+                    lPane.remove(projectMenu);
+                }
+                else {
+                    newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight(), false);
+                    lPane.remove(mainMenu);
+                }
                 lPane.add(newMaterialScreen, BorderLayout.CENTER, 1);
-                lPane.remove(mainMenu);
                 currentScreen = newMaterialScreen;
                 break;
 
@@ -478,7 +484,7 @@ public class BaseFrame extends JFrame {
     }
 
     /**
-     * Opens a ProjectToolSelectScreen to select a tool to add.
+     * Opens a ProjectToolSelectScreen to select a Tool to add.
      * 
      * @param project
      * 
@@ -494,7 +500,7 @@ public class BaseFrame extends JFrame {
     }
 
     /**
-     * Opens a ProjectMaterialSelectScreen to select a tool to add.
+     * Opens a ProjectMaterialSelectScreen to select a Material to add.
      * 
      * @param project
      * 
@@ -526,6 +532,24 @@ public class BaseFrame extends JFrame {
     }
 
     /**
+     * Adds a tool to the current project when the user creates a new one.
+     * 
+     * @param tool the tool to add.
+     */
+    public void addNewToolToProject(Tool tool) {
+        currentWorkingProject.addTool(tool);
+    }
+
+    /**
+     * Adds a tool to the current project when the user creates a new one.
+     * 
+     * @param tool the tool to add.
+     */
+    public void addNewMaterialToProject(Material material) {
+        currentWorkingProject.addExpense(material, 1);
+    }
+
+    /**
      * Opens a Tool into a new ToolScreen.
      * 
      * @param tool
@@ -554,7 +578,7 @@ public class BaseFrame extends JFrame {
     }
 
     /**
-     * Takes the user back to the main menu.
+     * Takes the user back to the Project Select.
      * 
      * @author Nathan Grimsey
      */
@@ -566,7 +590,7 @@ public class BaseFrame extends JFrame {
     }
 
     /**
-     * Takes the user back to the main menu.
+     * Takes the user back to the Tool Select.
      * 
      * @author Nathan Grimsey
      */
@@ -576,7 +600,7 @@ public class BaseFrame extends JFrame {
     }
 
     /**
-     * Takes the user back to the main menu.
+     * Takes the user back to the Material Select.
      * 
      * @author Nathan Grimsey
      */
@@ -585,6 +609,11 @@ public class BaseFrame extends JFrame {
         switchScreen("Materials");
     }
 
+    /**
+     * Updates the UI elements of the screens to follow the current dark mode setting.
+     * 
+     * @author Nathan Grimsey
+     */
     public void darkMode() {
         mainMenu.darkMode();
         projectMenu.darkMode();
