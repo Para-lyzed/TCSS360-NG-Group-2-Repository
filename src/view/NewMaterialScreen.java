@@ -56,7 +56,13 @@ public class NewMaterialScreen extends NewScreen {
                 String category = categoryTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty() && !category.isEmpty()) {
-                    int price = ((Number)fieldTwoTextField.getValue()).intValue();
+                    int price = 0;
+                    try {
+                        price = Integer.parseInt(priceString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     Material newMaterial = new Material(name, category, price);
                     if (!description.isEmpty()) {
                         newMaterial.setDescription(description);

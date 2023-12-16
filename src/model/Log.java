@@ -142,6 +142,9 @@ public class Log implements Comparable<Log>, Serializable {
      */
     @Override
     public int compareTo(Log otherLog) {
+        if (otherLog == null) {
+            return -1;
+        }
         int compareVal = 0;
         compareVal += name.compareTo(otherLog.getName());
 

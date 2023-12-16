@@ -42,7 +42,13 @@ public class ProjectDetailsScreen extends NewScreen {
                 String budgetString = fieldTwoTextField.getText();
                 String newDescription = descriptionTextField.getText();
                 if (!name.isEmpty() && !budgetString.isEmpty()) {
-                    int budget = ((Number) fieldTwoTextField.getValue()).intValue();
+                    int budget = 0;
+                    try {
+                        budget = Integer.parseInt(budgetString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     project.setName(name);
                     project.setBudget(budget);
                     if (!newDescription.isEmpty()) {

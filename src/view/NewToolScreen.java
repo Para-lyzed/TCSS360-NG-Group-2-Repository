@@ -42,7 +42,13 @@ public class NewToolScreen extends NewScreen {
                 String priceString = fieldTwoTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty()) {
-                    int price = ((Number) fieldTwoTextField.getValue()).intValue();
+                    int price = 0;
+                    try {
+                        price = Integer.parseInt(priceString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     Tool newTool = new Tool(name, price);
                     if (!description.isEmpty()) {
                         newTool.setDescription(description);
