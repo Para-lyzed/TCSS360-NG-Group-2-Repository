@@ -32,7 +32,7 @@ public class NewProjectScreen extends NewScreen {
             public void actionPerformed(ActionEvent e) {
                 fieldTwoTextField.fireAction();
                 String name = nameTextField.getText();
-                String budgetString = fieldTwoTextField.getText();
+                String budgetString = fieldTwoTextField.getText().replaceAll(",", "");
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !budgetString.isEmpty()) {
                     int budget = 0;

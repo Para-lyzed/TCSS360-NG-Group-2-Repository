@@ -39,7 +39,7 @@ public class NewToolScreen extends NewScreen {
             public void actionPerformed(ActionEvent e) {
                 fieldTwoTextField.fireAction();
                 String name = nameTextField.getText();
-                String priceString = fieldTwoTextField.getText();
+                String priceString = fieldTwoTextField.getText().replaceAll(",", "");
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty()) {
                     int price = 0;

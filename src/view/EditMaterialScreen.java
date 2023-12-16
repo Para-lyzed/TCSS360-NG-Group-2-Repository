@@ -59,11 +59,17 @@ public class EditMaterialScreen extends NewScreen {
                 fieldTwoTextField.fireAction();
                 String oldName = material.getName();
                 String name = nameTextField.getText();
-                String priceString = fieldTwoTextField.getText();
+                String priceString = fieldTwoTextField.getText().replaceAll(",", "");
                 String category = categoryTextField.getText();
                 String newDescription = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty() && !category.isEmpty()) {
-                    int price = ((Number) fieldTwoTextField.getValue()).intValue();
+                    int price = 0;
+                    try {
+                        price = Integer.parseInt(priceString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     material.setName(name);
                     material.setPrice(price);
                     material.setCategory(category);

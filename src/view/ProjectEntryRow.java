@@ -13,6 +13,14 @@ import javax.swing.JLabel;
 import model.Main;
 import model.Tool;
 
+/**
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * view.ProjectEntryRow.java
+ * 
+ * @author Nathan Grimsey
+ *
+ */
 public class ProjectEntryRow {
     private static Image checkBoxDarkUnchecked;
     private static Image checkBoxDarkChecked;
@@ -25,6 +33,13 @@ public class ProjectEntryRow {
     public JLabel toolPrice;
     public JCheckBox checkBox;
 
+    /**
+     * Creates a row of column texts fields with update and delete buttons.
+     * 
+     * @param columns
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectEntryRow(int columns) {
         for (int i = 0; i < columns; i++) {
             textFields.add(new CustomTextField(Main.TABLE_FONT));
