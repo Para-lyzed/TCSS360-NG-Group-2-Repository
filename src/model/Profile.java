@@ -84,6 +84,8 @@ public class Profile implements Serializable {
      * 
      * @param profile the Profile to compare to.
      * @return true if the Profiles are equal.
+     * 
+     * @author Nathan Grimsey
      */
     public boolean equals(Profile profile) {
         if (name.equals(profile.getName()) && email.equals(profile.getEmail())) {

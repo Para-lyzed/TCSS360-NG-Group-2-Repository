@@ -76,6 +76,13 @@ public class Main {
     public static final Path PROJECT_DATA_FILE_PATH = Path.of("programdata.mpp");
     public static UserSettings userSettings;
 
+    /**
+     * Main method, which starts the program.
+     * 
+     * @param args command line arguments; unused.
+     * 
+     * @author Nathan Grimsey
+     */
     public static void main(String[] args) {
 
         boolean programDataLoad = false;
@@ -114,6 +121,13 @@ public class Main {
         return foundFiles;
     }
 
+    /**
+     * Sets the global colors when switching between light and dark mode.
+     * 
+     * @param isDarkMode is true if dark mode is enabled.
+     * 
+     * @author Nathan Grimsey
+     */
     public static void darkMode(boolean isDarkMode) {
         if (isDarkMode) {
             BACKGROUND = DARK_BACKGROUND;

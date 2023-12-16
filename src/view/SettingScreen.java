@@ -53,7 +53,7 @@ public class SettingScreen extends BaseScreen {
     private static JScrollPane scrollablePane;
 
     /**
-     * SettingScreen displays the setting screen.
+     * SettingScreen displays the settings screen.
      * 
      * @param width sets the width of the window.
      * @param height sets the height of the window.
@@ -173,8 +173,7 @@ public class SettingScreen extends BaseScreen {
                 returnVal = fileChooser.showOpenDialog(Main.BASE_FRAME);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     DataIO.importProgramData(fileChooser.getSelectedFile().toPath());
-                    nameTextField.setText(Main.userSettings.getProfile().getName());
-                    emailTextField.setText(Main.userSettings.getProfile().getEmail());
+                    fillUserDetails();
                 }
             }
         });
@@ -199,6 +198,11 @@ public class SettingScreen extends BaseScreen {
         mainContent.setPreferredSize(new Dimension(scrollablePane.getWidth(), mainContent.getPreferredSize().height));
     }
 
+    /**
+     * Fills the text boxes with their respective values,
+     * 
+     * @author Nathan Grimsey
+     */
     private void fillUserDetails() {
         Profile user = Main.userSettings.getProfile();
         if (!(user.getName().equals(Profile.DEFAULT_NAME) || user.getEmail().equals(Profile.DEFAULT_EMAIL))) {

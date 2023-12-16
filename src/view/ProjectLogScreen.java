@@ -27,6 +27,15 @@ public class ProjectLogScreen extends BaseScreen {
     private CustomButton saveButton = new CustomButton("Save");
     private ProjectLogPanel logPanel;
 
+    /**
+     * Creates a screen where the user can view Logs of a Project.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectLogScreen(int width, int height, Project project) {
         super(width, height, title, 1);
         logPanel = new ProjectLogPanel(project);

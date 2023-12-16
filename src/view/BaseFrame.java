@@ -544,6 +544,8 @@ public class BaseFrame extends JFrame {
      * Adds a tool to the current project when the user creates a new one.
      * 
      * @param tool the tool to add.
+     * 
+     * @author Nathan Grimsey
      */
     public void addNewToolToProject(Tool tool) {
         currentWorkingProject.addTool(tool);
@@ -553,6 +555,8 @@ public class BaseFrame extends JFrame {
      * Adds a tool to the current project when the user creates a new one.
      * 
      * @param tool the tool to add.
+     * 
+     * @author Nathan Grimsey
      */
     public void addNewMaterialToProject(Material material) {
         currentWorkingProject.addExpense(material, 1);

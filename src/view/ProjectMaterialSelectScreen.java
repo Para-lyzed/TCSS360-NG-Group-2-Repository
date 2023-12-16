@@ -8,8 +8,25 @@ import model.Main;
 import model.Project;
 import model.UserSettings;
 
+/**
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * view.ProjectMaterialSelectScreen.java
+ * 
+ * @author Nathan Grimsey
+ *
+ */
 public class ProjectMaterialSelectScreen extends BaseSelectorScreen {
 
+    /**
+     * Allows the user to add Materials into the Expenses screen.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectMaterialSelectScreen(int width, int height, Project project) {
         super(width, height, "Import Material", "Material", UserSettings.MATERIAL, "mat");
         remove(deleteButton);

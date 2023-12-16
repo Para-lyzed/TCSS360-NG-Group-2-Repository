@@ -26,7 +26,13 @@ public class ProjectSecondaryPanelTemplate extends JPanel {
     protected JPanel contentPanel;
     protected CustomButton addButton;
 
-
+    /**
+     * Parent class for the Budget, Log, and Tool panels in the Project view.
+     * 
+     * @param addButtonName the String name of the button that states "Add <element>".
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectSecondaryPanelTemplate(String addButtonName) {
         setBackground(Main.SECONDARY_BACKGROUND);
         setOpaque(true);

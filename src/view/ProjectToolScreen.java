@@ -15,7 +15,7 @@ import model.Project;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * view.ProjectToolsScreen.java
+ * view.ProjectToolScreen.java
  * 
  * @author Nathan Grimsey
  *
@@ -27,6 +27,15 @@ public class ProjectToolScreen extends BaseScreen {
     private CustomButton saveButton = new CustomButton("Save");
     private ProjectToolPanel toolPanel;
 
+     /**
+     * Creates a screen where the user can view Tools of a Project.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectToolScreen(int width, int height, Project project) {
         super(width, height, title, 1);
         toolPanel = new ProjectToolPanel(project);
