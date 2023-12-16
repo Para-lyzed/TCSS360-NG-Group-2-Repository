@@ -19,11 +19,17 @@ public class ProjectTest {
 
     private Project myDefaultProject;
 
+    /**
+     * Makes a new project before each test.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultProject = new Project("Test-Project", 500);
     }
 
+    /**
+     * Tests getName.
+     */
     @Test
     void testProjectName() {
         final String expectedName = "Test-Project";
@@ -32,6 +38,9 @@ public class ProjectTest {
                 "This assert tests the default Project name");
     }
 
+    /**
+     * Tests getBudget.
+     */
     @Test
     void testBudget() {
         final int expectedBudget = 500;

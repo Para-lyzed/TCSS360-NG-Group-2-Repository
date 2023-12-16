@@ -17,11 +17,17 @@ import org.junit.jupiter.api.Test;
 public class MaterialTest {
     private Material myDefaultMaterial;
 
+    /**
+     * Creates a new material before each test.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultMaterial = new Material("Super Glue", "Adhesives", 25);
     }
 
+    /**
+     * Tests getName.
+     */
     @Test
     void testMaterialName() {
         final String expectedName = "Super Glue";
@@ -30,6 +36,9 @@ public class MaterialTest {
                 "This assert tests the default Material name");
     }
 
+    /**
+     * Tests getPrice
+     */
     @Test
     void testMaterialPrice() {
         final int expectedPrice = 25;
@@ -38,6 +47,9 @@ public class MaterialTest {
                 "This assert tests the default Material price");
     }
 
+    /**
+     * Tests getCategory
+     */
     @Test
     void testMaterialCategory() {
         final String expectedCategory = "Adhesives";

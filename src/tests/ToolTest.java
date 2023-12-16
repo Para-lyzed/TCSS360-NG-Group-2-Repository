@@ -17,11 +17,17 @@ import org.junit.jupiter.api.Test;
 public class ToolTest {
     private Tool myDefaultTool;
 
+    /**
+     * Create a tool before each test.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultTool = new Tool("Toy-Hammer", 15);
     }
 
+    /**
+     * Tests getName
+     */
     @Test
     void testToolName() {
         final String expectedName = "Toy-Hammer";
@@ -30,6 +36,9 @@ public class ToolTest {
                 "This assert tests the default Tool name");
     }
 
+    /**
+     * Tests getPrice.
+     */
     @Test
     void testToolPrice() {
         final int expectedPrice = 15;

@@ -17,11 +17,17 @@ import org.junit.jupiter.api.Test;
 public class ProfileTest {
     private Profile myDefaultProfile;
 
+    /**
+     * Creates a profile before each test.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultProfile = new Profile("John Baker", "jBaker@email.com");
     }
 
+    /**
+     * Tests getName.
+     */
     @Test
     void testProfileName() {
         final String expectedName = "John Baker";
@@ -30,6 +36,9 @@ public class ProfileTest {
                 "This assert tests the default Profile name");
     }
 
+    /**
+     * Tests getEmail.
+     */
     @Test
     void testProfileEmail() {
         final String expectedEmail = "jBaker@email.com";
@@ -38,6 +47,9 @@ public class ProfileTest {
                 "This assert tests the default Profile email");
     }
 
+    /**
+     * Tests setProfile by using 2 strings.
+     */
     @Test
     void testSetProfile() {
         final String expectedName = "New Name";
@@ -52,6 +64,9 @@ public class ProfileTest {
                 "This assert tests the ability to set a Profile email");
     }
 
+    /**
+     * Tests if two profiles return as equal.
+     */
     @Test
     void testProfileEqualsTrue() {
         final boolean expectedEquals = true;
@@ -60,6 +75,9 @@ public class ProfileTest {
         assertEquals(expectedEquals, myDefaultProfile.equals(mySecondProfile));
     }
 
+    /**
+     * Tests whether two profiles should NOT be equal.
+     */
     @Test
     void testProfileEqualsFalse() {
         final boolean expectedEquals = false;
