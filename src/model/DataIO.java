@@ -36,12 +36,12 @@ public class DataIO {
             successfulSave = true;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
 
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            System.out.println("\nError occurred while writing to file " + filePath);
             error.printStackTrace();
         }
         return successfulSave;
@@ -71,15 +71,15 @@ public class DataIO {
             successfulLoad = true;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+            System.out.println("\nError occurred while reading file " + filePath);
             error.printStackTrace();
         }
         catch (ClassNotFoundException error) {
-            System.out.printf("\nCould not read class from file " + filePath, filePath);
+            System.out.println("\nCould not read class from file " + filePath);
             error.printStackTrace();
         }
         return successfulLoad;
@@ -126,11 +126,11 @@ public class DataIO {
             successfulSave = true;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            System.out.println("\nError occurred while writing to file " + filePath);
             error.printStackTrace();
         }
 
@@ -164,15 +164,15 @@ public class DataIO {
             return importedProject;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+            System.out.println("\nError occurred while reading file " + filePath);
             error.printStackTrace();
         }
         catch (ClassNotFoundException error) {
-            System.out.printf("\nCould not read class from file " + filePath, filePath);
+            System.out.println("\nCould not read class from file " + filePath);
             error.printStackTrace();
         }
         return null;
@@ -201,11 +201,11 @@ public class DataIO {
             successfulSave = true;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            System.out.println("\nError occurred while writing to file " + filePath);
             error.printStackTrace();
         }
 
@@ -238,15 +238,15 @@ public class DataIO {
             return importedTool;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+            System.out.println("\nError occurred while reading file " + filePath);
             error.printStackTrace();
         }
         catch (ClassNotFoundException error) {
-            System.out.printf("\nCould not read class from file " + filePath, filePath);
+            System.out.println("\nCould not read class from file " + filePath);
             error.printStackTrace();
         }
         return null;
@@ -275,11 +275,11 @@ public class DataIO {
             successfulSave = true;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while writing to file " + filePath, filePath);
+            System.out.println("\nError occurred while writing to file " + filePath);
             error.printStackTrace();
         }
 
@@ -312,15 +312,15 @@ public class DataIO {
             return importedMaterial;
         }
         catch (FileNotFoundException error) {
-            System.out.printf("\nFile " + filePath + " not found.", filePath);
+            System.out.println("\nFile " + filePath + " not found.");
             error.printStackTrace();
         }
         catch (IOException error) {
-            System.out.printf("\nError occurred while reading file " + filePath, filePath);
+            System.out.println("\nError occurred while reading file " + filePath);
             error.printStackTrace();
         }
         catch (ClassNotFoundException error) {
-            System.out.printf("\nCould not read class from file " + filePath, filePath);
+            System.out.println("\nCould not read class from file " + filePath);
             error.printStackTrace();
         }
         return null;
@@ -350,10 +350,10 @@ public class DataIO {
     //         successfulExport = true;
     //     }
     //     catch (FileNotFoundException error) {
-    //         System.out.printf("\nFile " + filePath + " not found.", filePath);
+    //         System.out.println("\nFile " + filePath + " not found.");
     //     }
     //     catch (IOException error) {
-    //         System.out.printf("\nError occurred while exporting to file " + filePath, filePath);
+    //         System.out.println("\nError occurred while exporting to file " + filePath);
     //         error.printStackTrace();
     //     }
 
@@ -383,13 +383,13 @@ public class DataIO {
     //         successfulImport = true;
     //     }
     //     catch (FileNotFoundException error) {
-    //         System.out.printf("\nFile " + filePath + " not found.", filePath);
+    //         System.out.println("\nFile " + filePath + " not found.");
     //     }
     //     catch (IOException error) {
-    //         System.out.printf("\nError occurred while importing file " + filePath, filePath);
+    //         System.out.println("\nError occurred while importing file " + filePath);
     //     }
     //     catch (ClassNotFoundException error) {
-    //         System.out.printf("\nCould not read class from file " + filePath, filePath);
+    //         System.out.println("\nCould not read class from file " + filePath);
     //     }
     //     return successfulImport;
     // }
