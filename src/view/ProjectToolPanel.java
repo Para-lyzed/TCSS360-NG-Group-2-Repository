@@ -126,10 +126,6 @@ public class ProjectToolPanel extends ProjectSecondaryPanelTemplate {
                     Expense expense = tool;
                     project.removeExpense(expense);
                 }
-                System.out.println("Tools stored in project: ");
-                for (int i = 0; i < projectTools.size(); i++) {
-                    System.out.println(projectTools.get(i).toString());
-                }
             }
         });
         entryRow.updateButton.addActionListener(new ActionListener() {

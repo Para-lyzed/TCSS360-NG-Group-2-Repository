@@ -23,6 +23,16 @@ public class BaseScreen extends JPanel {
     protected String headingSpaced;
     protected GridBagConstraints c;
 
+    /**
+     * BaseScreen is the parent for all screens on the program.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param title of the panel.
+     * @param headingGridWidth how many x grids the header should span.
+     * 
+     * @author Nathan Grimsey
+     */
     public BaseScreen(int width, int height, String title, int headingGridWidth) {
         this.title = title;
         setBackground(Main.BACKGROUND);
@@ -62,6 +72,11 @@ public class BaseScreen extends JPanel {
         }
     }
 
+    /**
+     * Updates UI elements to comply with the currently set dark/light mode.
+     * 
+     * @author Nathan Grimsey
+     */
     public void darkMode() {
         setBackground(Main.BACKGROUND);
         heading.setForeground(Main.TEXT);

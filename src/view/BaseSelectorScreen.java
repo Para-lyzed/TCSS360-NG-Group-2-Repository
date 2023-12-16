@@ -40,6 +40,17 @@ public class BaseSelectorScreen extends BaseScreen {
     protected CustomButton createButton;
     protected CustomButton importButton;
 
+    /**
+     * Parent class for all Selector screens. Sets up the scrollable panel, searching, 
+     * and buttons.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param title of the panel.
+     * @param type String representation to set button to "New <type>" or "Import <type>".
+     * @param userSettingsType
+     * @param fileExtension
+     */
     public BaseSelectorScreen(int width, int height, String title, String type, int userSettingsType, String fileExtension) {
         super(width, height, title, 4);
         searchLabel.setFont(Main.BASE_FONT);

@@ -251,7 +251,6 @@ public class BaseFrame extends JFrame {
                 break;
         
             default:
-                System.out.println("The screen name: " + screenName + " is not a valid selection");
                 validName = false;
                 break;
         }
