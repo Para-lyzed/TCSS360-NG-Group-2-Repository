@@ -1,14 +1,11 @@
 package view;
 
-import java.awt.Dialog;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -29,10 +26,6 @@ import model.Main;
  */
 public class BaseSelectorScreen extends BaseScreen {
 
-    private static final JLabel confirmDialogLabel = new JLabel("Are you sure?");
-    private final CustomButton confirmDialogYesButton = new CustomButton("Yes");
-    private final CustomButton confirmDialogNoButton = new CustomButton("No");
-    private static JDialog confirmDialog;
     private final JLabel searchLabel = new JLabel("Search: ");
 
     protected final JFileChooser fileChooser = new JFileChooser();
@@ -128,20 +121,7 @@ public class BaseSelectorScreen extends BaseScreen {
                 Main.BASE_FRAME.switchScreen("Create a New " + type);
             }
         });
-        confirmDialog = new JDialog();
-        confirmDialog.setLocationRelativeTo(null);
-        confirmDialog.setSize(200, 100);
-        confirmDialog.setResizable(false);
-        confirmDialog.setLayout(new FlowLayout());
-        confirmDialog.getContentPane().setBackground(Main.BACKGROUND);
-        confirmDialogLabel.setFont(Main.BASE_FONT);
-        confirmDialogLabel.setForeground(Main.TEXT);
-        confirmDialog.add(confirmDialogLabel);
-        confirmDialog.add(confirmDialogYesButton);
-        confirmDialog.add(confirmDialogNoButton);
-        confirmDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        confirmDialog.setVisible(false);
-        confirmDialogYesButton.addActionListener(new ActionListener() {
+        deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fileName = listPane.getSelectedValue();
@@ -150,19 +130,6 @@ public class BaseSelectorScreen extends BaseScreen {
                 recentFiles.remove(fileName);
                 updateListPaneEntries();
                 deleteFile.delete();
-                confirmDialog.setVisible(false);
-            }
-        });
-        confirmDialogNoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                confirmDialog.setVisible(false);
-            }
-        });
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                confirmDialog.setVisible(true);
             }
         });
         fileChooser.setFileFilter(new FileNameExtensionFilter("MPP " + type + " File", fileExtension));
@@ -175,10 +142,6 @@ public class BaseSelectorScreen extends BaseScreen {
     @Override
     public void darkMode() {
         super.darkMode();
-        confirmDialog.setBackground(Main.BACKGROUND);
-        confirmDialogLabel.setForeground(Main.TEXT);
-        confirmDialogYesButton.darkMode();
-        confirmDialogNoButton.darkMode();
         searchLabel.setForeground(Main.TEXT);
         searchBar.darkMode();
         listPane.setForeground(Main.TEXT);

@@ -52,7 +52,7 @@ public class Main {
     private static final Color LIGHT_MENU_BACKGROUND = Color.decode("#EBEBEB");
     private static final Color LIGHT_TEXT = Color.decode("#323232");
     private static final Color LIGHT_CARET = Color.decode("#242424");
-    private static final Color LIGHT_SCROLLBAR = Color.decode("#737373");
+    private static final Color LIGHT_SCROLLBAR = Color.decode("#A1A1A1");
     private static final Color DARK_BACKGROUND = Color.decode("#242424");
     private static final Color DARK_SECONDARY_BACKGROUND = Color.decode("#353535");
     private static final Color DARK_TEXT_ERROR = Color.decode("#4E1010");

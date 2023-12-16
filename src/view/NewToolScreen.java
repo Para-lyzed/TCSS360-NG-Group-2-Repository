@@ -23,7 +23,7 @@ public class NewToolScreen extends NewScreen {
     private static final String title = "Create a New Tool";
     private final JFileChooser fileChooser = new JFileChooser();
 
-    public NewToolScreen(int width, int height) {
+    public NewToolScreen(int width, int height, boolean inProject) {
         super(width, height, title, 3, "Price*");
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -48,7 +48,12 @@ public class NewToolScreen extends NewScreen {
                         }
                         DataIO.saveTool(newTool, Path.of(exportPathString));
                     }
-                    Main.BASE_FRAME.switchScreen("Tools");
+                    if (inProject) {
+                        Main.BASE_FRAME.openProjectTools(true);
+                    }
+                    else {
+                        Main.BASE_FRAME.switchScreen("Tools");
+                    }
                 }
                 else {
                     inputError();
@@ -58,7 +63,12 @@ public class NewToolScreen extends NewScreen {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.resetToProjects();
+                if (inProject) {
+                    Main.BASE_FRAME.openProjectTools(true);
+                }
+                else {
+                    Main.BASE_FRAME.resetToProjects();
+                }
             }
         });
     }

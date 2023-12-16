@@ -32,6 +32,7 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
     private static final JLabel priceLabel = new JLabel("Price");
     private static final JLabel spacerLabel = new JLabel("                       ");
     private static final JLabel spacerLabelTwo = new JLabel("                       ");
+    private CustomButton materialButton = new CustomButton("Add Material");
     private LinkedList<Expense> projectExpenses;
     private HashMap<ProjectEntryRow, Expense> expenseTableEntries = new HashMap<>();
     private int rowCount = 0;
@@ -52,6 +53,9 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         priceLabel.setFont(Main.TABLE_FONT);
         priceLabel.setForeground(Main.TEXT);
         c.anchor = GridBagConstraints.NORTH;
+        c.gridx = 1;
+        c.gridy = 1;
+        add(materialButton, c);
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 8;
@@ -77,7 +81,13 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addRow(new ProjectEntryRow(4, rowCount, 2, 3));
+                addRow(new ProjectEntryRow(4, 2, 3));
+            }
+        });
+        materialButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.BASE_FRAME.openProjectMaterialSelect(false);
             }
         });
         load();
@@ -85,7 +95,7 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
 
     private void load() {
         for (int i = 0; i < projectExpenses.size(); i++) {
-            ProjectEntryRow entryRow = new ProjectEntryRow(4, rowCount, 2, 3);
+            ProjectEntryRow entryRow = new ProjectEntryRow(4, 2, 3);
             addRow(entryRow);
             Expense expense = projectExpenses.get(i);
             expenseTableEntries.put(entryRow, expense);
@@ -124,22 +134,6 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         contentPanel.add(entryRow.updateButton, c);
         contentPanel.setPreferredSize(new Dimension(contentScrollPane.getWidth() - ((Integer)UIManager.get("ScrollBar.width")).intValue(), 36 * (rowCount + 2)));
         contentPanel.setSize(getPreferredSize());
-        // nameTextField.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         Expense newExpense = updateExpense(nameTextField, categoryTextField, priceTextField, numberTextField);
-        //         if (newExpense != null) {
-        //             Expense currentExpense = expenseTableEntries.get(entryRow);
-        //             if (currentExpense != null) {
-        //                 expenses.set(entryRow.index, newExpense);
-        //             }
-        //             else {
-        //                 expenses.add(entryRow.index, newExpense);
-        //             }
-        //         }
-        //         entryRow.updateButton.setVisible(false);
-        //     }
-        // });
         nameTextField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -158,22 +152,6 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
 
             }
         });
-        // categoryTextField.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         Expense newExpense = updateExpense(nameTextField, categoryTextField, priceTextField, numberTextField);
-        //         if (newExpense != null) {
-        //             Expense currentExpense = expenseTableEntries.get(entryRow);
-        //             if (currentExpense != null) {
-        //                 expenses.set(entryRow.index, newExpense);
-        //             }
-        //             else {
-        //                 expenses.add(entryRow.index, newExpense);
-        //             }
-        //         }
-        //         entryRow.updateButton.setVisible(false);
-        //     }
-        // });
         categoryTextField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -192,22 +170,6 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
 
             }
         });
-        // numberTextField.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         Expense newExpense = updateExpense(nameTextField, categoryTextField, priceTextField, numberTextField);
-        //         if (newExpense != null) {
-        //             Expense currentExpense = expenseTableEntries.get(entryRow);
-        //             if (currentExpense != null) {
-        //                 expenses.set(entryRow.index, newExpense);
-        //             }
-        //             else {
-        //                 expenses.add(entryRow.index, newExpense);
-        //             }
-        //         }
-        //         entryRow.updateButton.setVisible(false);
-        //     }
-        // });
         numberTextField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -226,22 +188,6 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
 
             }
         });
-        // priceTextField.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         Expense newExpense = updateExpense(nameTextField, categoryTextField, priceTextField, numberTextField);
-        //         if (newExpense != null) {
-        //             Expense currentExpense = expenseTableEntries.get(entryRow);
-        //             if (currentExpense != null) {
-        //                 expenses.set(entryRow.index, newExpense);
-        //             }
-        //             else {
-        //                 expenses.add(entryRow.index, newExpense);
-        //             }
-        //         }
-        //         entryRow.updateButton.setVisible(false);
-        //     }
-        // });
         priceTextField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -265,16 +211,14 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
             public void actionPerformed(ActionEvent e) {
                 Expense newExpense = updateExpense(nameTextField, categoryTextField, priceTextField, numberTextField);
                 if (newExpense != null) {
-                    project.updateExpense(newExpense);
+                    if (expenseTableEntries.get(entryRow) != null) {
+                        project.removeExpense(expenseTableEntries.get(entryRow));
+                    }
+                    project.addExpense(newExpense);
                     expenseTableEntries.put(entryRow, newExpense);
                     overviewScreen.refreshBudget();
                 }
                 entryRow.updateButton.setVisible(false);
-                System.out.println("Expenses stored in project: ");
-                for (int i = 0; i < projectExpenses.size(); i++) {
-                    System.out.println(projectExpenses.get(i).toString());
-                }
-                System.out.println(project.getTotalCost());
             }
         });
         entryRow.deleteButton.addActionListener(new ActionListener() {
@@ -326,19 +270,5 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
             return null;
         }
     }
-
-    // private void updateExpenses(){
-    //     ArrayList<Expense> expenses = new ArrayList<>();
-    //     for (int i = 0; i < expenseTextFields.size(); i++) {
-    //         ArrayList<JTextField> rowTextFields = expenseTextFields.get(i);
-    //         if (!rowTextFields.get(0).getText().isEmpty() && !rowTextFields.get(1).getText().isEmpty() && !rowTextFields.get(2).getText().isEmpty() && !rowTextFields.get(3).getText().isEmpty()) {
-    //             Expense expense = new Expense(rowTextFields.get(0).getText(), rowTextFields.get(1).getText(), Integer.parseInt(rowTextFields.get(2).getText()), Integer.parseInt(rowTextFields.get(3).getText()));
-    //             expenses.add(expense);
-    //         }
-    //     }
-    //     project.setExpenses(expenses);
-    //     overviewScreen.refreshBudget();
-    //     Main.BASE_FRAME.repaint();
-    // }
 
 }

@@ -7,7 +7,6 @@ import java.io.File;
 import java.nio.file.Paths;
 
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 
 import model.DataIO;
 import model.Main;
@@ -16,38 +15,28 @@ import model.Project;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * view.ProjectOverviewScreen.java
+ * view.ProjectLogScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
-public class ProjectExpenseScreen extends BaseScreen {
+public class ProjectLogScreen extends BaseScreen {
     
-    private static final String title = "Expenses";
+    private static final String title = "Logs";
     private static final JFileChooser fileChooser = new JFileChooser();
     private CustomButton saveButton = new CustomButton("Save");
-    private Project project;
-    private String budgetString;
-    private JLabel budgetLabel;
-    private ProjectExpensePanel expensesPanel;
+    private ProjectLogPanel logPanel;
 
-    public ProjectExpenseScreen(int width, int height, Project project) {
+    public ProjectLogScreen(int width, int height, Project project) {
         super(width, height, title, 1);
-        this.project = project;
-        budgetString = " / $" + project.getBudget();
-        budgetLabel = new JLabel("$" + project.getTotalCost() + budgetString);
-        budgetLabel.setFont(Main.HEADING_ONE_FONT);
-        budgetLabel.setForeground(Main.TEXT);
-        c.gridx = 1;
-        add(budgetLabel, c);
-        expensesPanel = new ProjectExpensePanel(project, this);
-        expensesPanel.setBorder(Main.BORDER);
+        logPanel = new ProjectLogPanel(project);
+        logPanel.setBorder(Main.BORDER);
         c.gridx = 0;
         c.gridy++;
         c.gridwidth = 2;
         c.fill = GridBagConstraints.BOTH;
         c.weighty = 20;
-        add(expensesPanel, c);
+        add(logPanel, c);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,10 +59,6 @@ public class ProjectExpenseScreen extends BaseScreen {
         c.fill = GridBagConstraints.NONE;
         c.weighty = 1;
         add(saveButton, c);
-    }
-
-    public void refreshBudget() {
-        budgetLabel.setText("$" + project.getTotalCost() + " / $" + project.getBudget());
     }
 
 }
