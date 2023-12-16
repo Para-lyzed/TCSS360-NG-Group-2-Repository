@@ -169,6 +169,16 @@ public class Project implements Serializable {
     /**
      * Add a Material as an Expense to the Project.
      * 
+     * @author Nathan Grimsey
+     */
+    public void addExpense(Expense expense) {
+        expenses.add(expense);
+        updateTotalCost();
+    }
+
+    /**
+     * Add a Material as an Expense to the Project.
+     * 
      * @author Maple Gunn
      */
     public void addExpense(Material material, int quantity) {
@@ -279,26 +289,6 @@ public class Project implements Serializable {
     }
 
     /**
-     * Update an Expense by using another Expense.
-     * 
-     * @author Nathan Grimsey
-     */
-    public void updateExpense(Expense expense) {
-        Expense e;
-        for (int i = 0; i < expenses.size(); i++) {
-
-            if (expenses.get(i).compareTo(expense) == 0) {
-                e = expenses.get(i);
-                e.set(expense);
-                updateTotalCost();
-                return;
-            }
-        }
-        expenses.add(expense);
-        updateTotalCost();
-    }
-
-    /**
      * Update an Expense by using a Material.
      * 
      * @author Maple Gunn
@@ -339,6 +329,10 @@ public class Project implements Serializable {
                 return;
             }
         }
+    }
+
+    public void updateLog(Log log) {
+
     }
 
     /**
@@ -389,6 +383,24 @@ public class Project implements Serializable {
                 return;
             }
         }
+    }
+
+    /**
+     * Checks if the Project contains a Tool as an Expense.
+     * 
+     * @param tool the tool to check for.
+     * 
+     * @author Nathan Grimsey
+     * 
+     */
+    public boolean hasToolAsExpense(Tool tool) {
+         for (int i = 0; i < expenses.size(); i++) {
+
+            if (expenses.get(i).compareTo(tool) == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

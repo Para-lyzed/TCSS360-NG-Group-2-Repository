@@ -213,6 +213,9 @@ public class Expense implements Comparable<Expense>, Serializable {
      */
     @Override
     public int compareTo(Expense otherExpense) {
+        if (otherExpense == null) {
+            return -1;
+        }
         int compareVal = 0;
         compareVal += name.compareTo(otherExpense.getName());
 

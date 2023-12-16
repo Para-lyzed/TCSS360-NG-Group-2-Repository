@@ -2,8 +2,8 @@ package model;
 
 import java.awt.Image;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
 
 /**
  * TCSS 360B
@@ -16,7 +16,7 @@ import java.time.LocalDate;
  */
 public class Log implements Comparable<Log>, Serializable {
     private String name;
-    private LocalDate date;
+    private Date date;
     private String description;
     private List<Image> images;
 
@@ -28,7 +28,7 @@ public class Log implements Comparable<Log>, Serializable {
      *
      * @author Cody Dukes
      */
-    public Log(LocalDate date, String name) {
+    public Log(Date date, String name) {
         this.date = date;
         this.name = name;
     }
@@ -62,7 +62,7 @@ public class Log implements Comparable<Log>, Serializable {
      *
      * @author Cody Dukes
      */
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -73,7 +73,7 @@ public class Log implements Comparable<Log>, Serializable {
      *
      * @author Cody Dukes
      */
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

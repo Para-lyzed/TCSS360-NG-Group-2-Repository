@@ -22,7 +22,7 @@ import model.Main;
  */
 public class Menu extends JPanel {
     private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
-    private static String[] projectEntries = {"Back to main menu", "Expenses", "Project Tools", "Logs", "Details", "Budget", "Project Settings"};
+    private static String[] projectEntries = {"Back to main menu", "Expenses", "Project Tools", "Logs", "Details"}; //, "Budget", "Project Settings"};
     private static int menuIconSize = Main.MENU_WIDTH / 7;
     private static Image darkMenuImage;
     private static Image darkBackImage;
@@ -185,14 +185,25 @@ public class Menu extends JPanel {
      * @author Nathan Grimsey
      */
     private void entryPressed(String entryName) {
-        if (entryName.equals("Back to main menu")) {
-            Main.BASE_FRAME.resetToProjects();
-        }
-        else if (entryName.equals("Details")) {
-            Main.BASE_FRAME.openProjectDetails();
-        }
-        else {
-            Main.BASE_FRAME.switchScreen(entryName);
+        if (!Main.BASE_FRAME.titleEqual(entryName)) {
+            if (entryName.equals("Back to main menu")) {
+                Main.BASE_FRAME.resetToProjects();
+            }
+            else if (entryName.equals("Details")) {
+                Main.BASE_FRAME.openProjectDetails(false);
+            }
+            else if (entryName.equals("Project Tools")) {
+                Main.BASE_FRAME.openProjectTools(false);
+            }
+            else if (entryName.equals("Expenses")) {
+                Main.BASE_FRAME.openProjectExpenses(false);
+            }
+            else if (entryName.equals("Logs")) {
+                Main.BASE_FRAME.openProjectLogs(false);
+            }
+            else {
+                Main.BASE_FRAME.switchScreen(entryName);
+            }
         }
         closeMenu();
     }

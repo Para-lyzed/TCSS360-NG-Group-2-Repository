@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Font;
+import java.text.DateFormat;
 import java.text.NumberFormat;
 
 import javax.swing.JFormattedTextField;
@@ -17,8 +18,18 @@ public class CustomTextField extends JFormattedTextField {
         setCaretColor(Main.CARET);
         setBorder(Main.BORDER);
     }
+
     public CustomTextField(NumberFormat numberFormat) {
         super(numberFormat);
+        setFont(Main.BASE_FONT);
+        setBackground(Main.TEXT_BOX_BACKGROUND);
+        setForeground(Main.TEXT);
+        setCaretColor(Main.CARET);
+        setBorder(Main.BORDER);
+    }
+
+    public CustomTextField(DateFormat dateFormat) {
+        super(dateFormat);
         setFont(Main.BASE_FONT);
         setBackground(Main.TEXT_BOX_BACKGROUND);
         setForeground(Main.TEXT);
@@ -37,6 +48,15 @@ public class CustomTextField extends JFormattedTextField {
 
     public CustomTextField(NumberFormat numberFormat, Font font) {
         super(numberFormat);
+        setFont(font);
+        setBackground(Main.TEXT_BOX_BACKGROUND);
+        setForeground(Main.TEXT);
+        setCaretColor(Main.CARET);
+        setBorder(Main.BORDER);
+    }
+
+    public CustomTextField(DateFormat dateFormat, Font font) {
+        super(dateFormat);
         setFont(font);
         setBackground(Main.TEXT_BOX_BACKGROUND);
         setForeground(Main.TEXT);

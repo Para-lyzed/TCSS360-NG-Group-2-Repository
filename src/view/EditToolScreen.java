@@ -24,7 +24,7 @@ public class EditToolScreen extends NewScreen {
     private static final String title = "Edit Tool";
     private static final JFileChooser fileChooser = new JFileChooser();
 
-    public EditToolScreen(int width, int height, Tool tool) {
+    public EditToolScreen(int width, int height, Tool tool, boolean inProject) {
         super(width, height, title, 3, "Price*");
         nameTextField.setText(tool.getName());
         fieldTwoTextField.setText(String.valueOf(tool.getPrice()));
@@ -58,7 +58,12 @@ public class EditToolScreen extends NewScreen {
                         Main.userSettings.removeFromRecent(oldName, UserSettings.TOOL);
                         DataIO.saveTool(tool, Path.of(exportPathString));
                     }
-                    Main.BASE_FRAME.resetToTools();
+                    if (inProject) {
+                        Main.BASE_FRAME.openProjectTools(true);
+                    }
+                    else {
+                        Main.BASE_FRAME.resetToTools();
+                    }
                 }
                 else {
                     inputError();
@@ -68,7 +73,12 @@ public class EditToolScreen extends NewScreen {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.resetToTools();
+                if (inProject) {
+                        Main.BASE_FRAME.openProjectTools(true);
+                    }
+                    else {
+                        Main.BASE_FRAME.resetToTools();
+                    }
             }
         });
     }

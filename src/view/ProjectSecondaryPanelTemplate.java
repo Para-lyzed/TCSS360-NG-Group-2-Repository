@@ -54,7 +54,6 @@ public class ProjectSecondaryPanelTemplate extends JPanel {
         add(contentScrollPane, c);
         addButton = new CustomButton(addButtonName);
         c.gridy++;
-        c.gridx++;
         c.weightx = 1;
         c.weighty = 1;
         c.gridwidth = 1;

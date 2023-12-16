@@ -59,7 +59,7 @@ public class AboutTest {
      */
     @Test
     void testAboutGetVersion() {
-        final String expectedVersion = "0.2";
+        final String expectedVersion = "1.0";
 
         assertEquals(expectedVersion, About.getVersion(),
                 "This assert tests the getVersion method");

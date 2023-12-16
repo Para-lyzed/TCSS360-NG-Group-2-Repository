@@ -65,12 +65,7 @@ public class ProjectDetailsScreen extends NewScreen {
                 }
             }
         });
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.resetToTools();
-            }
-        });
+        remove(cancelButton);
     }
 
 }

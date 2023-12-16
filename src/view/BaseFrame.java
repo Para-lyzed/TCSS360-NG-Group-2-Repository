@@ -38,10 +38,15 @@ public class BaseFrame extends JFrame {
     private static NewMaterialScreen newMaterialScreen;
     private static ProjectExpenseScreen projectExpenseScreen;
     private static ProjectDetailsScreen projectDetailsScreen;
+    private static ProjectToolScreen projectToolScreen;
+    private static ProjectLogScreen projectLogScreen;
+    private static ProjectToolSelectScreen projectToolSelectScreen;
+    private static ProjectMaterialSelectScreen projectMaterialSelectScreen;
     private static EditToolScreen editToolScreen;
     private static EditMaterialScreen editMaterialScreen;
     private static BaseScreen currentScreen;
     private static Project currentWorkingProject;
+    private static boolean currentlyInsideProject;
     public static boolean menuOpen;
     public static final int EXPENSES = 0;
     public static final int TOOLS = 1;
@@ -74,7 +79,7 @@ public class BaseFrame extends JFrame {
         mainMenu = new Menu(true, getHeight());
         projectMenu = new Menu(false, getHeight());
         newProjectScreen = new NewProjectScreen(getWidth(), getHeight());
-        newToolScreen = new NewToolScreen(getWidth(), getHeight());
+        newToolScreen = new NewToolScreen(getWidth(), getHeight(), false);
         newMaterialScreen = new NewMaterialScreen(getWidth(), getHeight());
         menuOpen = false;
         add(lPane, BorderLayout.CENTER);
@@ -99,6 +104,23 @@ public class BaseFrame extends JFrame {
                 projectMenu.setHeight(getHeight());
             }
         });
+    }
+
+    /**
+     * Returns true if the given String equals the current screen title.
+     * 
+     * @param screenName the String to test.
+     * @return true if String is equal to the title of current screen.
+     * 
+     * @author Nathan Grimsey
+     */
+    public boolean titleEqual(String screenName) {
+        if (currentScreen.title.equals(screenName)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -155,9 +177,15 @@ public class BaseFrame extends JFrame {
                 break;
 
             case "Create a New Tool":
-                newToolScreen = new NewToolScreen(getWidth(), getHeight());
+                if (currentlyInsideProject) {
+                    newToolScreen = new NewToolScreen(getWidth(), getHeight(), true);
+                    lPane.remove(projectMenu);
+                }
+                else {
+                    newToolScreen = new NewToolScreen(getWidth(), getHeight(), false);
+                    lPane.remove(mainMenu);
+                }
                 lPane.add(newToolScreen, BorderLayout.CENTER, 1);
-                lPane.remove(mainMenu);
                 currentScreen = newToolScreen;
                 break;
 
@@ -179,9 +207,34 @@ public class BaseFrame extends JFrame {
                 currentScreen = projectDetailsScreen;
                 break;
 
+            case "Project Tools":
+                lPane.add(projectToolScreen, BorderLayout.CENTER, 1);
+                currentScreen = projectToolScreen;
+                break;
+
+            case "Import Tool":
+                lPane.add(projectToolSelectScreen, BorderLayout.CENTER, 1);
+                currentScreen = projectToolSelectScreen;
+                break;
+
+            case "Import Material":
+                lPane.add(projectMaterialSelectScreen, BorderLayout.CENTER, 1);
+                currentScreen = projectMaterialSelectScreen;
+                break;
+
+            case "Logs":
+                lPane.add(projectLogScreen, BorderLayout.CENTER, 1);
+                currentScreen = projectLogScreen;
+                break;
+
             case "Edit Tool":
+                if (currentlyInsideProject) {
+                    lPane.remove(projectMenu);
+                }
+                else {
+                    lPane.remove(mainMenu);
+                }
                 lPane.add(editToolScreen, BorderLayout.CENTER, 1);
-                lPane.remove(mainMenu);
                 currentScreen = editToolScreen;
                 break;
 
@@ -245,6 +298,26 @@ public class BaseFrame extends JFrame {
 
                 case "Details":
                     lPane.remove(projectDetailsScreen);
+                    projectMenu.closeMenu();
+                    break;
+
+                case "Project Tools":
+                    lPane.remove(projectToolScreen);
+                    projectMenu.closeMenu();
+                    break;
+
+                case "Import Tool":
+                    lPane.remove(projectToolSelectScreen);
+                    projectMenu.closeMenu();
+                    break;
+                
+                case "Import Material":
+                    lPane.remove(projectMaterialSelectScreen);
+                    projectMenu.closeMenu();
+                    break;
+
+                case "Logs":
+                    lPane.remove(projectLogScreen);
                     projectMenu.closeMenu();
                     break;
 
@@ -312,6 +385,26 @@ public class BaseFrame extends JFrame {
                     projectDetailsScreen.menuHeading(isOpen);
                     projectDetailsScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;
+
+                case "Project Tools":
+                    projectToolScreen.menuHeading(isOpen);
+                    projectToolScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
+
+                case "Import Tool":
+                    projectToolSelectScreen.menuHeading(isOpen);
+                    projectToolSelectScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
+
+                case "Import Material":
+                    projectMaterialSelectScreen.menuHeading(isOpen);
+                    projectMaterialSelectScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
+
+                case "Logs":
+                    projectLogScreen.menuHeading(isOpen);
+                    projectLogScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
             
                 default:
                     break;
@@ -333,19 +426,103 @@ public class BaseFrame extends JFrame {
         setTitle(titlePrefix + "Expenses");
         lPane.add(projectMenu, BorderLayout.WEST, 0);
         currentWorkingProject = project;
+        currentlyInsideProject = true;
     }
 
     /**
-     * Opens a Project into a new ProjectDetailsScreen.
+     * Opens the current Project into ProjectExpenseScreen.
      * 
      * @param project
      * 
      * @author Nathan Grimsey
      */
-    public void openProjectDetails() {
+    public void openProjectExpenses(boolean addMenu) {
+        if (addMenu) {
+            lPane.add(projectMenu, BorderLayout.WEST, 0);
+        }
+        projectExpenseScreen = new ProjectExpenseScreen(getWidth(), getHeight(), currentWorkingProject);
+        switchScreen("Expenses");
+        setTitle(titlePrefix + "Expenses");
+    }
+
+    /**
+     * Opens the current Project into ProjectDetailsScreen.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openProjectDetails(boolean addMenu) {
+        if (addMenu) {
+            lPane.add(projectMenu, BorderLayout.WEST, 0);
+        }
         projectDetailsScreen = new ProjectDetailsScreen(getWidth(), getHeight(), currentWorkingProject);
         switchScreen("Details");
         setTitle(titlePrefix + "Details");
+    }
+
+    /**
+     * Opens the current Project into ProjectToolScreen.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openProjectTools(boolean addMenu) {
+        if (addMenu) {
+            lPane.add(projectMenu, BorderLayout.WEST, 0);
+        }
+        projectToolScreen = new ProjectToolScreen(getWidth(), getHeight(), currentWorkingProject);
+        switchScreen("Project Tools");
+        setTitle(titlePrefix + "Project Tools");
+    }
+
+    /**
+     * Opens a ProjectToolSelectScreen to select a tool to add.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openProjectToolSelect(boolean addMenu) {
+        if (addMenu) {
+            lPane.add(projectMenu, BorderLayout.WEST, 0);
+        }
+        projectToolSelectScreen = new ProjectToolSelectScreen(getWidth(), getHeight(), currentWorkingProject);
+        switchScreen("Import Tool");
+        setTitle(titlePrefix + "Import Tool");
+    }
+
+    /**
+     * Opens a ProjectMaterialSelectScreen to select a tool to add.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openProjectMaterialSelect(boolean addMenu) {
+        if (addMenu) {
+            lPane.add(projectMenu, BorderLayout.WEST, 0);
+        }
+        projectMaterialSelectScreen = new ProjectMaterialSelectScreen(getWidth(), getHeight(), currentWorkingProject);
+        switchScreen("Import Material");
+        setTitle(titlePrefix + "Import Material");
+    }
+
+    /**
+     * Opens the current Project into ProjectLogScreen.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openProjectLogs(boolean addMenu) {
+        if (addMenu) {
+            lPane.add(projectMenu, BorderLayout.WEST, 0);
+        }
+        projectLogScreen = new ProjectLogScreen(getWidth(), getHeight(), currentWorkingProject);
+        switchScreen("Logs");
+        setTitle(titlePrefix + "Logs");
     }
 
     /**
@@ -356,7 +533,7 @@ public class BaseFrame extends JFrame {
      * @author Nathan Grimsey
      */
     public void openTool(Tool tool) {
-        editToolScreen = new EditToolScreen(getWidth(), getHeight(), tool);
+        editToolScreen = new EditToolScreen(getWidth(), getHeight(), tool, currentlyInsideProject);
         switchScreen("Edit Tool");
         titlePrefix = tool.getName() + " - ";
         setTitle(titlePrefix + "Edit Tool");
@@ -385,6 +562,7 @@ public class BaseFrame extends JFrame {
         lPane.remove(projectMenu);
         lPane.add(mainMenu, BorderLayout.WEST, 0);
         switchScreen("Projects");
+        currentlyInsideProject = false;
     }
 
     /**
