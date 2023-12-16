@@ -173,6 +173,8 @@ public class SettingScreen extends BaseScreen {
                 returnVal = fileChooser.showOpenDialog(Main.BASE_FRAME);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     DataIO.importProgramData(fileChooser.getSelectedFile().toPath());
+                    name.setText(Main.userSettings.getProfile().getName());
+                    email.setText(Main.userSettings.getProfile().getEmail());
                 }
             }
         });
