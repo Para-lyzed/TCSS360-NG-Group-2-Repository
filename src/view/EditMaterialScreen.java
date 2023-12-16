@@ -28,6 +28,13 @@ public class EditMaterialScreen extends NewScreen {
     private final JFileChooser fileChooser = new JFileChooser();
     private CustomTextField categoryTextField = new CustomTextField();
 
+    /**
+     * A screen for the user to edit an existing material.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param material to edit.
+     */
     public EditMaterialScreen(int width, int height, Material material) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);

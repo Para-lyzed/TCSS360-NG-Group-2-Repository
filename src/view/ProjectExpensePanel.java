@@ -2,8 +2,10 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -250,8 +252,15 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         String priceString = priceField.getText();
         String quantityString = quantityField.getText();
         if (!(name.isEmpty() || category.isEmpty() || priceString.isEmpty() || quantityString.isEmpty())) {
-            int price = ((Number) priceField.getValue()).intValue();
-            int quantity = ((Number) quantityField.getValue()).intValue();
+            int price = 0;
+            int quantity = 0;
+            try {
+                price = Integer.parseInt(priceString);
+                quantity = Integer.parseInt(quantityString);
+            }
+            catch (Exception e) {
+
+            }
             return new Expense(name, category, price, quantity);
         }
         else {

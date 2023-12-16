@@ -7,9 +7,22 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import model.Main;
 
+/**
+ * TCSS 360B
+ * Team MVP - Deliverable 3
+ * view.CustomScrollBar.java
+ * 
+ * @author Nathan Grimsey
+ *
+ */
 public class CustomScrollBar extends BasicScrollBarUI {
     private static final JButton emptyButton = new JButton();
 
+    /**
+     * Makes a scrollbar with custom colors for themeing.
+     * 
+     * @author Nathan Grimsey
+     */
     public CustomScrollBar() {
         super();
         emptyButton.setPreferredSize(new Dimension(0, 0));

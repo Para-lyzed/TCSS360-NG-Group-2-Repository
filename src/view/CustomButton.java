@@ -46,6 +46,14 @@ public class CustomButton extends JButton {
         setText(name);
     }
 
+    /**
+     * Default button with formatting applied, set to String name, with specified Font.
+     * 
+     * @param name of the button.
+     * @param font to set the button to.
+     * 
+     * @author Nathan Grimsey
+     */
     public CustomButton(String name, Font font) {
         super();
         setBackground(Main.BUTTON_BACKGROUND);
@@ -55,6 +63,11 @@ public class CustomButton extends JButton {
         setText(name);
     }
 
+    /**
+     * Refrehes the colors of the UI elements to comply ith dark/light mode.
+     * 
+     * @author Nathan Grimsey
+     */
     public void darkMode() {
         setBackground(Main.BUTTON_BACKGROUND);
         setForeground(Main.TEXT);
