@@ -17,11 +17,17 @@ import org.junit.jupiter.api.Test;
 public class ExpenseTest {
     private Expense myDefaultExpense;
 
+    /**
+     * Makes a new expense before each test.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultExpense = new Expense("Test-Expense", "none", 3, 5);
     }
 
+    /**
+     * Tests getName.
+     */
     @Test
     void testExpenseName() {
         final String expectedName = "Test-Expense";
@@ -30,6 +36,9 @@ public class ExpenseTest {
                 "This assert tests the default Expense name");
     }
 
+    /**
+     * Tests getPrice.
+     */
     @Test
     void testExpensePrice() {
         final int expectedPrice = 3;

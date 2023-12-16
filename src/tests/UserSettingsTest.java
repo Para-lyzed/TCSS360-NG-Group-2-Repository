@@ -19,16 +19,22 @@ public class UserSettingsTest {
 
     private UserSettings myDefaultUserSettings;
 
+    /**
+     * Makes a new UserSetting before any tests.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultUserSettings = new UserSettings();
     }
 
+    /**
+     * Tests default profile values
+     */
     @Test
     void testProfile() {
         final Profile defaultProfile = new Profile();
 
-        assertEquals(defaultProfile.toString(), myDefaultUserSettings.getProfile().toString(),
+        assertEquals(defaultProfile.toString(), "No name registered, No email registered",
                 "This assert tests the default Profile");
     }
 

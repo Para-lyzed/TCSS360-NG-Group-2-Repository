@@ -20,12 +20,18 @@ public class AboutTest {
     private Profile myDefaultProfile;
     private Profile myFakeProfile;
 
+    /**
+     * Sets up a profile to be checked with each test.
+     */
     @BeforeEach
     void setUp() throws Exception {
         myDefaultProfile = new Profile();
         myFakeProfile = new Profile("John Baker", "jBaker@email.com");
     }
 
+    /**
+     * Tests getOwner
+     */
     @Test
     void testAboutGetOwner() {
         final Profile expectedOwner = myDefaultProfile;
@@ -37,6 +43,9 @@ public class AboutTest {
                 "This assert tests the getOwner by comparing default emails");
     }
 
+    /**
+     * Tests getOwnerString
+     */
     @Test
     void testAboutGetOwnerString() {
         final String expectedString = "No name registered (No email registered)";
@@ -45,6 +54,9 @@ public class AboutTest {
                 "This assert tests the getOwnerString method");
     }
 
+    /**
+     * Tests version
+     */
     @Test
     void testAboutGetVersion() {
         final String expectedVersion = "1.0";
@@ -53,6 +65,9 @@ public class AboutTest {
                 "This assert tests the getVersion method");
     }
 
+    /**
+     * Tests contributors
+     */
     @Test
     void testAboutGetContributors() {
         final String[] expectedContributors = {"Nathan Grimsey", "Maple Gunn", "Cody Dukes"};
@@ -63,6 +78,9 @@ public class AboutTest {
         }
     }
 
+    /**
+     * Tests update profiles with one update method.
+     */
     @Test
     void testAboutUpdateProfile1() {
         final String expectedName = myFakeProfile.getName();
@@ -77,6 +95,9 @@ public class AboutTest {
                 "This assert tests if the updateProfile method updates the profile email");
     }
 
+    /**
+     * Tests update profiles with a profile field method.
+     */
     @Test
     void testAboutUpdateProfile2() {
         final String expectedName = myFakeProfile.getName();
