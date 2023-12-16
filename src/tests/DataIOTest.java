@@ -28,6 +28,9 @@ public class DataIOTest {
     private Path saveMaterialPath = Path.of("testMaterial.mat");
     private Path saveProjectPath = Path.of("testProject.proj");
 
+    /**
+     * Sets up a new userSettings.
+     */
     @BeforeEach
     void setUp() throws Exception {
         Main.userSettings = new UserSettings();
@@ -40,6 +43,9 @@ public class DataIOTest {
         myDefaultSettings = new UserSettings();
     }
 
+    /**
+     * Removes the userSettings after each test.
+     */
     @AfterEach
     void finishUp() throws Exception {
         File deleteToolFile = new File(saveToolPath.toString());
@@ -52,11 +58,17 @@ public class DataIOTest {
         deleteProjectFile.delete();
     }
 
+    /**
+     * Tests whether saving works correctly.
+     */
     @Test
     void testSaveProject() {
         assertTrue(DataIO.saveProject(myTestProject, saveProjectPath));
     }
 
+    /**
+     * Tests whether project opens correctly.
+     */
     @Test
     void testLoadProject() {
         DataIO.saveProject(myTestProject, saveProjectPath);
@@ -80,11 +92,17 @@ public class DataIOTest {
         }
     }
 
+    /**
+     * Tests if tools are saved.
+     */
     @Test
     void testSaveTool() {
         assertTrue(DataIO.saveTool(myTestTool, saveToolPath));
     }
 
+    /**
+     * Tests if tools can be loaded.
+     */
     @Test
     void testLoadTool() {
         DataIO.saveTool(myTestTool, saveToolPath);
@@ -100,11 +118,17 @@ public class DataIOTest {
         }
     }
 
+    /**
+     * Tests update profiles by getting their names.
+     */
     @Test
     void testSaveMaterial() {
         assertTrue(DataIO.saveMaterial(myTestMaterial, saveMaterialPath));
     }
 
+    /**
+     * Tests if materials can be loaded.
+     */
     @Test
     void testLoadMaterial() {
         DataIO.saveMaterial(myTestMaterial, saveMaterialPath);
