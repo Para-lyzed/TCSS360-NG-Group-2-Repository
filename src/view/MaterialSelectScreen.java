@@ -25,7 +25,7 @@ public class MaterialSelectScreen extends BaseSelectorScreen {
     private static final int userSettingsType = UserSettings.MATERIAL;
 
     /**
-     * Constructs a Project screen that the user can use to select or create a Material.
+     * Constructs a Material select screen that the user can use to select or create a Material.
      * 
      * @param width the width of the window.
      * @param height the height of the window.

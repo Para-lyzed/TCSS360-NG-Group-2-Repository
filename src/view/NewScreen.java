@@ -38,6 +38,8 @@ public class NewScreen extends BaseScreen {
      * @param title of the panel.
      * @param firstFieldWidth how maniy grid spaces the first fields should cover.
      * @param fieldTwoString the name of field 2.
+     * 
+     * @author Nathan Grimsey
      */
     public NewScreen(int width, int height, String title, int firstFieldWidth, String fieldTwoString) {
         super(width, height, title, gridWidth);

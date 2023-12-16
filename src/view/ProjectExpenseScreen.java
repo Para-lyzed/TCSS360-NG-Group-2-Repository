@@ -16,7 +16,7 @@ import model.Project;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * view.ProjectOverviewScreen.java
+ * view.ProjectExpenseScreen.java
  * 
  * @author Nathan Grimsey
  *
@@ -31,6 +31,15 @@ public class ProjectExpenseScreen extends BaseScreen {
     private JLabel budgetLabel;
     private ProjectExpensePanel expensesPanel;
 
+    /**
+     * Creates a screen where the user can view Expenses of a Project.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectExpenseScreen(int width, int height, Project project) {
         super(width, height, title, 1);
         this.project = project;
@@ -72,6 +81,11 @@ public class ProjectExpenseScreen extends BaseScreen {
         add(saveButton, c);
     }
 
+    /**
+     * Refreshes the budget label.
+     * 
+     * @author Nathan Grimsey
+     */
     public void refreshBudget() {
         budgetLabel.setText("$" + project.getTotalCost() + " / $" + project.getBudget());
     }

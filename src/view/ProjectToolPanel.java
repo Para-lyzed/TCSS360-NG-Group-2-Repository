@@ -34,6 +34,13 @@ public class ProjectToolPanel extends ProjectSecondaryPanelTemplate {
     private int rowCount = 0;
     private Project project;
 
+    /**
+     * Displays a scrollable list of Tools in a Project.
+     * 
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectToolPanel(Project project) {
         super(addButtonName);
         this.project = project;
@@ -83,6 +90,11 @@ public class ProjectToolPanel extends ProjectSecondaryPanelTemplate {
         load();
     }
 
+    /**
+     * Loads rows of Tools from Project.
+     * 
+     * @author Nathan Grimsey
+     */
     private void load() {
         for (int i = 0; i < projectTools.size(); i++) {
             Tool tool = projectTools.get(i);
@@ -91,6 +103,14 @@ public class ProjectToolPanel extends ProjectSecondaryPanelTemplate {
         }
     }
 
+    /**
+     * Adds a single row to the Expense list.
+     * 
+     * @param entryRow the row to add.
+     * @param tool the Tool associated with the row.
+     * 
+     * @author Nathan Grimsey
+     */
     private void addRow(ProjectEntryRow entryRow, Tool tool) {
         rowCount++;
         c.gridx = 0;

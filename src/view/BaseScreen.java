@@ -24,7 +24,7 @@ public class BaseScreen extends JPanel {
     protected GridBagConstraints c;
 
     /**
-     * BaseScreen is the parent for all screens on the program.
+     * BaseScreen is the parent for all screens in the program.
      * 
      * @param width of the panel.
      * @param height of the panel.

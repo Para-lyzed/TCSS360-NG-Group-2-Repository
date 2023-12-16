@@ -30,6 +30,8 @@ public class EditToolScreen extends NewScreen {
      * @param width of the panel.
      * @param height of the panel.
      * @param tool to edit.
+     * 
+     * @author Nathan Grimsey
      */
     public EditToolScreen(int width, int height, Tool tool, boolean inProject) {
         super(width, height, title, 3, "Price*");

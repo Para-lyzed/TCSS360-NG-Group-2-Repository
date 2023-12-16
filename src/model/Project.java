@@ -331,10 +331,6 @@ public class Project implements Serializable {
         }
     }
 
-    public void updateLog(Log log) {
-
-    }
-
     /**
      * Remove an Expense.
      * 

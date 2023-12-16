@@ -38,6 +38,13 @@ public class ProjectLogPanel extends ProjectSecondaryPanelTemplate {
     private int rowCount = 0;
     private Project project;
 
+    /**
+     * Displays a scrollable list of Logs in a Project.
+     * 
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectLogPanel(Project project) {
         super(addButtonName);
         this.project = project;
@@ -77,6 +84,11 @@ public class ProjectLogPanel extends ProjectSecondaryPanelTemplate {
         load();
     }
 
+    /**
+     * Loads rows of Logs from Project.
+     * 
+     * @author Nathan Grimsey
+     */
     private void load() {
         for (int i = 0; i < projectLogs.size(); i++) {
             Log log = projectLogs.get(i);
@@ -92,6 +104,13 @@ public class ProjectLogPanel extends ProjectSecondaryPanelTemplate {
         }
     }
 
+    /**
+     * Adds a single row to the Log list.
+     * 
+     * @param entryRow the row to add.
+     * 
+     * @author Nathan Grimsey
+     */
     private void addRow(ProjectEntryRow entryRow) {
         CustomTextField nameTextField = entryRow.textFields.get(0);
         CustomTextField dateTextField = entryRow.textFields.get(1);
@@ -202,6 +221,16 @@ public class ProjectLogPanel extends ProjectSecondaryPanelTemplate {
         });
     }
 
+    /**
+     * Gets an expense from the provided text fields, or null if input is invalid.
+     * 
+     * @param nameTextField name text field.
+     * @param dateTextField date text field.
+     * @param descriptionTextField description text field.
+     * @return
+     * 
+     * @author Nathan Grimsey
+     */
     private Log updateLog(CustomTextField nameTextField, CustomTextField dateTextField, CustomTextField descriptionTextField) {
         boolean failure = false;
         dateTextField.fireAction();

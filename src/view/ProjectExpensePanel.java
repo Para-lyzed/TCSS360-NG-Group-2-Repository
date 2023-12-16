@@ -40,7 +40,7 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
     private ProjectExpenseScreen overviewScreen;
 
     /**
-     * Displays a scrollable list of expenses in a Project.
+     * Displays a scrollable list of Expenses in a Project.
      * 
      * @param project the user is editing.
      * @param expenseScreen the screen this panel is on.
@@ -102,7 +102,7 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
     }
 
     /**
-     * Loads rows of expenses from Project.
+     * Loads rows of Expenses from Project.
      * 
      * @author Nathan Grimsey
      */
@@ -270,6 +270,8 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
      * @param priceField price text field.
      * @param quantityField quantity text field.
      * @return
+     * 
+     * @author Nathan Grimsey
      */
     private Expense updateExpense(CustomTextField nameField, CustomTextField categoryField, CustomTextField priceField, CustomTextField quantityField) {
         priceField.fireAction();

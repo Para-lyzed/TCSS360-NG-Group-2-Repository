@@ -10,6 +10,15 @@ import model.UserSettings;
 
 public class ProjectToolSelectScreen extends BaseSelectorScreen {
 
+    /**
+     * Allows the user to add Tools into the Tools screen.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectToolSelectScreen(int width, int height, Project project) {
         super(width, height, "Import Tool", "Tool", UserSettings.TOOL, "tool");
         remove(deleteButton);
