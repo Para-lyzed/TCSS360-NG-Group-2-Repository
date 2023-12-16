@@ -16,6 +16,7 @@ import java.nio.file.Path;
  * tests.DataIOTest.java
  *
  * @author Cody Dukes
+ * @author Nathan Grimsey
  *
  */
 public class DataIOTest {
