@@ -220,6 +220,11 @@ public class Menu extends JPanel {
         setBounds(0, 0, Main.MENU_WIDTH, menuHeight);
     }
 
+    /**
+     * Updated colors of UI elements for dark mode.
+     * 
+     * @author Nathan Grimsey
+     */
     public void darkMode() {
         try {
             if (Main.userSettings.getDarkMode()) {

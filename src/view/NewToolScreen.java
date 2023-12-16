@@ -23,6 +23,15 @@ public class NewToolScreen extends NewScreen {
     private static final String title = "Create a New Tool";
     private final JFileChooser fileChooser = new JFileChooser();
 
+    /**
+     * Allows the user to create a new Tool.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param inProject true if the user is in the project view
+     * 
+     * @author Nathan Grimsey
+     */
     public NewToolScreen(int width, int height, boolean inProject) {
         super(width, height, title, 3, "Price*");
         saveButton.addActionListener(new ActionListener() {
