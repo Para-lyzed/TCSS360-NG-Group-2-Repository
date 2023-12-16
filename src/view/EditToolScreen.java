@@ -24,6 +24,13 @@ public class EditToolScreen extends NewScreen {
     private static final String title = "Edit Tool";
     private static final JFileChooser fileChooser = new JFileChooser();
 
+    /**
+     * A screen for the user to edit an existing tool.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param tool to edit.
+     */
     public EditToolScreen(int width, int height, Tool tool, boolean inProject) {
         super(width, height, title, 3, "Price*");
         nameTextField.setText(tool.getName());
