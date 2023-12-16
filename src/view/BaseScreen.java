@@ -28,22 +28,22 @@ public class BaseScreen extends JPanel {
         setBackground(Main.BACKGROUND);
         setBounds(0, 0, width, height);
         setOpaque(true);
-        this.headingUnspaced = title;
-        this.headingSpaced = Main.HEADING_SPACER + title;
-        this.heading = new JLabel();
-        this.heading.setFont(Main.HEADING_ONE_FONT);
-        this.heading.setText(headingSpaced);
-        this.heading.setForeground(Main.TEXT);
+        headingUnspaced = title;
+        headingSpaced = Main.HEADING_SPACER + title;
+        heading = new JLabel();
+        heading.setFont(Main.HEADING_ONE_FONT);
+        heading.setText(headingSpaced);
+        heading.setForeground(Main.TEXT);
         setLayout(new GridBagLayout());
-        this.c = new GridBagConstraints();
-        this.c.insets = Main.PADDING_INSETS;
-        this.c.weightx = 1;
-        this.c.weighty = 1;
-        this.c.gridx = 0;
-        this.c.gridy = 0;
-        this.c.anchor = GridBagConstraints.NORTHWEST;
-        this.c.gridwidth = headingGridWidth;
-        add(this.heading, this.c);
+        c = new GridBagConstraints();
+        c.insets = Main.PADDING_INSETS;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.gridwidth = headingGridWidth;
+        add(heading, c);
     }
 
     /**
@@ -55,10 +55,10 @@ public class BaseScreen extends JPanel {
      */
     public void menuHeading(boolean isMenuOpen) {
         if (isMenuOpen) {
-            this.heading.setText(this.headingUnspaced);
+            heading.setText(headingUnspaced);
         }
         else {
-            this.heading.setText(this.headingSpaced);
+            heading.setText(headingSpaced);
         }
     }
 

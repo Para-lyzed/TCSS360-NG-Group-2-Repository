@@ -34,7 +34,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
      */
     public ProjectSelectScreen(int width, int height) {
         super(width, height, title, type, userSettingsType, fileExtension);
-        this.importButton.addActionListener(new ActionListener() {
+        importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fileChooser.setSelectedFile(new File(""));
@@ -50,7 +50,7 @@ public class ProjectSelectScreen extends BaseSelectorScreen {
                 }
             }
         });
-        this.openButton.addActionListener(new ActionListener() {
+        openButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fileName = listPane.getSelectedValue();

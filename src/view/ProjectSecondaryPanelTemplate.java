@@ -15,19 +15,19 @@ import model.Main;
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * view.ProjectOverviewPanel.java
+ * view.ProjectSecondaryPanelTemplate.java
  * 
  * @author Nathan Grimsey
  *
  */
-public class ProjectOverviewPanel extends JPanel {
+public class ProjectSecondaryPanelTemplate extends JPanel {
     protected GridBagConstraints c;
     protected JScrollPane contentScrollPane;
     protected JPanel contentPanel;
-    protected JButton addButton;
-    protected JButton updateButton;
+    protected CustomButton addButton;
 
-    public ProjectOverviewPanel(String addButtonName) {
+
+    public ProjectSecondaryPanelTemplate(String addButtonName) {
         setBackground(Main.SECONDARY_BACKGROUND);
         setOpaque(true);
         setLayout(new GridBagLayout());
@@ -38,25 +38,27 @@ public class ProjectOverviewPanel extends JPanel {
         contentPanel.setLayout(new GridBagLayout());
         contentScrollPane = new JScrollPane();
         contentScrollPane.setViewportView(contentPanel);
-        contentScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         contentScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        contentScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        JButton emptyButton = new JButton();
+        emptyButton.setPreferredSize(new Dimension(0, 0));
+        contentScrollPane.getVerticalScrollBar().setUI(Main.SCROLL_BAR);
+        
         contentPanel.setPreferredSize(new Dimension(contentScrollPane.getWidth(), contentScrollPane.getHeight()));
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 10;
         c.weighty = 20;
-        c.gridwidth = 2;
+        c.gridwidth = 4;
         c.fill = GridBagConstraints.BOTH;
         add(contentScrollPane, c);
-        addButton = new JButton(addButtonName);
-        addButton.setFont(Main.TABLE_FONT);
+        addButton = new CustomButton(addButtonName);
         c.gridy++;
+        c.gridx++;
         c.weightx = 1;
         c.weighty = 1;
         c.gridwidth = 1;
         c.fill = GridBagConstraints.NONE;
         add(addButton, c);
-        updateButton = new JButton("Update");
-        updateButton.setFont(Main.TABLE_FONT);
     }
 }

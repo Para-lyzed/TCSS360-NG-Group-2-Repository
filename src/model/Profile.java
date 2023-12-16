@@ -38,8 +38,8 @@ public class Profile implements Serializable {
      * @author Nathan Grimsey
      */
     public Profile() {
-        this.name = "No name registered";
-        this.email = "No email registered";
+        name = "No name registered";
+        email = "No email registered";
     }
 
     /**
@@ -51,7 +51,7 @@ public class Profile implements Serializable {
      * @author Maple Gunn
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Profile implements Serializable {
      * @author Maple Gunn
      */
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     /**
@@ -86,7 +86,7 @@ public class Profile implements Serializable {
      * @return true if the Profiles are equal.
      */
     public boolean equals(Profile profile) {
-        if (this.name.equals(profile.getName()) && this.email.equals(profile.getEmail())) {
+        if (name.equals(profile.getName()) && email.equals(profile.getEmail())) {
             return true;
         }
         return false;

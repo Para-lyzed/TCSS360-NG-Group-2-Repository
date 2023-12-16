@@ -8,7 +8,6 @@ import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import model.DataIO;
 import model.Main;
@@ -26,49 +25,44 @@ public class NewMaterialScreen extends NewScreen {
     private static final String title = "Create a New Material";
     private static final JLabel categoryLabel = new JLabel("Category*");
     private final JFileChooser fileChooser = new JFileChooser();
-    private JTextField categoryTextField = new JTextField();
+    private CustomTextField categoryTextField = new CustomTextField();
 
     public NewMaterialScreen(int width, int height) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);
-        this.c.fill = GridBagConstraints.BOTH;
+        categoryLabel.setForeground(Main.TEXT);
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 4;
         c.gridy = 1;
         c.gridwidth = 2;
         add(categoryLabel, c);
-        categoryTextField.setFont(Main.BASE_FONT);
         c.gridy++;
         add(categoryTextField, c);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                fieldTwoTextField.fireAction();
                 String name = nameTextField.getText();
                 String priceString = fieldTwoTextField.getText();
                 String category = categoryTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty() && !category.isEmpty()) {
-                    int price;
-                    try {
-                        price = Integer.parseInt(priceString);
-                        Material newMaterial = new Material(name, category, price);
-                        if (!description.isEmpty()) {
-                            newMaterial.setDescription(description);
-                        }
-                        fileChooser.setSelectedFile(new File(name + ".mat"));
-                        int returnVal;
-                        returnVal = fileChooser.showSaveDialog(Main.BASE_FRAME);
-                        if (returnVal == JFileChooser.APPROVE_OPTION) {
-                            String exportPathString = fileChooser.getSelectedFile().toPath().toString();
-                            if (!exportPathString.endsWith(".mat")) {
-                                exportPathString += ".mat";
-                            }
-                            DataIO.saveMaterial(newMaterial, Path.of(exportPathString));
-                        }
-                        Main.BASE_FRAME.switchScreen("Materials");
+                    int price = ((Number)fieldTwoTextField.getValue()).intValue();
+                    Material newMaterial = new Material(name, category, price);
+                    if (!description.isEmpty()) {
+                        newMaterial.setDescription(description);
                     }
-                    catch (Exception error) {
-                        error.printStackTrace();
+                    fileChooser.setSelectedFile(new File(name + ".mat"));
+                    int returnVal;
+                    returnVal = fileChooser.showSaveDialog(Main.BASE_FRAME);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        String exportPathString = fileChooser.getSelectedFile().toPath().toString();
+                        if (!exportPathString.endsWith(".mat")) {
+                            exportPathString += ".mat";
+                        }
+                        DataIO.saveMaterial(newMaterial, Path.of(exportPathString));
                     }
+                    Main.BASE_FRAME.switchScreen("Materials");
                 }
                 else {
                     inputError();

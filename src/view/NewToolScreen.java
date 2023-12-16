@@ -28,32 +28,27 @@ public class NewToolScreen extends NewScreen {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                fieldTwoTextField.fireAction();
                 String name = nameTextField.getText();
                 String priceString = fieldTwoTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty()) {
-                    int price;
-                    try {
-                        price = Integer.parseInt(priceString);
-                        Tool newTool = new Tool(name, price);
-                        if (!description.isEmpty()) {
-                            newTool.setDescription(description);
-                        }
-                        fileChooser.setSelectedFile(new File(name + ".tool"));
-                        int returnVal;
-                        returnVal = fileChooser.showSaveDialog(Main.BASE_FRAME);
-                        if (returnVal == JFileChooser.APPROVE_OPTION) {
-                            String exportPathString = fileChooser.getSelectedFile().toPath().toString();
-                            if (!exportPathString.endsWith(".tool")) {
-                                exportPathString += ".tool";
-                            }
-                            DataIO.saveTool(newTool, Path.of(exportPathString));
-                        }
-                        Main.BASE_FRAME.switchScreen("Tools");
+                    int price = ((Number) fieldTwoTextField.getValue()).intValue();
+                    Tool newTool = new Tool(name, price);
+                    if (!description.isEmpty()) {
+                        newTool.setDescription(description);
                     }
-                    catch (Exception error) {
-                        error.printStackTrace();
+                    fileChooser.setSelectedFile(new File(name + ".tool"));
+                    int returnVal;
+                    returnVal = fileChooser.showSaveDialog(Main.BASE_FRAME);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        String exportPathString = fileChooser.getSelectedFile().toPath().toString();
+                        if (!exportPathString.endsWith(".tool")) {
+                            exportPathString += ".tool";
+                        }
+                        DataIO.saveTool(newTool, Path.of(exportPathString));
                     }
+                    Main.BASE_FRAME.switchScreen("Tools");
                 }
                 else {
                     inputError();

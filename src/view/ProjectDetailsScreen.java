@@ -9,26 +9,27 @@ import javax.swing.JFileChooser;
 
 import model.DataIO;
 import model.Main;
-import model.Tool;
+import model.Project;
 import model.UserSettings;
 
 /**
  * TCSS 360B
  * Team MVP - Deliverable 3
- * view.EditToolScreen.java
+ * view.ProjectDetailsScreen.java
  * 
  * @author Nathan Grimsey
  *
  */
-public class EditToolScreen extends NewScreen {
-    private static final String title = "Edit Tool";
+public class ProjectDetailsScreen extends NewScreen {
+    private static final String title = "Details";
     private static final JFileChooser fileChooser = new JFileChooser();
 
-    public EditToolScreen(int width, int height, Tool tool) {
-        super(width, height, title, 3, "Price*");
-        nameTextField.setText(tool.getName());
-        fieldTwoTextField.setText(String.valueOf(tool.getPrice()));
-        String description = tool.getDescription();
+    public ProjectDetailsScreen(int width, int height, Project project) {
+        super(width, height, title, 3, "Budget*");
+        menuHeading(false);
+        nameTextField.setText(project.getName());
+        fieldTwoTextField.setText(String.valueOf(project.getBudget()));
+        String description = project.getDescription();
         if (description != null) {
             descriptionTextField.setText(description);
         }
@@ -36,29 +37,28 @@ public class EditToolScreen extends NewScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fieldTwoTextField.fireAction();
-                String oldName = tool.getName();
+                String oldName = project.getName();
                 String name = nameTextField.getText();
-                String priceString = fieldTwoTextField.getText();
+                String budgetString = fieldTwoTextField.getText();
                 String newDescription = descriptionTextField.getText();
-                if (!name.isEmpty() && !priceString.isEmpty()) {
-                    int price = ((Number) fieldTwoTextField.getValue()).intValue();
-                    tool.setName(name);
-                    tool.setPrice(price);
+                if (!name.isEmpty() && !budgetString.isEmpty()) {
+                    int budget = ((Number) fieldTwoTextField.getValue()).intValue();
+                    project.setName(name);
+                    project.setBudget(budget);
                     if (!newDescription.isEmpty()) {
-                        tool.setDescription(newDescription);
+                        project.setDescription(newDescription);
                     }
-                    fileChooser.setSelectedFile(new File(Main.userSettings.getFilePathFromName(oldName, UserSettings.TOOL).toString()));
+                    fileChooser.setSelectedFile(new File(Main.userSettings.getFilePathFromName(oldName, UserSettings.PROJECT).toString()));
                     int returnVal;
                     returnVal = fileChooser.showSaveDialog(Main.BASE_FRAME);
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         String exportPathString = fileChooser.getSelectedFile().toPath().toString();
-                        if (!exportPathString.endsWith(".tool")) {
-                            exportPathString += ".tool";
+                        if (!exportPathString.endsWith(".proj")) {
+                            exportPathString += ".proj";
                         }
-                        Main.userSettings.removeFromRecent(oldName, UserSettings.TOOL);
-                        DataIO.saveTool(tool, Path.of(exportPathString));
+                        Main.userSettings.removeFromRecent(oldName, UserSettings.PROJECT);
+                        DataIO.saveProject(project, Path.of(exportPathString));
                     }
-                    Main.BASE_FRAME.resetToTools();
                 }
                 else {
                     inputError();

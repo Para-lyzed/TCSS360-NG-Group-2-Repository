@@ -39,7 +39,7 @@ public class Expense implements Comparable<Expense>, Serializable {
         this.category = category;
         this.price = price;
         this.quantity = quantity;
-        this.description = new String();
+        description = new String();
     }
 
     /**
@@ -190,6 +190,20 @@ public class Expense implements Comparable<Expense>, Serializable {
     }
 
     /**
+     * Sets data for an expense from another expense.
+     *
+     * @param expense to take data from
+     *
+     * @author Nathan Grimsey
+     */
+    public void set(Expense expense) {
+        name = expense.getName();
+        category = expense.getCategory();
+        price = expense.getPrice();
+        quantity = expense.getQuantity();
+    }
+
+    /**
      * Compares this Expense to another Expense.
      * 
      * @param otherExpense the Expense to compare to.
@@ -200,19 +214,24 @@ public class Expense implements Comparable<Expense>, Serializable {
     @Override
     public int compareTo(Expense otherExpense) {
         int compareVal = 0;
-        compareVal += this.name.compareTo(otherExpense.getName());
+        compareVal += name.compareTo(otherExpense.getName());
 
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.category.compareTo(otherExpense.getCategory());
+        compareVal += category.compareTo(otherExpense.getCategory());
         if (compareVal != 0) {
             return compareVal;
         }
 
-        compareVal += this.price - otherExpense.getPrice();
+        compareVal += price - otherExpense.getPrice();
         return compareVal;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + name + ", " + category + ", " + price + ", " + quantity + "]";
     }
 
 }

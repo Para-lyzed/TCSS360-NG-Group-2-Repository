@@ -1,8 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 import java.awt.Image;
 
 /**
@@ -18,11 +17,11 @@ import java.awt.Image;
  */
 public class Project implements Serializable {
     private String name;
-    private List<Expense> expenses;
-    private List<Tool> tools;
-    private List<Log> logs;
+    private LinkedList<Expense> expenses;
+    private LinkedList<Tool> tools;
+    private LinkedList<Log> logs;
     private String description;
-    private List<Image> images;
+    private LinkedList<Image> images;
     private int budget;
     private int totalCost;
 
@@ -35,12 +34,12 @@ public class Project implements Serializable {
      */
     public Project(String name, int budget) {
         this.name = name;
-        this.expenses = new ArrayList<>();
-        this.tools = new ArrayList<>();
-        this.logs = new ArrayList<>();
-        this.images = new ArrayList<>();
         this.budget = budget;
-        this.totalCost = 0;
+        expenses = new LinkedList<>();
+        tools = new LinkedList<>();
+        logs = new LinkedList<>();
+        images = new LinkedList<>();
+        totalCost = 0;
     }
 
     /**
@@ -55,16 +54,27 @@ public class Project implements Serializable {
     }
 
     /**
+     * Setter method for name.
+     *
+     * @return Project name.
+     * 
+     * @author Maple Gunn
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * Updates the total cost of the Project whenever you add or remove an expense.
      *
      * @author Maple Gunn
      */
-    public int updateTotalCost() {
+    public void updateTotalCost() {
         int total = 0;
         for (int i = 0; i < expenses.size(); i++) {
             total += (expenses.get(i).getPrice() * expenses.get(i).getQuantity());
         }
-        return total;
+        totalCost = total;
     }
 
     /**
@@ -87,7 +97,7 @@ public class Project implements Serializable {
      * 
      * @author Maple Gunn
      */
-    public List<Expense> getExpenses() {
+    public LinkedList<Expense> getExpenses() {
         return expenses;
     }
 
@@ -98,7 +108,7 @@ public class Project implements Serializable {
      * 
      * @authon Nathan Grimsey
      */
-    public void setExpenses(ArrayList<Expense> expenseList) {
+    public void setExpenses(LinkedList<Expense> expenseList) {
         expenses = expenseList;
         updateTotalCost();
     }
@@ -110,7 +120,7 @@ public class Project implements Serializable {
      * 
      * @author Maple Gunn
      */
-    public List<Tool> getTools() {
+    public LinkedList<Tool> getTools() {
         return tools;
     }
 
@@ -121,7 +131,7 @@ public class Project implements Serializable {
      * 
      * @author Maple Gunn
      */
-    public List<Log> getLogs() {
+    public LinkedList<Log> getLogs() {
         return logs;
     }
 
@@ -157,7 +167,7 @@ public class Project implements Serializable {
     }
 
     /**
-     * Add a Mterial as an Expense to the Project.
+     * Add a Material as an Expense to the Project.
      * 
      * @author Maple Gunn
      */
@@ -186,7 +196,7 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void addTool(Tool tool) {
-        this.tools.add(tool);
+        tools.add(tool);
     }
 
     /**
@@ -195,7 +205,7 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void addLog(Log log) {
-        this.logs.add(log);
+        logs.add(log);
     }
 
     /**
@@ -205,7 +215,7 @@ public class Project implements Serializable {
      * 
      * @author Maple Gunn
      */
-    public List<Image> getImages() {
+    public LinkedList<Image> getImages() {
         return images;
     }
 
@@ -223,7 +233,7 @@ public class Project implements Serializable {
      * 
      * @author Maple Gunn
      */
-    public void setImages(List<Image> images) {
+    public void setImages(LinkedList<Image> images) {
         this.images = images;
     }
 
@@ -235,7 +245,7 @@ public class Project implements Serializable {
      * @author Nathan Grimsey
      */
     public int getBudget() {
-        return this.budget;
+        return budget;
     }
 
     /**
@@ -244,7 +254,7 @@ public class Project implements Serializable {
      * @author Nathan Grimsey
      */
     public void setBudget(int value) {
-        this.budget = value;
+        budget = value;
     }
 
     /**
@@ -254,7 +264,7 @@ public class Project implements Serializable {
      */
     public void updateExpense(Expense expense, String category, String name, int quantity, int price) {
         Expense e;
-        for (int i = 0; i < expenses.size()-1; i++) {
+        for (int i = 0; i < expenses.size(); i++) {
 
             if (expenses.get(i).compareTo(expense) == 0) {
                 e = expenses.get(i);
@@ -263,9 +273,29 @@ public class Project implements Serializable {
                 e.setQuantity(quantity);
                 e.setPrice(price);
                 updateTotalCost();
-                break;
+                return;
             }
         }
+    }
+
+    /**
+     * Update an Expense by using another Expense.
+     * 
+     * @author Nathan Grimsey
+     */
+    public void updateExpense(Expense expense) {
+        Expense e;
+        for (int i = 0; i < expenses.size(); i++) {
+
+            if (expenses.get(i).compareTo(expense) == 0) {
+                e = expenses.get(i);
+                e.set(expense);
+                updateTotalCost();
+                return;
+            }
+        }
+        expenses.add(expense);
+        updateTotalCost();
     }
 
     /**
@@ -275,7 +305,7 @@ public class Project implements Serializable {
      */
     public void updateExpense(Expense expense, Material material, int quantity) {
         Expense e;
-        for (int i = 0; i < expenses.size()-1; i++) {
+        for (int i = 0; i < expenses.size(); i++) {
 
             if (expenses.get(i).compareTo(expense) == 0) {
                 e = expenses.get(i);
@@ -284,7 +314,7 @@ public class Project implements Serializable {
                 e.setQuantity(quantity);
                 e.setPrice(material.getPrice());
                 updateTotalCost();
-                break;
+                return;
             }
         }
     }
@@ -297,7 +327,7 @@ public class Project implements Serializable {
      */
     public void updateExpense(Expense expense, Tool tool, int quantity) {
         Expense e;
-        for (int i = 0; i < expenses.size()-1; i++) {
+        for (int i = 0; i < expenses.size(); i++) {
 
             if (expenses.get(i).compareTo(expense) == 0) {
                 e = expenses.get(i);
@@ -306,7 +336,7 @@ public class Project implements Serializable {
                 e.setQuantity(quantity);
                 e.setPrice(tool.getPrice());
                 updateTotalCost();
-                break;
+                return;
             }
         }
     }
@@ -317,12 +347,12 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void removeExpense(Expense expense) {
-        for (int i = 0; i < expenses.size()-1; i++) {
+        for (int i = 0; i < expenses.size(); i++) {
 
             if (expenses.get(i).compareTo(expense) == 0) {
                 expenses.remove(i);
                 updateTotalCost();
-                break;
+                return;
             }
         }
     }
@@ -335,11 +365,11 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void removeTool(Tool tool) {
-        for (int i = 0; i < tools.size()-1; i++) {
+        for (int i = 0; i < tools.size(); i++) {
 
             if (tools.get(i).compareTo(tool) == 0) {
                 tools.remove(i);
-                break;
+                return;
             }
         }
     }
@@ -352,11 +382,11 @@ public class Project implements Serializable {
      * @author Maple Gunn
      */
     public void removeLog(Log log) {
-        for (int i = 0; i < logs.size() - 1; i++) {
+        for (int i = 0; i < logs.size(); i++) {
 
             if (logs.get(i).compareTo(log) == 0) {
                 logs.remove(i);
-                break;
+                return;
             }
         }
     }

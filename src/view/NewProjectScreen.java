@@ -22,22 +22,17 @@ public class NewProjectScreen extends NewScreen {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                fieldTwoTextField.fireAction();
                 String name = nameTextField.getText();
                 String budgetString = fieldTwoTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !budgetString.isEmpty()) {
-                    int budget;
-                    try {
-                        budget = Integer.parseInt(budgetString);
-                        Project newProject = new Project(name, budget);
-                        if (!description.isEmpty()) {
-                            newProject.setDescription(description);
-                        }
-                        Main.BASE_FRAME.openProject(newProject);
+                    int budget = ((Number) fieldTwoTextField.getValue()).intValue();
+                    Project newProject = new Project(name, budget);
+                    if (!description.isEmpty()) {
+                        newProject.setDescription(description);
                     }
-                    catch (Exception error) {
-                        error.printStackTrace();
-                    }
+                    Main.BASE_FRAME.openProject(newProject);
                 }
                 else {
                     inputError();

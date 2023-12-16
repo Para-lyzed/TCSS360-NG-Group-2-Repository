@@ -10,7 +10,14 @@ import java.io.File;
 import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.About;
@@ -30,23 +37,18 @@ public class SettingScreen extends BaseScreen {
     public static final String title = "Settings";
     private static final JLabel setProfile = new JLabel("Set new name and email");
     private static final JLabel name = new JLabel("Name:");
-    private static final JTextField nameTextField = new JTextField(16);
+    private static final CustomTextField nameTextField = new CustomTextField();
     private static final JLabel email = new JLabel("Email:");
-    private static final JTextField emailTextField = new JTextField(16);
-    private static final JButton saveButton = new JButton("Save");
-    private static final JButton importSettingsButton = new JButton("Import Settings");
-    private static final JButton exportSettingsButton = new JButton("Export Settings");
+    private static final CustomTextField emailTextField = new CustomTextField();
+    private static final CustomButton saveButton = new CustomButton("Save");
+    private static final CustomButton importSettingsButton = new CustomButton("Import Settings");
+    private static final CustomButton exportSettingsButton = new CustomButton("Export Settings");
     private static final JFileChooser fileChooser = new JFileChooser();
     private static final JCheckBox darkModeCheckBox = new JCheckBox("Dark mode");
-    private static final int checkBoxIconSize = 30;
     private static Image checkBoxDarkUnchecked;
     private static Image checkBoxDarkChecked;
     private static Image checkBoxLightUnchecked;
     private static Image checkBoxLightChecked;
-    private static Image resizedCheckBoxDarkUnchecked;
-    private static Image resizedCheckBoxDarkChecked;
-    private static Image resizedCheckBoxLightUnchecked;
-    private static Image resizedCheckBoxLightChecked;
     private static JPanel mainContent;
     private static JScrollPane scrollablePane;
 
@@ -71,6 +73,7 @@ public class SettingScreen extends BaseScreen {
         mainContent.setBackground(Main.BACKGROUND);
         scrollablePane.setViewportView(mainContent);
         scrollablePane.setBorder(BorderFactory.createEmptyBorder());
+        scrollablePane.getVerticalScrollBar().setUI(Main.SCROLL_BAR);
         mainContent.setLayout(new GridBagLayout());
         setProfile.setFont(Main.HEADING_TWO_FONT);
         setProfile.setForeground(Main.TEXT);
@@ -88,6 +91,7 @@ public class SettingScreen extends BaseScreen {
         nameTextField.setFont(Main.BASE_FONT);
         nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         nameTextField.setForeground(Main.TEXT);
+        nameTextField.setCaretColor(Main.CARET);
         mainContent.add(nameTextField, c);
         c.gridx++;
         c.ipadx = 0;
@@ -99,6 +103,7 @@ public class SettingScreen extends BaseScreen {
         emailTextField.setFont(Main.BASE_FONT);
         emailTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
         emailTextField.setForeground(Main.TEXT);
+        emailTextField.setCaretColor(Main.CARET);
         mainContent.add(emailTextField, c);
         fillUserDetails();
         c.gridy++;
@@ -106,23 +111,20 @@ public class SettingScreen extends BaseScreen {
         c.ipadx = 0;
         darkModeCheckBox.setFont(Main.BASE_FONT);
         darkModeCheckBox.setForeground(Main.TEXT);
+        darkModeCheckBox.setFocusPainted(false);
         darkModeCheckBox.setOpaque(false);
         try {
-            checkBoxDarkUnchecked = ImageIO.read(getClass().getResource("../icons/DarkUnchecked.png"));
-            checkBoxDarkChecked = ImageIO.read(getClass().getResource("../icons/DarkChecked.png"));
-            checkBoxLightUnchecked = ImageIO.read(getClass().getResource("../icons/LightUnchecked.png"));
-            checkBoxLightChecked = ImageIO.read(getClass().getResource("../icons/LightChecked.png"));
-            resizedCheckBoxDarkUnchecked = checkBoxDarkUnchecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
-            resizedCheckBoxDarkChecked = checkBoxDarkChecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
-            resizedCheckBoxLightUnchecked = checkBoxLightUnchecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
-            resizedCheckBoxLightChecked = checkBoxLightChecked.getScaledInstance(checkBoxIconSize, checkBoxIconSize, Image.SCALE_SMOOTH);
+            checkBoxDarkUnchecked = ImageIO.read(getClass().getResource("/icons/DarkUnchecked.png"));
+            checkBoxDarkChecked = ImageIO.read(getClass().getResource("/icons/DarkChecked.png"));
+            checkBoxLightUnchecked = ImageIO.read(getClass().getResource("/icons/LightUnchecked.png"));
+            checkBoxLightChecked = ImageIO.read(getClass().getResource("/icons/LightChecked.png"));
             if (Main.userSettings.getDarkMode()) {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxDarkUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxDarkChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxDarkUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxDarkChecked));
             }
             else {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxLightUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxLightChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxLightUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxLightChecked));
             }
         }
         catch (Exception e) {
@@ -149,9 +151,6 @@ public class SettingScreen extends BaseScreen {
         });
         mainContent.add(darkModeCheckBox, c);
         c.gridy++;
-        saveButton.setFont(Main.BASE_FONT);
-        saveButton.setForeground(Main.TEXT);
-        saveButton.setBackground(Main.BUTTON_BACKGROUND);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,9 +165,6 @@ public class SettingScreen extends BaseScreen {
         mainContent.add(saveButton, c);
         fileChooser.setFileFilter(new FileNameExtensionFilter("MPP Settings File", "mpp"));
         c.gridy++;
-        importSettingsButton.setFont(Main.BASE_FONT);
-        importSettingsButton.setForeground(Main.TEXT);
-        importSettingsButton.setBackground(Main.BUTTON_BACKGROUND);
         importSettingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -182,9 +178,6 @@ public class SettingScreen extends BaseScreen {
         });
         mainContent.add(importSettingsButton, c);
         c.gridx = 1;
-        exportSettingsButton.setFont(Main.BASE_FONT);
-        exportSettingsButton.setForeground(Main.TEXT);
-        exportSettingsButton.setBackground(Main.BUTTON_BACKGROUND);
         exportSettingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -218,26 +211,21 @@ public class SettingScreen extends BaseScreen {
         mainContent.setBackground(Main.BACKGROUND);
         setProfile.setForeground(Main.TEXT);
         name.setForeground(Main.TEXT);
-        nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
-        nameTextField.setForeground(Main.TEXT);
+        nameTextField.darkMode();
         email.setForeground(Main.TEXT);
-        emailTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
-        emailTextField.setForeground(Main.TEXT);
+        emailTextField.darkMode();
         darkModeCheckBox.setForeground(Main.TEXT);
-        saveButton.setForeground(Main.TEXT);
-        saveButton.setBackground(Main.BUTTON_BACKGROUND);
-        importSettingsButton.setForeground(Main.TEXT);
-        importSettingsButton.setBackground(Main.BUTTON_BACKGROUND);
-        exportSettingsButton.setForeground(Main.TEXT);
-        exportSettingsButton.setBackground(Main.BUTTON_BACKGROUND);
+        saveButton.darkMode();
+        importSettingsButton.darkMode();
+        exportSettingsButton.darkMode();
         try {
              if (Main.userSettings.getDarkMode()) {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxDarkUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxDarkChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxDarkUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxDarkChecked));
             }
             else {
-                darkModeCheckBox.setIcon(new ImageIcon(resizedCheckBoxLightUnchecked));
-                darkModeCheckBox.setSelectedIcon(new ImageIcon(resizedCheckBoxLightChecked));
+                darkModeCheckBox.setIcon(new ImageIcon(checkBoxLightUnchecked));
+                darkModeCheckBox.setSelectedIcon(new ImageIcon(checkBoxLightChecked));
             }
         }
         catch (Exception e) {
