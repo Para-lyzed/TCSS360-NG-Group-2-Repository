@@ -24,6 +24,15 @@ public class ProjectDetailsScreen extends NewScreen {
     private static final String title = "Details";
     private static final JFileChooser fileChooser = new JFileChooser();
 
+    /**
+     * Allows the user to edit the details of a Project.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param project the user is editing.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectDetailsScreen(int width, int height, Project project) {
         super(width, height, title, 3, "Budget*");
         menuHeading(false);
@@ -39,7 +48,7 @@ public class ProjectDetailsScreen extends NewScreen {
                 fieldTwoTextField.fireAction();
                 String oldName = project.getName();
                 String name = nameTextField.getText();
-                String budgetString = fieldTwoTextField.getText();
+                String budgetString = fieldTwoTextField.getText().replaceAll(",", "");
                 String newDescription = descriptionTextField.getText();
                 if (!name.isEmpty() && !budgetString.isEmpty()) {
                     int budget = 0;

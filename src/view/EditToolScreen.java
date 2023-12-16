@@ -45,10 +45,16 @@ public class EditToolScreen extends NewScreen {
                 fieldTwoTextField.fireAction();
                 String oldName = tool.getName();
                 String name = nameTextField.getText();
-                String priceString = fieldTwoTextField.getText();
+                String priceString = fieldTwoTextField.getText().replaceAll(",", "");
                 String newDescription = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty()) {
-                    int price = ((Number) fieldTwoTextField.getValue()).intValue();
+                    int price = 0;
+                    try {
+                        price = Integer.parseInt(priceString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     tool.setName(name);
                     tool.setPrice(price);
                     if (!newDescription.isEmpty()) {

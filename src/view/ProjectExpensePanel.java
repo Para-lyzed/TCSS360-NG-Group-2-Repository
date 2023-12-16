@@ -247,8 +247,8 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         quantityField.fireAction();
         String name = nameField.getText();
         String category = categoryField.getText();
-        String priceString = priceField.getText();
-        String quantityString = quantityField.getText();
+        String priceString = priceField.getText().replaceAll(",", "");
+        String quantityString = quantityField.getText().replaceAll(",", "");
         if (!(name.isEmpty() || category.isEmpty() || priceString.isEmpty() || quantityString.isEmpty())) {
             int price = 0;
             int quantity = 0;

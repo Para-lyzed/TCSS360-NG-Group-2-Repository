@@ -52,7 +52,7 @@ public class NewMaterialScreen extends NewScreen {
             public void actionPerformed(ActionEvent e) {
                 fieldTwoTextField.fireAction();
                 String name = nameTextField.getText();
-                String priceString = fieldTwoTextField.getText();
+                String priceString = fieldTwoTextField.getText().replaceAll(",", "");
                 String category = categoryTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty() && !category.isEmpty()) {
