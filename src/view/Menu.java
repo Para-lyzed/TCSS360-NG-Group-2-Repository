@@ -22,7 +22,7 @@ import model.Main;
  */
 public class Menu extends JPanel {
     private static String[] mainEntries = {"Projects", "Tools", "Materials", "Settings", "About"};
-    private static String[] projectEntries = {"Back to main menu", "Overview", "Details", "Budget", "Schedule", "Project Settings"};
+    private static String[] projectEntries = {"Back to main menu", "Expenses", "Project Tools", "Logs", "Details", "Budget", "Project Settings"};
     private static int menuIconSize = Main.MENU_WIDTH / 7;
     private static Image darkMenuImage;
     private static Image darkBackImage;
@@ -187,6 +187,9 @@ public class Menu extends JPanel {
     private void entryPressed(String entryName) {
         if (entryName.equals("Back to main menu")) {
             Main.BASE_FRAME.resetToProjects();
+        }
+        else if (entryName.equals("Details")) {
+            Main.BASE_FRAME.openProjectDetails();
         }
         else {
             Main.BASE_FRAME.switchScreen(entryName);

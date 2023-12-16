@@ -7,7 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
 import view.BaseFrame;
+import view.CustomScrollBar;
 
 /**
  * TCSS 360B
@@ -48,6 +52,7 @@ public class Main {
     private static final Color LIGHT_MENU_BACKGROUND = Color.decode("#EBEBEB");
     private static final Color LIGHT_TEXT = Color.decode("#323232");
     private static final Color LIGHT_CARET = Color.decode("#242424");
+    private static final Color LIGHT_SCROLLBAR = Color.decode("#737373");
     private static final Color DARK_BACKGROUND = Color.decode("#242424");
     private static final Color DARK_SECONDARY_BACKGROUND = Color.decode("#353535");
     private static final Color DARK_TEXT_ERROR = Color.decode("#4E1010");
@@ -56,6 +61,7 @@ public class Main {
     private static final Color DARK_MENU_BACKGROUND = Color.decode("#303030");
     private static final Color DARK_TEXT = Color.decode("#FAFAFA");
     private static final Color DARK_CARET = Color.decode("#EBEBEB");
+    private static final Color DARK_SCROLLBAR = Color.decode("#ACACAC");
     public static Color BACKGROUND = DARK_BACKGROUND;
     public static Color SECONDARY_BACKGROUND = DARK_SECONDARY_BACKGROUND;
     public static Color TEXT_ERROR = DARK_TEXT_ERROR;
@@ -64,6 +70,9 @@ public class Main {
     public static Color BUTTON_BACKGROUND = DARK_BUTTON_BACKGROUND;
     public static Color MENU_BACKGROUND = DARK_MENU_BACKGROUND;
     public static Color CARET = DARK_CARET;
+    public static Color SCROLLBAR = DARK_SCROLLBAR;
+    public static final Border BORDER = BorderFactory.createLineBorder(Color.decode("#ACACAC"));
+    public static final CustomScrollBar SCROLL_BAR = new CustomScrollBar();
     public static final Path PROJECT_DATA_FILE_PATH = Path.of("programdata.mpp");
     public static UserSettings userSettings;
 
@@ -115,6 +124,7 @@ public class Main {
             BUTTON_BACKGROUND = DARK_BUTTON_BACKGROUND;
             MENU_BACKGROUND = DARK_MENU_BACKGROUND;
             CARET = DARK_CARET;
+            SCROLLBAR = DARK_SCROLLBAR;
         }
         else {
             BACKGROUND = LIGHT_BACKGROUND;
@@ -125,6 +135,7 @@ public class Main {
             BUTTON_BACKGROUND = LIGHT_BUTTON_BACKGROUND;
             MENU_BACKGROUND = LIGHT_MENU_BACKGROUND;
             CARET = LIGHT_CARET;
+            SCROLLBAR = LIGHT_SCROLLBAR;
         }
     }
 }

@@ -36,11 +36,19 @@ public class BaseFrame extends JFrame {
     private static NewProjectScreen newProjectScreen;
     private static NewToolScreen newToolScreen;
     private static NewMaterialScreen newMaterialScreen;
-    private static ProjectOverviewScreen projectOverviewScreen;
+    private static ProjectExpenseScreen projectExpenseScreen;
+    private static ProjectDetailsScreen projectDetailsScreen;
     private static EditToolScreen editToolScreen;
     private static EditMaterialScreen editMaterialScreen;
     private static BaseScreen currentScreen;
+    private static Project currentWorkingProject;
     public static boolean menuOpen;
+    public static final int EXPENSES = 0;
+    public static final int TOOLS = 1;
+    public static final int LOGS = 2;
+    public static final int DETAILS = 3;
+    public static final int BUDGET = 4;
+    public static final int PROJECT_SETTINGS = 5;
 
     /**
      * BaseFrame contains the entire window for the app.
@@ -160,9 +168,15 @@ public class BaseFrame extends JFrame {
                 currentScreen = newMaterialScreen;
                 break;
 
-            case "Overview":
-                lPane.add(projectOverviewScreen, BorderLayout.CENTER, 1);
-                currentScreen = projectOverviewScreen;
+            case "Expenses":
+                projectExpenseScreen.refreshBudget();
+                lPane.add(projectExpenseScreen, BorderLayout.CENTER, 1);
+                currentScreen = projectExpenseScreen;
+                break;
+
+            case "Details":
+                lPane.add(projectDetailsScreen, BorderLayout.CENTER, 1);
+                currentScreen = projectDetailsScreen;
                 break;
 
             case "Edit Tool":
@@ -224,8 +238,13 @@ public class BaseFrame extends JFrame {
                     lPane.add(mainMenu, BorderLayout.WEST, 0);
                     break;
 
-                case "Overview":
-                    lPane.remove(projectOverviewScreen);
+                case "Expenses":
+                    lPane.remove(projectExpenseScreen);
+                    projectMenu.closeMenu();
+                    break;
+
+                case "Details":
+                    lPane.remove(projectDetailsScreen);
                     projectMenu.closeMenu();
                     break;
 
@@ -284,9 +303,14 @@ public class BaseFrame extends JFrame {
                     aboutScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;
                 
-                case "Overview":
-                    projectOverviewScreen.menuHeading(isOpen);
-                    projectOverviewScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                case "Expenses":
+                    projectExpenseScreen.menuHeading(isOpen);
+                    projectExpenseScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
+                    break;
+
+                case "Details":
+                    projectDetailsScreen.menuHeading(isOpen);
+                    projectDetailsScreen.setBounds(yBound, 0, getWidth() - yBound, getHeight());
                     break;
             
                 default:
@@ -296,18 +320,32 @@ public class BaseFrame extends JFrame {
     }
 
     /**
-     * Opens a Project into a new ProjectOverviewScreen.
+     * Opens a Project into a new ProjectExpenseScreen.
      * 
      * @param project
      * 
      * @author Nathan Grimsey
      */
     public void openProject(Project project) {
-        projectOverviewScreen = new ProjectOverviewScreen(getWidth(), getHeight(), project);
-        switchScreen("Overview");
+        projectExpenseScreen = new ProjectExpenseScreen(getWidth(), getHeight(), project);
+        switchScreen("Expenses");
         titlePrefix = project.getName() + " - ";
-        setTitle(titlePrefix + "Overview");
+        setTitle(titlePrefix + "Expenses");
         lPane.add(projectMenu, BorderLayout.WEST, 0);
+        currentWorkingProject = project;
+    }
+
+    /**
+     * Opens a Project into a new ProjectDetailsScreen.
+     * 
+     * @param project
+     * 
+     * @author Nathan Grimsey
+     */
+    public void openProjectDetails() {
+        projectDetailsScreen = new ProjectDetailsScreen(getWidth(), getHeight(), currentWorkingProject);
+        switchScreen("Details");
+        setTitle(titlePrefix + "Details");
     }
 
     /**

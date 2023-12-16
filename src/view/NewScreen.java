@@ -3,10 +3,9 @@ package view;
 import java.awt.GridBagConstraints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.NumberFormat;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import model.Main;
 
@@ -22,14 +21,14 @@ public class NewScreen extends BaseScreen {
 
     protected static final int gridWidth = 6;
     protected static final JLabel nameLabel = new JLabel("Name*");
-    protected JTextField nameTextField = new JTextField();
+    protected CustomTextField nameTextField = new CustomTextField();
     protected JLabel fieldTwoLabel;
-    protected JTextField fieldTwoTextField = new JTextField();
+    protected CustomTextField fieldTwoTextField = new CustomTextField(NumberFormat.getIntegerInstance());
     protected static final JLabel descriptionLabel = new JLabel("Description");
-    protected JTextField descriptionTextField = new JTextField();
+    protected CustomTextField descriptionTextField = new CustomTextField();
     protected static final JLabel requiredFieldsLabel = new JLabel("* Required fields");
-    protected final JButton saveButton = new JButton("Save");
-    protected final JButton cancelButton = new JButton("Cancel");
+    protected final CustomButton saveButton = new CustomButton("Save");
+    protected final CustomButton cancelButton = new CustomButton("Cancel");
 
     public NewScreen(int width, int height, String title, int firstFieldWidth, String fieldTwoString) {
         super(width, height, title, gridWidth);
@@ -37,10 +36,6 @@ public class NewScreen extends BaseScreen {
         fieldTwoLabel = new JLabel(fieldTwoString);
         nameLabel.setFont(Main.HEADING_TWO_FONT);
         nameLabel.setForeground(Main.TEXT);
-        nameTextField.setFont(Main.BASE_FONT);
-        nameTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
-        nameTextField.setForeground(Main.TEXT);
-        nameTextField.setCaretColor(Main.CARET);
         nameTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -54,10 +49,6 @@ public class NewScreen extends BaseScreen {
         });
         fieldTwoLabel.setFont(Main.HEADING_TWO_FONT);
         fieldTwoLabel.setForeground(Main.TEXT);
-        fieldTwoTextField.setFont(Main.BASE_FONT);
-        fieldTwoTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
-        fieldTwoTextField.setForeground(Main.TEXT);
-        fieldTwoTextField.setCaretColor(Main.CARET);
         fieldTwoTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -71,18 +62,8 @@ public class NewScreen extends BaseScreen {
         });
         descriptionLabel.setFont(Main.HEADING_TWO_FONT);
         descriptionLabel.setForeground(Main.TEXT);
-        descriptionTextField.setFont(Main.BASE_FONT);
-        descriptionTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
-        descriptionTextField.setForeground(Main.TEXT);
-        descriptionTextField.setCaretColor(Main.CARET);
         requiredFieldsLabel.setFont(Main.BASE_FONT);
         requiredFieldsLabel.setForeground(Main.TEXT);
-        saveButton.setFont(Main.BASE_FONT);
-        saveButton.setBackground(Main.BUTTON_BACKGROUND);
-        saveButton.setForeground(Main.TEXT);
-        cancelButton.setFont(Main.BASE_FONT);
-        cancelButton.setBackground(Main.BUTTON_BACKGROUND);
-        cancelButton.setForeground(Main.TEXT);
         c.fill = GridBagConstraints.BOTH;
         c.gridy++;
         c.gridwidth = firstFieldWidth;

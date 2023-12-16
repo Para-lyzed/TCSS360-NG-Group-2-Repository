@@ -190,6 +190,20 @@ public class Expense implements Comparable<Expense>, Serializable {
     }
 
     /**
+     * Sets data for an expense from another expense.
+     *
+     * @param expense to take data from
+     *
+     * @author Nathan Grimsey
+     */
+    public void set(Expense expense) {
+        name = expense.getName();
+        category = expense.getCategory();
+        price = expense.getPrice();
+        quantity = expense.getQuantity();
+    }
+
+    /**
      * Compares this Expense to another Expense.
      * 
      * @param otherExpense the Expense to compare to.
@@ -213,6 +227,11 @@ public class Expense implements Comparable<Expense>, Serializable {
 
         compareVal += price - otherExpense.getPrice();
         return compareVal;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + name + ", " + category + ", " + price + ", " + quantity + "]";
     }
 
 }
