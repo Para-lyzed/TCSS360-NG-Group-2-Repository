@@ -48,8 +48,10 @@ public class BaseSelectorScreen extends BaseScreen {
      * @param height of the panel.
      * @param title of the panel.
      * @param type String representation to set button to "New <type>" or "Import <type>".
-     * @param userSettingsType
-     * @param fileExtension
+     * @param userSettingsType int constant used for UserSettings methods.
+     * @param fileExtension String of file extension.
+     * 
+     * @author Nathan Grimsey
      */
     public BaseSelectorScreen(int width, int height, String title, String type, int userSettingsType, String fileExtension) {
         super(width, height, title, 4);
@@ -146,6 +148,11 @@ public class BaseSelectorScreen extends BaseScreen {
         fileChooser.setFileFilter(new FileNameExtensionFilter("MPP " + type + " File", fileExtension));
     }
 
+    /**
+     * Updates the entries in listPane.
+     * 
+     * @author Nathan Grimsey
+     */
     protected void updateListPaneEntries() {
         listPane.setListData(recentFiles.toArray(new String[recentFiles.size()]));
     }

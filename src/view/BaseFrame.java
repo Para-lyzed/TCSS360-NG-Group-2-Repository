@@ -288,12 +288,22 @@ public class BaseFrame extends JFrame {
                 
                 case "Create a New Tool":
                     lPane.remove(newToolScreen);
-                    lPane.add(mainMenu, BorderLayout.WEST, 0);
+                    if (currentlyInsideProject) {
+                        lPane.add(projectMenu, BorderLayout.WEST, 0);
+                    }
+                    else {
+                        lPane.add(mainMenu, BorderLayout.WEST, 0);
+                    }
                     break;
 
                 case "Create a New Material":
                     lPane.remove(newMaterialScreen);
-                    lPane.add(mainMenu, BorderLayout.WEST, 0);
+                    if (currentlyInsideProject) {
+                        lPane.add(projectMenu, BorderLayout.WEST, 0);
+                    }
+                    else {
+                        lPane.add(mainMenu, BorderLayout.WEST, 0);
+                    }
                     break;
 
                 case "Expenses":
