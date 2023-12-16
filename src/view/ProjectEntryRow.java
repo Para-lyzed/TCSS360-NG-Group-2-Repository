@@ -36,7 +36,7 @@ public class ProjectEntryRow {
     /**
      * Creates a row of column texts fields with update and delete buttons.
      * 
-     * @param columns
+     * @param columns the number of columns.
      * 
      * @author Nathan Grimsey
      */
@@ -47,6 +47,15 @@ public class ProjectEntryRow {
         updateButton.setVisible(false);
     }
 
+    /**
+     * Creates a row of column texts fields with update and delete buttons, 
+     * where there is a formatted date field at index datePosition.
+     * 
+     * @param columns the number of columns.
+     * @param datePosition the index of the desired date field.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectEntryRow(int columns, int datePosition) {
         for (int i = 0; i < columns; i++) {
             if (i == datePosition) {
@@ -59,6 +68,16 @@ public class ProjectEntryRow {
         updateButton.setVisible(false);
     }
 
+    /**
+     * Creates a row of column texts fields with update and delete buttons, 
+     * where there are number formatted text fields at quantityPosition and pricePosition.
+     * 
+     * @param columns the number of columns.
+     * @param quantityPosition the index of a number field.
+     * @param pricePosition the index of a number field.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectEntryRow(int columns, int quantityPosition, int pricePosition) {
         for (int i = 0; i < columns; i++) {
             if (i == quantityPosition || i == pricePosition) {
@@ -71,6 +90,13 @@ public class ProjectEntryRow {
         updateButton.setVisible(false);
     }
 
+    /**
+     * Creates a row of column labels for a Tool with a checkbox and delete button.
+     * 
+     * @param tool the tool to make labels for.
+     * 
+     * @author Nathan Grimsey
+     */
     public ProjectEntryRow(Tool tool) {
         toolName = new JLabel(tool.getName());
         toolName.setFont(Main.TABLE_FONT);

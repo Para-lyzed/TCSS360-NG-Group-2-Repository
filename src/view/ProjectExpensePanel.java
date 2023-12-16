@@ -39,10 +39,18 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
     private Project project;
     private ProjectExpenseScreen overviewScreen;
 
-    public ProjectExpensePanel(Project project, ProjectExpenseScreen overviewScreen) {
+    /**
+     * Displays a scrollable list of expenses in a Project.
+     * 
+     * @param project the user is editing.
+     * @param expenseScreen the screen this panel is on.
+     * 
+     * @author Nathan Grimsey
+     */
+    public ProjectExpensePanel(Project project, ProjectExpenseScreen expenseScreen) {
         super(addButtonName);
         this.project = project;
-        this.overviewScreen = overviewScreen;
+        this.overviewScreen = expenseScreen;
         projectExpenses = project.getExpenses();
         nameLabel.setFont(Main.TABLE_FONT);
         nameLabel.setForeground(Main.TEXT);
@@ -93,6 +101,11 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         load();
     }
 
+    /**
+     * Loads rows of expenses from Project.
+     * 
+     * @author Nathan Grimsey
+     */
     private void load() {
         for (int i = 0; i < projectExpenses.size(); i++) {
             ProjectEntryRow entryRow = new ProjectEntryRow(4, 2, 3);
@@ -107,6 +120,13 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         }
     }
 
+    /**
+     * Adds a single row to the Expense list.
+     * 
+     * @param entryRow the row to add.
+     * 
+     * @author Nathan Grimsey
+     */
     private void addRow(ProjectEntryRow entryRow) {
         CustomTextField nameTextField = entryRow.textFields.get(0);
         CustomTextField categoryTextField = entryRow.textFields.get(1);
@@ -242,6 +262,15 @@ public class ProjectExpensePanel extends ProjectSecondaryPanelTemplate {
         });
     }
 
+    /**
+     * Gets an expense from the provided text fields, or null if input is invalid.
+     * 
+     * @param nameField name text field.
+     * @param categoryField category text field.
+     * @param priceField price text field.
+     * @param quantityField quantity text field.
+     * @return
+     */
     private Expense updateExpense(CustomTextField nameField, CustomTextField categoryField, CustomTextField priceField, CustomTextField quantityField) {
         priceField.fireAction();
         quantityField.fireAction();
