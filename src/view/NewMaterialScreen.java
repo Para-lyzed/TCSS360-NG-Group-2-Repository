@@ -27,7 +27,7 @@ public class NewMaterialScreen extends NewScreen {
     private final JFileChooser fileChooser = new JFileChooser();
     private CustomTextField categoryTextField = new CustomTextField();
 
-    public NewMaterialScreen(int width, int height) {
+    public NewMaterialScreen(int width, int height, boolean inProject) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);
         categoryLabel.setForeground(Main.TEXT);
@@ -62,7 +62,13 @@ public class NewMaterialScreen extends NewScreen {
                         }
                         DataIO.saveMaterial(newMaterial, Path.of(exportPathString));
                     }
-                    Main.BASE_FRAME.switchScreen("Materials");
+                    if (inProject) {
+                        Main.BASE_FRAME.addNewMaterialToProject(newMaterial);
+                        Main.BASE_FRAME.openProjectExpenses(true);
+                    }
+                    else {
+                        Main.BASE_FRAME.switchScreen("Materials");
+                    }
                 }
                 else {
                     inputError();
@@ -72,7 +78,12 @@ public class NewMaterialScreen extends NewScreen {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.BASE_FRAME.resetToMaterials();
+                if (inProject) {
+                    Main.BASE_FRAME.openProjectExpenses(true);
+                }
+                else {
+                    Main.BASE_FRAME.switchScreen("Materials");
+                }
             }
         });
     }

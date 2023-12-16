@@ -14,7 +14,6 @@ public class ProjectMaterialSelectScreen extends BaseSelectorScreen {
         super(width, height, "Import Material", "Material", UserSettings.MATERIAL, "mat");
         remove(deleteButton);
         remove(importButton);
-        remove(createButton);
         openButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
