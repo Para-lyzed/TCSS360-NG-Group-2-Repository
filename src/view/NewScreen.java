@@ -30,6 +30,15 @@ public class NewScreen extends BaseScreen {
     protected final CustomButton saveButton = new CustomButton("Save");
     protected final CustomButton cancelButton = new CustomButton("Cancel");
 
+    /**
+     * Parent class for all New Screens which allow users to create new elements.
+     * 
+     * @param width of the panel.
+     * @param height of the panel. 
+     * @param title of the panel.
+     * @param firstFieldWidth how maniy grid spaces the first fields should cover.
+     * @param fieldTwoString the name of field 2.
+     */
     public NewScreen(int width, int height, String title, int firstFieldWidth, String fieldTwoString) {
         super(width, height, title, gridWidth);
         menuHeading(true);
@@ -91,6 +100,12 @@ public class NewScreen extends BaseScreen {
         add(cancelButton, c);
     }
 
+    /**
+     * Triggered when user does not enter all necessary fields. Highlights invalid 
+     * fields in red.
+     * 
+     * @author Nathan Grimsey
+     */
     protected void inputError() {
         if (nameTextField.getText().isEmpty()) {
             nameTextField.setBackground(Main.TEXT_ERROR);

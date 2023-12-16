@@ -152,6 +152,24 @@ public class ProjectLogPanel extends ProjectSecondaryPanelTemplate {
 
             }
         });
+        descriptionTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                entryRow.updateButton.setVisible(true);
+                dateTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                entryRow.updateButton.setVisible(true);
+                dateTextField.setBackground(Main.TEXT_BOX_BACKGROUND);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
         entryRow.updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -188,13 +206,18 @@ public class ProjectLogPanel extends ProjectSecondaryPanelTemplate {
         boolean failure = false;
         dateTextField.fireAction();
         String name = nameTextField.getText();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
         try {
-            date = new SimpleDateFormat("MM/dd/yyyy").parse(dateTextField.getText());
+            date = sdf.parse(dateTextField.getText());
         }
         catch (Exception e) {
             dateTextField.setBackground(Main.TEXT_ERROR);
             failure = true;
+        }
+        if (!dateTextField.getText().equals(sdf.format(date))) {
+            failure = true;
+            dateTextField.setBackground(Main.TEXT_ERROR);
         }
         if (!name.isEmpty()) {
             if (!failure) {

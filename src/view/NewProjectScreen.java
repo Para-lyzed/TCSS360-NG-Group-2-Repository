@@ -17,6 +17,14 @@ import model.Project;
 public class NewProjectScreen extends NewScreen {
     private static final String title = "Create a New Project";
 
+    /**
+     * Allows the user to create a new Project.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * 
+     * @author Nathan Grimsey
+     */
     public NewProjectScreen(int width, int height) {
         super(width, height, title, 3, "Budget*");
         saveButton.addActionListener(new ActionListener() {
@@ -27,7 +35,13 @@ public class NewProjectScreen extends NewScreen {
                 String budgetString = fieldTwoTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !budgetString.isEmpty()) {
-                    int budget = ((Number) fieldTwoTextField.getValue()).intValue();
+                    int budget = 0;
+                    try {
+                        budget = Integer.parseInt(budgetString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     Project newProject = new Project(name, budget);
                     if (!description.isEmpty()) {
                         newProject.setDescription(description);

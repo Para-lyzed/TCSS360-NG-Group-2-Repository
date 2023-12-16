@@ -27,6 +27,15 @@ public class NewMaterialScreen extends NewScreen {
     private final JFileChooser fileChooser = new JFileChooser();
     private CustomTextField categoryTextField = new CustomTextField();
 
+    /**
+     * Allows the user to create a new Material.
+     * 
+     * @param width of the panel.
+     * @param height of the panel.
+     * @param inProject true if the user is in the project view
+     * 
+     * @author Nathan Grimsey
+     */
     public NewMaterialScreen(int width, int height, boolean inProject) {
         super(width, height, title, 2, "Price*");
         categoryLabel.setFont(Main.HEADING_TWO_FONT);
@@ -47,7 +56,13 @@ public class NewMaterialScreen extends NewScreen {
                 String category = categoryTextField.getText();
                 String description = descriptionTextField.getText();
                 if (!name.isEmpty() && !priceString.isEmpty() && !category.isEmpty()) {
-                    int price = ((Number)fieldTwoTextField.getValue()).intValue();
+                    int price = 0;
+                    try {
+                        price = Integer.parseInt(priceString);
+                    }
+                    catch (Exception error) {
+
+                    }
                     Material newMaterial = new Material(name, category, price);
                     if (!description.isEmpty()) {
                         newMaterial.setDescription(description);
