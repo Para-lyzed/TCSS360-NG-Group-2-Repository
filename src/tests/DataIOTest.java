@@ -48,12 +48,15 @@ public class DataIOTest {
      */
     @AfterEach
     void finishUp() throws Exception {
+        Main.userSettings.removeFromRecent("Toy-Hammer", UserSettings.TOOL);
         File deleteToolFile = new File(saveToolPath.toString());
         deleteToolFile.delete();
 
+        Main.userSettings.removeFromRecent("Rope", UserSettings.MATERIAL);
         File deleteMaterialFile = new File(saveMaterialPath.toString());
         deleteMaterialFile.delete();
 
+        Main.userSettings.removeFromRecent("Test-Project", UserSettings.PROJECT);
         File deleteProjectFile = new File(saveProjectPath.toString());
         deleteProjectFile.delete();
     }
